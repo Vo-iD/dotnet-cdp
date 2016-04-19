@@ -1,0 +1,2 @@
+Physical model: https://gitpct.epam.com/bohdan_simianyk/mentoring_program/blob/master/Module1/Task1/Physical%20model.png
+Logical model: https://gitpct.epam.com/bohdan_simianyk/mentoring_program/blob/master/Module1/Task1/Logical%20model.png
