@@ -38,10 +38,10 @@ CREATE TABLE dbo.Trucks(
 GO
 
 CREATE TABLE dbo.Trucks_Drivers(
-	Truck_Id INT NOT NULL,
-	Driver_Id INT NOT NULL
-	CONSTRAINT fk_TruckToDriver FOREIGN KEY (Truck_Id) REFERENCES dbo.Trucks (Id),
-	CONSTRAINT fk_DriverToTruck FOREIGN KEY (Driver_Id) REFERENCES dbo.Drivers (Id)
+	TruckId INT NOT NULL,
+	DriverId INT NOT NULL
+	CONSTRAINT fk_TruckToDriver FOREIGN KEY (TruckId) REFERENCES dbo.Trucks (Id),
+	CONSTRAINT fk_DriverToTruck FOREIGN KEY (DriverId) REFERENCES dbo.Drivers (Id)
 )
 GO
 
