@@ -65,7 +65,7 @@ CREATE TABLE dbo.Shipments(
 	RouteId INT NOT NULL,
 	CONSTRAINT pk_Shipments PRIMARY KEY CLUSTERED (Id),
 	CONSTRAINT fk_ShipmentTruck FOREIGN KEY (TruckId) REFERENCES dbo.Trucks (Id),
-	CONSTRAINT fk_Route FOREIGN KEY (RouteId) REFERENCES dbo.ShipmentRoutes (Id)
+	CONSTRAINT fk_ShipmetRoute FOREIGN KEY (RouteId) REFERENCES dbo.ShipmentRoutes (Id)
 )
 GO
 
@@ -84,9 +84,17 @@ CREATE TABLE dbo.Cargos(
 	Volume INT NOT NULL,
 	RecepientId INT NOT NULL,
 	SenderId INT NOT NULL, 
-	ShipmentId INT NOT NULL, 
+	RouteId INT NOT NULL, 
 	CONSTRAINT pk_Cargos PRIMARY KEY CLUSTERED (Id),
 	CONSTRAINT fk_Recipient FOREIGN KEY (RecepientId) REFERENCES dbo.Customers (Id),
 	CONSTRAINT fk_Sender FOREIGN KEY (SenderId) REFERENCES dbo.Customers (Id),
-	CONSTRAINT fk_Shipment FOREIGN KEY (ShipmentId) REFERENCES dbo.Shipments (Id),
+	CONSTRAINT fk_CargoRoute FOREIGN KEY (RouteId) REFERENCES dbo.ShipmentRoutes (Id)
+)
+GO
+
+CREATE TABLE dbo.Cargo_Shipment(
+	CargoId INT NOT NULL,
+	ShipmentId INT NOT NULL
+	CONSTRAINT fk_CargoToShipment FOREIGN KEY (CargoId) REFERENCES dbo.Cargos (Id),
+	CONSTRAINT fk_ShipmentToCargo FOREIGN KEY (ShipmentId) REFERENCES dbo.Shipments (Id)
 )
