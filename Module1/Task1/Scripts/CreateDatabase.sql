@@ -8,24 +8,24 @@ GO
 USE ShippingDb
 GO
 
-CREATE TABLE dbo.Warehouses(
+CREATE TABLE [dbo].[Warehouse](
 	Id INT IDENTITY (1,1) NOT NULL,
 	City NVARCHAR (100) NOT NULL,
 	UsaState NVARCHAR (100) NOT NULL,
-	CONSTRAINT pk_Warehouses PRIMARY KEY CLUSTERED (Id)
+	CONSTRAINT pk_Warehouse PRIMARY KEY CLUSTERED (Id)
 )
 GO
 
-CREATE TABLE dbo.Drivers(
+CREATE TABLE [dbo].[Driver](
 	Id INT IDENTITY (1,1) NOT NULL,
 	FirstName NVARCHAR (100) NOT NULL,
 	LastName NVARCHAR (100) NOT NULL,
 	BrithDate DATE NOT NULL,
-	CONSTRAINT pk_Drivers PRIMARY KEY CLUSTERED (Id)
+	CONSTRAINT pk_Driver PRIMARY KEY CLUSTERED (Id)
 )
 GO
 
-CREATE TABLE dbo.Trucks(
+CREATE TABLE [dbo].[Truck](
 	Id INT IDENTITY (1,1) NOT NULL,
 	Brand NVARCHAR (100) NOT NULL,
 	RegistrationNumber NVARCHAR (100) NOT NULL,
@@ -33,68 +33,70 @@ CREATE TABLE dbo.Trucks(
 	FuelConsumption INT NOT NULL,
 	Volume INT NOT NULL,
 	IssueYear DATE NOT NULL,
-	CONSTRAINT pk_Trucks PRIMARY KEY CLUSTERED (Id)
+	CONSTRAINT pk_Truck PRIMARY KEY CLUSTERED (Id),
+	CONSTRAINT ak_RegistrationNumber UNIQUE(RegistrationNumber) 
 )
 GO
 
-CREATE TABLE dbo.Trucks_Drivers(
+CREATE TABLE [dbo].[TruckDriver](
 	TruckId INT NOT NULL,
 	DriverId INT NOT NULL
-	CONSTRAINT fk_TruckToDriver FOREIGN KEY (TruckId) REFERENCES dbo.Trucks (Id),
-	CONSTRAINT fk_DriverToTruck FOREIGN KEY (DriverId) REFERENCES dbo.Drivers (Id)
+	CONSTRAINT fk_TruckToDriver FOREIGN KEY (TruckId) REFERENCES [dbo].[Truck] (Id),
+	CONSTRAINT fk_DriverToTruck FOREIGN KEY (DriverId) REFERENCES [dbo].[Driver] (Id)
 )
 GO
 
-CREATE TABLE dbo.ShipmentRoutes(
+CREATE TABLE [dbo].[Route](
 	Id INT IDENTITY(1,1) NOT NULL,
 	Distance INT NOT NULL,
 	SourceId INT NOT NULL,
 	DestinationId INT NOT NULL,
-	CONSTRAINT pk_ShipmentRoutes PRIMARY KEY CLUSTERED (Id),
-	CONSTRAINT fk_Source FOREIGN KEY (SourceId) REFERENCES dbo.Warehouses (Id),
-	CONSTRAINT fk_Destination FOREIGN KEY (DestinationId) REFERENCES dbo.Warehouses (Id)
+	CONSTRAINT pk_Route PRIMARY KEY CLUSTERED (Id),
+	CONSTRAINT fk_Source FOREIGN KEY (SourceId) REFERENCES [dbo].[Warehouse] (Id),
+	CONSTRAINT fk_Destination FOREIGN KEY (DestinationId) REFERENCES [dbo].[Warehouse] (Id)
 )
 GO
   
-CREATE TABLE dbo.Shipments(
+CREATE TABLE [dbo].[Shipment](
 	Id INT IDENTITY (1,1) NOT NULL,
 	DepartureDate Date NOT NULL,
 	DeliveryDate Date NULL,
-	Price INT NOT NULL,
 	TruckId INT NULL,
 	RouteId INT NOT NULL,
-	CONSTRAINT pk_Shipments PRIMARY KEY CLUSTERED (Id),
-	CONSTRAINT fk_ShipmentTruck FOREIGN KEY (TruckId) REFERENCES dbo.Trucks (Id),
-	CONSTRAINT fk_ShipmetRoute FOREIGN KEY (RouteId) REFERENCES dbo.ShipmentRoutes (Id)
+	CONSTRAINT pk_Shipment PRIMARY KEY CLUSTERED (Id),
+	CONSTRAINT fk_ShipmentTruck FOREIGN KEY (TruckId) REFERENCES [dbo].[Truck] (Id),
+	CONSTRAINT fk_ShipmetRoute FOREIGN KEY (RouteId) REFERENCES [dbo].[Route] (Id)
 )
 GO
 
-CREATE TABLE dbo.Customers(
+CREATE TABLE [dbo].[Customer](
 	Id INT IDENTITY(1,1) NOT NULL,
 	FirstName NVARCHAR(50) NOT NULL,
 	LastName NVARCHAR(50) NOT NULL,
 	PhoneNumber NVARCHAR(15) NOT NULL,
-	CONSTRAINT pk_Customers PRIMARY KEY CLUSTERED (Id)
+	CONSTRAINT pk_Customer PRIMARY KEY CLUSTERED (Id),
+	CONSTRAINT ak_PhoneNumber UNIQUE(PhoneNumber) 
 )
 GO
 
-CREATE TABLE dbo.Cargos(
+CREATE TABLE [dbo].[Cargo](
 	Id INT IDENTITY (1,1) NOT NULL, 
-	Weight INT NOT NULL,
-	Volume INT NOT NULL,
+	Weight FLOAT NOT NULL,
+	Volume FLOAT NOT NULL,
+	Price MONEY NOT NULL,
 	RecepientId INT NOT NULL,
 	SenderId INT NOT NULL, 
 	RouteId INT NOT NULL, 
-	CONSTRAINT pk_Cargos PRIMARY KEY CLUSTERED (Id),
-	CONSTRAINT fk_Recipient FOREIGN KEY (RecepientId) REFERENCES dbo.Customers (Id),
-	CONSTRAINT fk_Sender FOREIGN KEY (SenderId) REFERENCES dbo.Customers (Id),
-	CONSTRAINT fk_CargoRoute FOREIGN KEY (RouteId) REFERENCES dbo.ShipmentRoutes (Id)
+	CONSTRAINT pk_Cargo PRIMARY KEY CLUSTERED (Id),
+	CONSTRAINT fk_Recipient FOREIGN KEY (RecepientId) REFERENCES [dbo].[Customer] (Id),
+	CONSTRAINT fk_Sender FOREIGN KEY (SenderId) REFERENCES [dbo].[Customer] (Id),
+	CONSTRAINT fk_CargoRoute FOREIGN KEY (RouteId) REFERENCES [dbo].[Route] (Id)
 )
 GO
 
-CREATE TABLE dbo.Cargo_Shipment(
+CREATE TABLE [dbo].[CargoShipment](
 	CargoId INT NOT NULL,
 	ShipmentId INT NOT NULL
-	CONSTRAINT fk_CargoToShipment FOREIGN KEY (CargoId) REFERENCES dbo.Cargos (Id),
-	CONSTRAINT fk_ShipmentToCargo FOREIGN KEY (ShipmentId) REFERENCES dbo.Shipments (Id)
+	CONSTRAINT fk_CargoToShipment FOREIGN KEY (CargoId) REFERENCES [dbo].[Cargo] (Id),
+	CONSTRAINT fk_ShipmentToCargo FOREIGN KEY (ShipmentId) REFERENCES [dbo].[Shipment] (Id)
 )
