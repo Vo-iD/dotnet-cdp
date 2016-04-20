@@ -30,8 +30,8 @@ CREATE TABLE [dbo].[Truck](
 	Brand NVARCHAR (100) NOT NULL,
 	RegistrationNumber NVARCHAR (100) NOT NULL,
 	Payload INT NOT NULL,
-	FuelConsumption INT NOT NULL,
-	Volume INT NOT NULL,
+	FuelConsumption FLOAT NOT NULL,
+	Volume FLOAT NOT NULL,
 	IssueYear DATE NOT NULL,
 	CONSTRAINT pk_Truck PRIMARY KEY CLUSTERED (Id),
 	CONSTRAINT ak_RegistrationNumber UNIQUE(RegistrationNumber) 
