@@ -18,11 +18,17 @@ INSERT INTO [dbo].[Cargo] (RecepientId, SenderId, RouteId, Weight, Volume, Price
 		ABS(Checksum(NewID()) % 500 - 0.1) + 0.1 AS Weight,
 		ABS(Checksum(NewID()) % 30 - 0.1) + 0.1 AS Volume,
 		ABS(Checksum(NewID()) % 200 - 0.1) + 0.1 AS Price
-	FROM [dbo].[Customer] as Recepient
-	JOIN [dbo].[Customer] as Sender
+	FROM (
+		SELECT TOP 30 *
+		FROM [dbo].[Customer]
+		ORDER BY NEWID()) AS Recepient
+	JOIN (
+		SELECT TOP 30 *
+		FROM [dbo].[Customer]
+		ORDER BY NEWID()) AS Sender
 	ON Recepient.Id != Sender.Id
 	CROSS JOIN (
-		SELECT TOP 1000 Id 
+		SELECT TOP 30 Id 
 		FROM [dbo].[Route]
 		ORDER BY NEWID()
 		) as Route
