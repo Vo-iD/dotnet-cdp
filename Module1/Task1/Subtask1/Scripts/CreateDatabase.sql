@@ -11,9 +11,9 @@ GO
 CREATE TABLE [dbo].[City](
    	Id INT IDENTITY (1,1) NOT NULL,
 	Name NVARCHAR (100) NOT NULL,
-	UsaState NVARCHAR (100) NOT NULL,
+	State NVARCHAR (100) NOT NULL,
 	CONSTRAINT pk_City PRIMARY KEY CLUSTERED (Id),
-	CONSTRAINT ak_CityState UNIQUE(Name, UsaState)
+	CONSTRAINT ak_CityState UNIQUE(Name, State)
 )
 GO
 
@@ -43,9 +43,11 @@ CREATE TABLE [dbo].[Truck](
 	Payload INT NOT NULL,
 	FuelConsumption FLOAT NOT NULL,
 	Volume FLOAT NOT NULL,
-	IssueYear DATE NOT NULL,
+	Year INT NOT NULL,
 	CONSTRAINT pk_Truck PRIMARY KEY CLUSTERED (Id),
-	CONSTRAINT ak_RegistrationNumber UNIQUE(RegistrationNumber) 
+	CONSTRAINT ak_RegistrationNumber UNIQUE(RegistrationNumber),
+	CONSTRAINT year_range_check
+        CHECK(Year >= 1901 AND Year <= 2016), 
 )
 GO
 
