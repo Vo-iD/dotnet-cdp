@@ -1,4 +1,4 @@
-USE ShippingDb
+USE [bohdan_simianyk_cdp2016q1]
 GO 
 
 declare @FromDate date = '2010-01-01'

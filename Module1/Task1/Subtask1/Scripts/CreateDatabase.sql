@@ -1,11 +1,11 @@
-IF EXISTS(SELECT * from sys.databases WHERE name='ShippingDb')
+IF EXISTS(SELECT * from sys.databases WHERE name='bohdan_simianyk_cdp2016q1')
 BEGIN
-    DROP DATABASE ShippingDb;
+    DROP DATABASE bohdan_simianyk_cdp2016q1;
 END
-	CREATE DATABASE ShippingDb;
+	CREATE DATABASE bohdan_simianyk_cdp2016q1;
 GO
 
-USE ShippingDb
+USE [bohdan_simianyk_cdp2016q1]
 GO
 
 CREATE TABLE [dbo].[City](
