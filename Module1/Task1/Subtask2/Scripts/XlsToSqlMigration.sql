@@ -27,8 +27,8 @@ WITH
 )
 GO
 
-BULK INSERT [dbo].[TruckDriver]
-FROM 'C:\data\CDP\Module1\Task1\Subtask2\TruckDrivers.csv'
+BULK INSERT [dbo].[Crew]
+FROM 'C:\data\CDP\Module1\Task1\Subtask2\Crews.csv'
 WITH
 (
 	FIELDTERMINATOR = ',',
