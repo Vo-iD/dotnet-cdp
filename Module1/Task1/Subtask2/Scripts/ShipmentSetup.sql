@@ -1,14 +1,18 @@
 USE [bohdan_simianyk_cdp2016q1]
 GO 
 
-declare @FromDate date = '2010-01-01'
-declare @ToDate date = '2015-12-31'
+DECLARE @FromDepartureDate DATE = '2012-01-01';
+DECLARE @ToDepartureDate DATE = '2012-01-07';
 
-INSERT INTO [dbo].[Shipment] (CrewId, RouteId, DepartureDate)
+DECLARE @FromDeliveryDate DATE = '2012-01-07';
+DECLARE @ToDeliveryDate DATE = '2012-01-12';
+
+INSERT INTO [dbo].[Shipment] (CrewId, RouteId, DepartureDate, DeliveryDate)
     SELECT TOP 1000 
 		Crew.Id AS CrewId,
 		Route.Id AS RouteId,
-		dateadd(day, rand(checksum(newid())) * (1 + datediff(day, @FromDate, @ToDate)), @FromDate) AS DepartureDate
+		DATEADD(DAY, RAND(CHECKSUM(NEWID())) * (1 + DATEDIFF(DAY, @FromDepartureDate, @ToDepartureDate)), @FromDepartureDate) AS DepartureDate,
+		DATEADD(DAY, RAND(CHECKSUM(NEWID())) * (1 + DATEDIFF(DAY, @FromDeliveryDate, @ToDeliveryDate)), @FromDeliveryDate)  AS DeliveryDate
 	FROM (
 		SELECT *
 		FROM [dbo].[Crew]) as Crew

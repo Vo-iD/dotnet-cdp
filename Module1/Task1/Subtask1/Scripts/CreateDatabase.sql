@@ -46,7 +46,7 @@ CREATE TABLE [dbo].[Truck](
 	Volume FLOAT NOT NULL,
 	CONSTRAINT pk_Truck PRIMARY KEY CLUSTERED (Id),
 	CONSTRAINT ak_RegistrationNumber UNIQUE(RegistrationNumber),
-	CONSTRAINT year_range_check
+	CONSTRAINT ck_YearRange
         CHECK(Year >= 1901 AND Year <= 2016), 
 )
 GO
@@ -81,7 +81,9 @@ CREATE TABLE [dbo].[Shipment](
 	RouteId INT NOT NULL,
 	CONSTRAINT pk_Shipment PRIMARY KEY CLUSTERED (Id),
 	CONSTRAINT fk_Shipment_Crew FOREIGN KEY (CrewId) REFERENCES [dbo].[Crew] (Id),
-	CONSTRAINT fk_Shipmet_Route FOREIGN KEY (RouteId) REFERENCES [dbo].[Route] (Id)
+	CONSTRAINT fk_Shipmet_Route FOREIGN KEY (RouteId) REFERENCES [dbo].[Route] (Id),
+	CONSTRAINT ck_DepartureDeliveryDate
+		CHECK (DepartureDate <= DeliveryDate)
 )
 GO
 
