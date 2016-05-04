@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[Warehouse](
 	OfficeNumber INT NOT NULL DEFAULT 1,
 	CityId INT NOT NULL,
 	CONSTRAINT pk_Warehouse PRIMARY KEY CLUSTERED (Id),
-	CONSTRAINT fk_City FOREIGN KEY (CityId) REFERENCES [dbo].[City] (Id),
+	CONSTRAINT fk_Warehouse_City FOREIGN KEY (CityId) REFERENCES [dbo].[City] (Id),
 	CONSTRAINT ak_CityOfficeNumber UNIQUE(OfficeNumber, CityId)
 )
 GO
@@ -51,11 +51,13 @@ CREATE TABLE [dbo].[Truck](
 )
 GO
 
-CREATE TABLE [dbo].[TruckDriver](
+CREATE TABLE [dbo].[Crew](
+	Id INT IDENTITY (1,1) NOT NULL,
 	TruckId INT NOT NULL,
 	DriverId INT NOT NULL,
-	CONSTRAINT fk_TruckToDriver FOREIGN KEY (TruckId) REFERENCES [dbo].[Truck] (Id),
-	CONSTRAINT fk_DriverToTruck FOREIGN KEY (DriverId) REFERENCES [dbo].[Driver] (Id)
+	CONSTRAINT pk_Crew PRIMARY KEY CLUSTERED (Id),
+	CONSTRAINT fk_Crew_Truck FOREIGN KEY (TruckId) REFERENCES [dbo].[Truck] (Id),
+	CONSTRAINT fk_Crew_Driver FOREIGN KEY (DriverId) REFERENCES [dbo].[Driver] (Id)
 )
 GO
 
@@ -65,8 +67,9 @@ CREATE TABLE [dbo].[Route](
 	SourceId INT NOT NULL,
 	DestinationId INT NOT NULL,
 	CONSTRAINT pk_Route PRIMARY KEY CLUSTERED (Id),
-	CONSTRAINT fk_Source FOREIGN KEY (SourceId) REFERENCES [dbo].[Warehouse] (Id),
-	CONSTRAINT fk_Destination FOREIGN KEY (DestinationId) REFERENCES [dbo].[Warehouse] (Id)
+	CONSTRAINT fk_Route_WarehouseSource FOREIGN KEY (SourceId) REFERENCES [dbo].[Warehouse] (Id),
+	CONSTRAINT fk_Route_WarehouseDestination FOREIGN KEY (DestinationId) REFERENCES [dbo].[Warehouse] (Id),
+    CONSTRAINT ak_Route UNIQUE(SourceId, DestinationId) 
 )
 GO
   
@@ -74,11 +77,11 @@ CREATE TABLE [dbo].[Shipment](
 	Id INT IDENTITY (1,1) NOT NULL,
 	DepartureDate Date NOT NULL,
 	DeliveryDate Date NULL,
-	TruckId INT NULL,
+	CrewId INT NULL,
 	RouteId INT NOT NULL,
 	CONSTRAINT pk_Shipment PRIMARY KEY CLUSTERED (Id),
-	CONSTRAINT fk_ShipmentTruck FOREIGN KEY (TruckId) REFERENCES [dbo].[Truck] (Id),
-	CONSTRAINT fk_ShipmetRoute FOREIGN KEY (RouteId) REFERENCES [dbo].[Route] (Id)
+	CONSTRAINT fk_Shipment_Crew FOREIGN KEY (CrewId) REFERENCES [dbo].[Crew] (Id),
+	CONSTRAINT fk_Shipmet_Route FOREIGN KEY (RouteId) REFERENCES [dbo].[Route] (Id)
 )
 GO
 
@@ -101,15 +104,15 @@ CREATE TABLE [dbo].[Cargo](
 	SenderId INT NOT NULL, 
 	RouteId INT NOT NULL, 
 	CONSTRAINT pk_Cargo PRIMARY KEY CLUSTERED (Id),
-	CONSTRAINT fk_Recipient FOREIGN KEY (RecepientId) REFERENCES [dbo].[Customer] (Id),
-	CONSTRAINT fk_Sender FOREIGN KEY (SenderId) REFERENCES [dbo].[Customer] (Id),
-	CONSTRAINT fk_CargoRoute FOREIGN KEY (RouteId) REFERENCES [dbo].[Route] (Id)
+	CONSTRAINT fk_Cargo_CustomerRecipient FOREIGN KEY (RecepientId) REFERENCES [dbo].[Customer] (Id),
+	CONSTRAINT fk_Cargo_CustomerSender FOREIGN KEY (SenderId) REFERENCES [dbo].[Customer] (Id),
+	CONSTRAINT fk_Cargo_Route FOREIGN KEY (RouteId) REFERENCES [dbo].[Route] (Id)
 )
 GO
 
 CREATE TABLE [dbo].[CargoShipment](
 	CargoId INT NOT NULL,
 	ShipmentId INT NOT NULL
-	CONSTRAINT fk_CargoToShipment FOREIGN KEY (CargoId) REFERENCES [dbo].[Cargo] (Id),
-	CONSTRAINT fk_ShipmentToCargo FOREIGN KEY (ShipmentId) REFERENCES [dbo].[Shipment] (Id)
+	CONSTRAINT fk_CargoShipment_Cargo FOREIGN KEY (CargoId) REFERENCES [dbo].[Cargo] (Id),
+	CONSTRAINT fk_CargoShipment_Shipment FOREIGN KEY (ShipmentId) REFERENCES [dbo].[Shipment] (Id)
 )
