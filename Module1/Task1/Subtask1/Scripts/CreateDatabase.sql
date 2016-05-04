@@ -31,7 +31,7 @@ CREATE TABLE [dbo].[Driver](
 	Id INT IDENTITY (1,1) NOT NULL,
 	FirstName NVARCHAR (100) NOT NULL,
 	LastName NVARCHAR (100) NOT NULL,
-	BrithDate DATE NOT NULL,
+	Brithdate DATE NOT NULL,
 	CONSTRAINT pk_Driver PRIMARY KEY CLUSTERED (Id)
 )
 GO
@@ -40,10 +40,10 @@ CREATE TABLE [dbo].[Truck](
 	Id INT IDENTITY (1,1) NOT NULL,
 	Brand NVARCHAR (100) NOT NULL,
 	RegistrationNumber NVARCHAR (100) NOT NULL,
+	Year INT NOT NULL,
 	Payload INT NOT NULL,
 	FuelConsumption FLOAT NOT NULL,
 	Volume FLOAT NOT NULL,
-	Year INT NOT NULL,
 	CONSTRAINT pk_Truck PRIMARY KEY CLUSTERED (Id),
 	CONSTRAINT ak_RegistrationNumber UNIQUE(RegistrationNumber),
 	CONSTRAINT year_range_check
