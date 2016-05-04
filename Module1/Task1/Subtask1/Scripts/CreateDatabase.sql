@@ -8,11 +8,22 @@ GO
 USE ShippingDb
 GO
 
+CREATE TABLE [dbo].[City](
+   	Id INT IDENTITY (1,1) NOT NULL,
+	Name NVARCHAR (100) NOT NULL,
+	UsaState NVARCHAR (100) NOT NULL,
+	CONSTRAINT pk_City PRIMARY KEY CLUSTERED (Id),
+	CONSTRAINT ak_CityState UNIQUE(Name, UsaState)
+)
+GO
+
 CREATE TABLE [dbo].[Warehouse](
 	Id INT IDENTITY (1,1) NOT NULL,
-	City NVARCHAR (100) NOT NULL,
-	UsaState NVARCHAR (100) NOT NULL,
-	CONSTRAINT pk_Warehouse PRIMARY KEY CLUSTERED (Id)
+	OfficeNumber INT NOT NULL DEFAULT 1,
+	CityId INT NOT NULL,
+	CONSTRAINT pk_Warehouse PRIMARY KEY CLUSTERED (Id),
+	CONSTRAINT fk_City FOREIGN KEY (CityId) REFERENCES [dbo].[City] (Id),
+	CONSTRAINT ak_CityOfficeNumber UNIQUE(OfficeNumber, CityId)
 )
 GO
 
@@ -40,7 +51,7 @@ GO
 
 CREATE TABLE [dbo].[TruckDriver](
 	TruckId INT NOT NULL,
-	DriverId INT NOT NULL
+	DriverId INT NOT NULL,
 	CONSTRAINT fk_TruckToDriver FOREIGN KEY (TruckId) REFERENCES [dbo].[Truck] (Id),
 	CONSTRAINT fk_DriverToTruck FOREIGN KEY (DriverId) REFERENCES [dbo].[Driver] (Id)
 )
