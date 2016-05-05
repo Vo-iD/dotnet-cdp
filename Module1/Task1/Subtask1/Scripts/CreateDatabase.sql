@@ -45,7 +45,6 @@ CREATE TABLE [dbo].[Truck](
 	FuelConsumption FLOAT NOT NULL,
 	Volume FLOAT NOT NULL,
 	CONSTRAINT pk_Truck PRIMARY KEY CLUSTERED (Id),
-	CONSTRAINT ak_RegistrationNumber UNIQUE(RegistrationNumber),
 	CONSTRAINT ck_YearRange
         CHECK(Year >= 1901 AND Year <= 2016), 
 )
