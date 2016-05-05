@@ -69,7 +69,7 @@ CREATE TABLE [dbo].[Route](
 	CONSTRAINT pk_Route PRIMARY KEY CLUSTERED (Id),
 	CONSTRAINT fk_Route_WarehouseSource FOREIGN KEY (SourceId) REFERENCES [dbo].[Warehouse] (Id),
 	CONSTRAINT fk_Route_WarehouseDestination FOREIGN KEY (DestinationId) REFERENCES [dbo].[Warehouse] (Id),
-    CONSTRAINT ak_Route UNIQUE(SourceId, DestinationId) 
+    CONSTRAINT ak_SourceDestination UNIQUE(SourceId, DestinationId) 
 )
 GO
   
