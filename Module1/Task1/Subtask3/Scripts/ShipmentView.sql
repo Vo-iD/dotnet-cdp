@@ -104,6 +104,7 @@ SELECT
 	TotalFuel
 FROM cte
 WHERE rn = 1
+GO 
 
 -- Cross Apply	 (THe best way, but difference is minimal)
 CREATE VIEW [dbo].[ShipmentInfoCrossApply]
