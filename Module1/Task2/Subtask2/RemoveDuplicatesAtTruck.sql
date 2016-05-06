@@ -13,4 +13,4 @@ WHERE Id NOT IN (
 DELETE FirstTable 
 FROM [Truck] FirstTable, [Truck] SecondTable 
 WHERE FirstTable.id > SecondTable.id 
-		AND FirstTable.RegistrationNumber = SecondTable.RegistrationNumber
+	AND FirstTable.RegistrationNumber = SecondTable.RegistrationNumber

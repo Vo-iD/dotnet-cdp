@@ -21,7 +21,6 @@ GO
 CREATE PROCEDURE [dbo].[GetDriverInfo]
   @Parameters [dbo].[ParametersTableType] READONLY
 AS
-	-- Creating Condition
 	DECLARE  @FieldName VARCHAR(100)
 	DECLARE @FieldValue VARCHAR(100)
 
@@ -57,14 +56,11 @@ AS
 		SET @Counter = @Counter + 1;
 	END
 
-	-- End Creating Condition
-
-	-- SELECT result
-	   EXEC ('SELECT [dbo].[Driver].[FirstName],
-				[dbo].[Driver].[LastName],
-				[dbo].[Driver].[Birthdate]
-				FROM [dbo].[Driver] 
-				' + @SQLCondition)
+	EXEC ('SELECT [dbo].[Driver].[FirstName],
+			[dbo].[Driver].[LastName],
+			[dbo].[Driver].[Birthdate]
+			FROM [dbo].[Driver] 
+			' + @SQLCondition)
 GO
 
 CREATE PROCEDURE [dbo].[GetDriverInfoXmlParsingFirstWay]
@@ -74,7 +70,6 @@ AS
 
 	INSERT INTO @Parameters
 		EXEC [dbo].[ParsingFirstWay] @XML = @XML
-	-- End Parsing
 
 	EXEC [dbo].[GetDriverInfo] @Parameters
 GO
@@ -95,26 +90,3 @@ DECLARE @XML XML = '
 </pair>'
 
 EXEC [dbo].[GetDriverInfoXmlParsingFirstWay] @XML = @XML
-
-
-
-
-
-
-
---DECLARE @Counter INT = 1;
---DECLARE @CanInsert BIT = 1; 
-
---WHILE @CanInsert = 1
---	BEGIN
---		IF @XML.value('(/pair/key[name = "FieldName"]/value/text())[' + CAST(1 AS NVARCHAR(2)) + ']', 'nvarchar(100)') IS NOT NULL 
---		AND @XML.value('(/pair/value[name = "FieldValue"]/value/text())[' + CAST(1 AS NVARCHAR(2)) +']', 'nvarchar(100)') IS NOT NULL 
---			BEGIN
---				INSERT INTO @Parameters
---				SELECT @XML.value('(/pair/key[name = "FieldName"]/value/text())[' + CAST(1 AS NVARCHAR(2)) + ']', 'nvarchar(100)') AS FieldName,
---						@XML.value('(/pair/value[name = "FieldValue"]/value/text())[' + CAST(1 AS NVARCHAR(2)) +']', 'nvarchar(100)') AS FieldValue
---			END
---			ELSE
---				SET @CanInsert = 0; 
---		SET @Counter = @Counter + 1;
---	END 
