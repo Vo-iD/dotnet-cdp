@@ -1,6 +1,6 @@
 ﻿
 -- Cross Apply	 (THe best way, but difference is minimal)
-CREATE VIEW [dbo].[ShipmentInfoCrossApply]
+CREATE VIEW [dbo].[vShipmentInfoCrossApply]
 AS 
 	SELECT 
 		ShipmentTable.DepartureDate AS ShipmentDepartureDate, 

@@ -1,6 +1,6 @@
 ﻿
 -- Simple joins
-CREATE VIEW [dbo].[ShipmentInfoJoins]
+CREATE VIEW [dbo].[vShipmentInfoJoins]
 AS 
 	SELECT 
 		ShipmentTable.DepartureDate AS ShipmentDepartureDate, 

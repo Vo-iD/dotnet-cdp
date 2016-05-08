@@ -1,6 +1,6 @@
 ﻿
 -- CTE 
-CREATE VIEW [dbo].[ShipmentInfoCTE]
+CREATE VIEW [dbo].[vShipmentInfoCTE]
 AS 
 WITH cte AS
 (

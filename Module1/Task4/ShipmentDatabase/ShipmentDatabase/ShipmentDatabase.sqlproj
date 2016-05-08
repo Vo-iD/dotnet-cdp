@@ -78,9 +78,9 @@
     <Build Include="dbo\Tables\Customer.sql" />
     <Build Include="dbo\Tables\Cargo.sql" />
     <Build Include="dbo\Tables\CargoShipment.sql" />
-    <Build Include="dbo\Views\ShipmentInfoJoins.sql" />
-    <Build Include="dbo\Views\ShipmentInfoCTE.sql" />
-    <Build Include="dbo\Views\ShipmentInfoCrossApply.sql" />
+    <Build Include="dbo\Views\vShipmentInfoJoins.sql" />
+    <Build Include="dbo\Views\vShipmentInfoCTE.sql" />
+    <Build Include="dbo\Views\vShipmentInfoCrossApply.sql" />
     <Build Include="dbo\Stored Procedures\ParsingFirstWay.sql" />
     <Build Include="dbo\Stored Procedures\ParsingSecondWay.sql" />
     <Build Include="dbo\Stored Procedures\GetDriverInfo.sql" />
@@ -89,6 +89,7 @@
     <Build Include="dbo\User Defined Types\ParametersTableType.sql" />
     <Build Include="dbo\Tables\Status.sql" />
     <PostDeploy Include="Scripts\Post-Deployment\Script.Data.Status.sql" />
+    <Build Include="dbo\Views\vShipments.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LocalProfile.publish.xml" />
