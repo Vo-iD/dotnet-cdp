@@ -2,7 +2,7 @@ USE [bohdan_simianyk_cdp2016q1]
 GO
 
 -- Simple joins
-CREATE VIEW [dbo].[ShipmentInfoJoins]
+CREATE VIEW [dbo].[vShipmentInfoJoins]
 AS 
 	SELECT 
 		ShipmentTable.DepartureDate AS ShipmentDepartureDate, 
@@ -45,7 +45,7 @@ AS
 GO
 
 -- CTE 
-CREATE VIEW [dbo].[ShipmentInfoCTE]
+CREATE VIEW [dbo].[vShipmentInfoCTE]
 AS 
 WITH cte AS
 (
@@ -107,7 +107,7 @@ WHERE rn = 1
 GO 
 
 -- Cross Apply	 (THe best way, but difference is minimal)
-CREATE VIEW [dbo].[ShipmentInfoCrossApply]
+CREATE VIEW [dbo].[vShipmentInfoCrossApply]
 AS 
 	SELECT 
 		ShipmentTable.DepartureDate AS ShipmentDepartureDate, 
