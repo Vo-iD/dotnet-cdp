@@ -4,6 +4,8 @@
     [DeliveryDate]  DATE NULL,
     [CrewId]        INT  NULL,
     [RouteId]       INT  NOT NULL,
+    [ActualDistance] INT NULL, 
+    [Status] VARCHAR(10) NOT NULL CHECK ([Status] IN('Scheduled', 'Departured', 'Arrived', 'Cancelled')) DEFAULT 'Scheduled',
     CONSTRAINT [pk_Shipment] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [ck_DepartureDeliveryDate] CHECK ([DepartureDate]<=[DeliveryDate]),
     CONSTRAINT [fk_Shipment_Crew] FOREIGN KEY ([CrewId]) REFERENCES [dbo].[Crew] ([Id]),
