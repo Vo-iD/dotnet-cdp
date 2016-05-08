@@ -10,7 +10,37 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-INSERT INTO [dbo].[Status] VALUES ('Scheduled');
-INSERT INTO [dbo].[Status] VALUES ('Departured');
-INSERT INTO [dbo].[Status] VALUES ('Arrived');
-INSERT INTO [dbo].[Status] VALUES ('Cancelled');
+IF NOT EXISTS (SELECT * FROM [dbo].[Status] 
+                   WHERE [dbo].[Status].[Name] = 'Scheduled')
+   BEGIN
+       INSERT INTO [dbo].[Status]
+       VALUES ('Scheduled');
+   END
+
+IF NOT EXISTS (SELECT * FROM [dbo].[Status] 
+                   WHERE [dbo].[Status].[Name] = 'Departured')
+   BEGIN
+       INSERT INTO [dbo].[Status]
+       VALUES ('Departured');
+   END
+
+IF NOT EXISTS (SELECT * FROM [dbo].[Status] 
+                   WHERE [dbo].[Status].[Name] = 'Arrived')
+   BEGIN
+       INSERT INTO [dbo].[Status]
+       VALUES ('Arrived');
+   END
+
+IF NOT EXISTS (SELECT * FROM [dbo].[Status] 
+                WHERE [dbo].[Status].[Name] = 'Cancelled')
+    BEGIN
+        INSERT INTO [dbo].[Status]
+        VALUES ('Cancelled');
+    END;
+
+IF NOT EXISTS (SELECT * FROM [dbo].[Status] 
+                WHERE [dbo].[Status].[Name] = 'Completed')
+    BEGIN
+        INSERT INTO [dbo].[Status]
+        VALUES ('Completed');
+    END;
