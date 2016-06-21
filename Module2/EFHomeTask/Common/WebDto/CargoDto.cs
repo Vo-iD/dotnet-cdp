@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Common.WebDto
+namespace DAL.Module.Common.WebDto
 {
     [DataContract]
     public class CargoDto

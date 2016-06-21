@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using DataAccess.Contract.Models;
+using DAL.Module.DataAccess.Contract.Models;
 
-namespace DataAccess.Contract.Infrastructure
+namespace DAL.Module.DataAccess.Contract.Infrastructure
 {
     public interface IRepository<TEntity> where TEntity : EntityRoot
     {

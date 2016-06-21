@@ -1,14 +1,14 @@
-﻿using DataAccess.Contract.Infrastructure;
-using DataAccess.Implementation.Infrastructure;
+﻿using DAL.Module.DataAccess.Contract.Infrastructure;
+using DAL.Module.DataAccess.Implementation.UnitsOfWork;
 using Ninject;
 
-namespace EFHomeTask.DependencyInjection
+namespace DAL.Module.WebApi.DependencyInjection
 {
     public static class IoCContainer
     {
         public static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            kernel.Bind<IUnitOfWork>().To<EFUnitOfWork>();
         }
     }
 }

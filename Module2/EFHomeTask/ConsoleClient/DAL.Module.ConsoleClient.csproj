@@ -7,8 +7,8 @@
     <ProjectGuid>{2C65FE65-0BB4-4727-8D1B-4312740E6ECE}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleClient</RootNamespace>
-    <AssemblyName>ConsoleClient</AssemblyName>
+    <RootNamespace>DAL.Module.ConsoleClient</RootNamespace>
+    <AssemblyName>DAL.Module.ConsoleClient</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

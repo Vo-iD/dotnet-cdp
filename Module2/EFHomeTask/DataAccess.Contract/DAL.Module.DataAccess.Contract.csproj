@@ -7,8 +7,8 @@
     <ProjectGuid>{5A269405-40FB-4760-9A83-EE6E47ED2F62}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataAccess.Contract</RootNamespace>
-    <AssemblyName>DataAccess.Contract</AssemblyName>
+    <RootNamespace>DAL.Module.DataAccess.Contract</RootNamespace>
+    <AssemblyName>DAL.Module.DataAccess.Contract</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

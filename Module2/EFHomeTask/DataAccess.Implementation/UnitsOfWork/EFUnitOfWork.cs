@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections;
-using DataAccess.Contract.Infrastructure;
 using DataAccess.Contract.Models;
+using DAL.Module.DataAccess.Contract.Infrastructure;
+using DAL.Module.DataAccess.Implementation.Repositories;
+using EntityRoot = DAL.Module.DataAccess.Contract.Models.EntityRoot;
 
-namespace DataAccess.Implementation.Infrastructure
+namespace DAL.Module.DataAccess.Implementation.UnitsOfWork
 {
-    public class UnitOfWork : IUnitOfWork
+    public class EFUnitOfWork : IUnitOfWork
     {
         private readonly bohdan_simianyk_cdp2016q1Entities _context;
         private bool _disposed;
         private Hashtable _repositories;
 
-        public UnitOfWork()
+        public EFUnitOfWork()
         {
             _repositories = new Hashtable();
             _context = new bohdan_simianyk_cdp2016q1Entities();
@@ -29,7 +31,7 @@ namespace DataAccess.Implementation.Infrastructure
 
             if (!_repositories.ContainsKey(type))
             {
-                _repositories.Add(type, new Repository<TData>(_context));;
+                _repositories.Add(type, new EFRepository<TData>(_context));;
             }
 
             return (IRepository<TData>)_repositories[type];

@@ -1,6 +1,6 @@
 using System;
 using System.Web;
-using EFHomeTask.DependencyInjection;
+using DAL.Module.WebApi.DependencyInjection;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -8,7 +8,7 @@ using Ninject.Web.Common;
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
 
-namespace EFHomeTask.DependencyInjection
+namespace DAL.Module.WebApi.DependencyInjection
 {
     public static class NinjectWebCommon 
     {

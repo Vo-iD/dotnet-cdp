@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Contract.Models
+namespace DAL.Module.DataAccess.Contract.Models
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Cargo : EntityRoot
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,7 @@ namespace DataAccess.Contract.Models
         {
             this.Shipments = new HashSet<Shipment>();
         }
-
+    
         public double Weight { get; set; }
         public double Volume { get; set; }
         public decimal Price { get; set; }

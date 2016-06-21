@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using RestSharp;
 
-namespace ConsoleClient
+namespace DAL.Module.ConsoleClient
 {
     public class Program
     {

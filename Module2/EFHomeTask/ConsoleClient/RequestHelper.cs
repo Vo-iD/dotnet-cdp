@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common.WebDto;
+using DAL.Module.Common.WebDto;
 using RestSharp;
 
-namespace ConsoleClient
+namespace DAL.Module.ConsoleClient
 {
     public class RequestHelper
     {

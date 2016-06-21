@@ -6,7 +6,7 @@ using Ninject.Activation;
 using Ninject.Parameters;
 using Ninject.Syntax;
 
-namespace EFHomeTask.DependencyInjection
+namespace DAL.Module.WebApi.DependencyInjection
 {
     public class NinjectScope : IDependencyScope
     {

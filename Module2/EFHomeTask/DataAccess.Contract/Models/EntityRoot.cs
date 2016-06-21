@@ -1,4 +1,4 @@
-﻿namespace DataAccess.Contract.Models
+﻿namespace DAL.Module.DataAccess.Contract.Models
 {
     public class EntityRoot
     {

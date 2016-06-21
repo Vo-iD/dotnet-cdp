@@ -1,8 +1,7 @@
-﻿using System.Web.Http.Controllers;
-using System.Web.Http.Dependencies;
+﻿using System.Web.Http.Dependencies;
 using Ninject;
 
-namespace EFHomeTask.DependencyInjection
+namespace DAL.Module.WebApi.DependencyInjection
 {
     public class NinjectResolver : NinjectScope, IDependencyResolver
     {

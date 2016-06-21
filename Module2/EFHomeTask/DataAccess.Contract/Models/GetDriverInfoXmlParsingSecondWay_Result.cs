@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Contract.Models
+namespace DAL.Module.DataAccess.Contract.Models
 {
     using System;
     

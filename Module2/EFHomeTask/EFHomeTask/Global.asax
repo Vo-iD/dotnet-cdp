@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="EFHomeTask.WebApiApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Language="C#" %>

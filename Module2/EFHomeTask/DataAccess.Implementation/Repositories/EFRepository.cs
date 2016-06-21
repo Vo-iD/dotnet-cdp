@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-using DataAccess.Contract.Exceptions;
-using DataAccess.Contract.Infrastructure;
 using DataAccess.Contract.Models;
+using DAL.Module.DataAccess.Contract.Exceptions;
+using DAL.Module.DataAccess.Contract.Infrastructure;
+using EntityRoot = DAL.Module.DataAccess.Contract.Models.EntityRoot;
 
-namespace DataAccess.Implementation.Infrastructure
+namespace DAL.Module.DataAccess.Implementation.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : EntityRoot
+    public class EFRepository<TEntity> : IRepository<TEntity> where TEntity : EntityRoot
     {
         private readonly bohdan_simianyk_cdp2016q1Entities _context;
         private IDbSet<TEntity> _entities;
 
-        public Repository(bohdan_simianyk_cdp2016q1Entities context)
+        public EFRepository(bohdan_simianyk_cdp2016q1Entities context)
         {
             _context = context;
             _entities = context.Set<TEntity>();

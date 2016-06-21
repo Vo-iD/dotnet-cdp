@@ -7,12 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Contract.Models
+namespace DAL.Module.DataAccess.Contract.Models
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class Crew : EntityRoot
+    
+    public partial class Crew
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Crew()
@@ -20,6 +20,7 @@ namespace DataAccess.Contract.Models
             this.Shipments = new HashSet<Shipment>();
         }
     
+        public int Id { get; set; }
         public int TruckId { get; set; }
         public int DriverId { get; set; }
     

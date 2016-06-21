@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
-using Common.WebDto;
-using DataAccess.Contract.Exceptions;
-using DataAccess.Contract.Infrastructure;
-using DataAccess.Contract.Models;
+using DAL.Module.Common.WebDto;
+using DAL.Module.DataAccess.Contract.Exceptions;
+using DAL.Module.DataAccess.Contract.Infrastructure;
+using DAL.Module.DataAccess.Contract.Models;
 
-namespace EFHomeTask.Controllers
+namespace DAL.Module.WebApi.Controllers
 {
     public class CargoController : ApiController
     {

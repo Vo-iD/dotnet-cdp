@@ -7,12 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Contract.Models
+namespace DAL.Module.DataAccess.Contract.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Warehouse : EntityRoot
+    public partial class Warehouse
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Warehouse()
@@ -21,6 +21,7 @@ namespace DataAccess.Contract.Models
             this.Routes1 = new HashSet<Route>();
         }
     
+        public int Id { get; set; }
         public int OfficeNumber { get; set; }
         public int CityId { get; set; }
     

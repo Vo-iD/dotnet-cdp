@@ -7,12 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess.Contract.Models
+namespace DAL.Module.DataAccess.Contract.Models
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class Route : EntityRoot
+    
+    public partial class Route
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Route()
@@ -21,6 +21,7 @@ namespace DataAccess.Contract.Models
             this.Shipments = new HashSet<Shipment>();
         }
     
+        public int Id { get; set; }
         public int Distance { get; set; }
         public int SourceId { get; set; }
         public int DestinationId { get; set; }

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Common.WebDto;
-using DataAccess.Contract.Models;
+using DAL.Module.Common.WebDto;
+using DAL.Module.DataAccess.Contract.Models;
 
-namespace EFHomeTask
+namespace DAL.Module.WebApi
 {
     public static class AutomapperConfiguration
     {

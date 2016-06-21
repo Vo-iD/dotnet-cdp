@@ -1,6 +1,7 @@
 ﻿using System.Web;
 using System.Web.Http;
-using EFHomeTask.DependencyInjection;
+using DAL.Module.WebApi;
+using DAL.Module.WebApi.DependencyInjection;
 using Ninject;
 
 namespace EFHomeTask
