@@ -15,6 +15,7 @@ namespace DataAccess.Implementation.Infrastructure
         {
             _repositories = new Hashtable();
             _context = new bohdan_simianyk_cdp2016q1Entities();
+            _context.Configuration.AutoDetectChangesEnabled = false;
         }
 
         public void Save()

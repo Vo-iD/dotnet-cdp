@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFHomeTask", "EFHomeTask\EFHomeTask.csproj", "{A8E9F07B-CB7C-41D8-B851-4C3E8A3B0BC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Module.WebApi", "EFHomeTask\DAL.Module.WebApi.csproj", "{A8E9F07B-CB7C-41D8-B851-4C3E8A3B0BC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Contract", "DataAccess.Contract\DataAccess.Contract.csproj", "{5A269405-40FB-4760-9A83-EE6E47ED2F62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Module.DataAccess.Contract", "DataAccess.Contract\DAL.Module.DataAccess.Contract.csproj", "{5A269405-40FB-4760-9A83-EE6E47ED2F62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Implementation", "DataAccess.Implementation\DataAccess.Implementation.csproj", "{78D2B749-18D4-4069-83EA-046EEC82F416}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Module.DataAccess.Implementation", "DataAccess.Implementation\DAL.Module.DataAccess.Implementation.csproj", "{78D2B749-18D4-4069-83EA-046EEC82F416}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9F4E9DC6-7C7E-4DD8-93D5-2A5C017FFF48}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9F4E9D
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Module.ConsoleClient", "ConsoleClient\DAL.Module.ConsoleClient.csproj", "{2C65FE65-0BB4-4727-8D1B-4312740E6ECE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Module.Common", "Common\DAL.Module.Common.csproj", "{7C2FA1D3-01F0-42D5-B7E2-6622FBE00C5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +38,14 @@ Global
 		{78D2B749-18D4-4069-83EA-046EEC82F416}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78D2B749-18D4-4069-83EA-046EEC82F416}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78D2B749-18D4-4069-83EA-046EEC82F416}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C65FE65-0BB4-4727-8D1B-4312740E6ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C65FE65-0BB4-4727-8D1B-4312740E6ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C65FE65-0BB4-4727-8D1B-4312740E6ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C65FE65-0BB4-4727-8D1B-4312740E6ECE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C2FA1D3-01F0-42D5-B7E2-6622FBE00C5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C2FA1D3-01F0-42D5-B7E2-6622FBE00C5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C2FA1D3-01F0-42D5-B7E2-6622FBE00C5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C2FA1D3-01F0-42D5-B7E2-6622FBE00C5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

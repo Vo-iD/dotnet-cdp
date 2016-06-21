@@ -41,7 +41,8 @@ namespace DataAccess.Implementation.Infrastructure
                 throw new ArgumentNullException("entity");
             }
 
-            if (_entities.Contains(entity))
+            var entityFromDatabase = _entities.FirstOrDefault(x => x.Id == entity.Id);
+            if (entityFromDatabase != null)
             {
                 throw new EntityAlreadyExistException();
             }

@@ -1,9 +1,9 @@
 ﻿using System.Runtime.Serialization;
 
-namespace EFHomeTask.WebDto
+namespace Common.WebDto
 {
     [DataContract]
-    public class CargoWebDto
+    public class CargoDto
     {
         [DataMember]
         public int Id { get; set; }

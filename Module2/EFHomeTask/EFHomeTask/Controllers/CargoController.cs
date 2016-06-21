@@ -5,10 +5,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
+using Common.WebDto;
 using DataAccess.Contract.Exceptions;
 using DataAccess.Contract.Infrastructure;
 using DataAccess.Contract.Models;
-using EFHomeTask.WebDto;
 
 namespace EFHomeTask.Controllers
 {
@@ -22,21 +22,21 @@ namespace EFHomeTask.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<CargoWebDto> Get()
+        public IEnumerable<CargoDto> Get()
         {
             var cargoes = _unitOfWork.Repository<Cargo>().Get().ToList();
-            var webDtos = Mapper.Map<IEnumerable<CargoWebDto>>(cargoes);
+            var webDtos = Mapper.Map<IEnumerable<CargoDto>>(cargoes);
 
             return webDtos;
         }
 
         [HttpGet]
-        public CargoWebDto Get(int id)
+        public CargoDto Get(int id)
         {
             try
             {
                 var cargo = _unitOfWork.Repository<Cargo>().Get(id);
-                var webDto = Mapper.Map<CargoWebDto>(cargo);
+                var webDto = Mapper.Map<CargoDto>(cargo);
 
                 return webDto;
             }
@@ -48,51 +48,57 @@ namespace EFHomeTask.Controllers
         }
 
         [HttpPost]
-        public void Post(CargoWebDto model)
+        public int Post(CargoDto model)
         {
             var cargo = Mapper.Map<Cargo>(model);
 
             try
             {
                 _unitOfWork.Repository<Cargo>().Insert(cargo);
-                Request.CreateResponse(HttpStatusCode.Created);
+                _unitOfWork.Save();
             }
             catch (EntityAlreadyExistException)
             {
                 Request.CreateErrorResponse(HttpStatusCode.Conflict, "The same cargo already exists");
             }
+
+            return cargo.Id;
         }
 
         [HttpPut]
-        public void Put(CargoWebDto model)
+        public int Put(CargoDto model)
         {
             var cargo = Mapper.Map<Cargo>(model);
 
             try
             {
                 _unitOfWork.Repository<Cargo>().Update(cargo);
-                Request.CreateResponse(HttpStatusCode.OK);
+                _unitOfWork.Save();
             }
             catch (EntityNotFoundException)
             {
                 Request.CreateErrorResponse(HttpStatusCode.NotFound,
                     string.Format("Cargo with id {0} not found.", model.Id));
             }
+
+            return cargo.Id;
         }
 
         [HttpDelete]
-        public void Delete(int id)
+        public int Delete(int id)
         {
             try
             {
                 _unitOfWork.Repository<Cargo>().Delete(id);
-                Request.CreateResponse(HttpStatusCode.OK);
+                _unitOfWork.Save();
             }
             catch (EntityNotFoundException)
             {
                 Request.CreateErrorResponse(HttpStatusCode.NotFound, string.Format("Cargo with id {0} not found.", id));
                 throw;
             }
+
+            return id;
         }
     }
 }

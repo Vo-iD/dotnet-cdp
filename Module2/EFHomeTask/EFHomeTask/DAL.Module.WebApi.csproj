@@ -126,7 +126,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebDto\CargoWebDto.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -142,13 +141,17 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess.Contract\DataAccess.Contract.csproj">
-      <Project>{5A269405-40FB-4760-9A83-EE6E47ED2F62}</Project>
-      <Name>DataAccess.Contract</Name>
+    <ProjectReference Include="..\Common\DAL.Module.Common.csproj">
+      <Project>{7C2FA1D3-01F0-42D5-B7E2-6622FBE00C5E}</Project>
+      <Name>DAL.Module.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataAccess.Implementation\DataAccess.Implementation.csproj">
+    <ProjectReference Include="..\DataAccess.Contract\DAL.Module.DataAccess.Contract.csproj">
+      <Project>{5A269405-40FB-4760-9A83-EE6E47ED2F62}</Project>
+      <Name>DAL.Module.DataAccess.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess.Implementation\DAL.Module.DataAccess.Implementation.csproj">
       <Project>{78D2B749-18D4-4069-83EA-046EEC82F416}</Project>
-      <Name>DataAccess.Implementation</Name>
+      <Name>DAL.Module.DataAccess.Implementation</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

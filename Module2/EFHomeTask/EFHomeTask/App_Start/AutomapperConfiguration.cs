@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Common.WebDto;
 using DataAccess.Contract.Models;
-using EFHomeTask.WebDto;
 
 namespace EFHomeTask
 {
@@ -14,12 +14,12 @@ namespace EFHomeTask
 
         private static void DomainToWebDto()
         {
-            Mapper.CreateMap<Cargo, CargoWebDto>();
+            Mapper.CreateMap<Cargo, CargoDto>();
         }
 
         private static void WebDtoToDomain()
         {
-            Mapper.CreateMap<CargoWebDto, Cargo>();
+            Mapper.CreateMap<CargoDto, Cargo>();
         }
     }
 }
