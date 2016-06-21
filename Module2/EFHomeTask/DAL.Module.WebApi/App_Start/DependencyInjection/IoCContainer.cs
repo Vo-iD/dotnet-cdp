@@ -8,7 +8,7 @@ namespace DAL.Module.WebApi.DependencyInjection
     {
         public static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IUnitOfWork>().To<EFUnitOfWork>();
+            kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>();
         }
     }
 }

@@ -8,12 +8,12 @@ using EntityRoot = DAL.Module.DataAccess.Contract.Models.EntityRoot;
 
 namespace DAL.Module.DataAccess.Implementation.Repositories
 {
-    public class EFRepository<TEntity> : IRepository<TEntity> where TEntity : EntityRoot
+    public class EfRepository<TEntity> : IRepository<TEntity> where TEntity : EntityRoot
     {
         private readonly bohdan_simianyk_cdp2016q1Entities _context;
         private IDbSet<TEntity> _entities;
 
-        public EFRepository(bohdan_simianyk_cdp2016q1Entities context)
+        public EfRepository(bohdan_simianyk_cdp2016q1Entities context)
         {
             _context = context;
             _entities = context.Set<TEntity>();
@@ -61,16 +61,6 @@ namespace DAL.Module.DataAccess.Implementation.Repositories
             _context.Entry(entity).State = EntityState.Modified;
         }
 
-        public void Delete(TEntity entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException("entity");
-            }
-
-            _entities.Remove(entity);
-        }
-
         public void Delete(int id)
         {
             var entity = _entities.FirstOrDefault(x => x.Id == id);
@@ -82,9 +72,14 @@ namespace DAL.Module.DataAccess.Implementation.Repositories
             Delete(entity);
         }
 
-        public void Save()
+        private void Delete(TEntity entity)
         {
-            _context.SaveChanges();
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
+
+            _entities.Remove(entity);
         }
     }
 }

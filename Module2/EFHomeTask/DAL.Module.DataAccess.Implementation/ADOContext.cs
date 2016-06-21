@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using DAL.Module.DataAccess.Contract.Commands;
-using DAL.Module.DataAccess.Contract.Infrastructure;
 
 namespace DAL.Module.DataAccess.Implementation
 {
-    public class ADOContext
+    public class AdoContext
     {
         public string ConnectionString { get; private set; }
 
         public Queue<ISqlCommand> Commands { get; private set; }
 
-        public ADOContext(string connectionString)
+        public AdoContext(string connectionString)
         {
             ConnectionString = connectionString;
 

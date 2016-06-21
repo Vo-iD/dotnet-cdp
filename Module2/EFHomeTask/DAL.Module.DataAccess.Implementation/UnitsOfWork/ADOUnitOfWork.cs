@@ -1,29 +1,39 @@
 ﻿using System;
+using System.Collections;
 using DAL.Module.DataAccess.Contract.Infrastructure;
 using DAL.Module.DataAccess.Contract.Models;
+using DAL.Module.DataAccess.Implementation.Repositories.AdoRepositories;
 
 namespace DAL.Module.DataAccess.Implementation.UnitsOfWork
 {
-    public class ADOUnitOfWork : IUnitOfWork
+    public class AdoUnitOfWork : IUnitOfWork
     {
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+        private readonly AdoContext _context;
+        private bool _disposed;
+        private Hashtable _repositories;
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
         public IRepository<TData> Repository<TData>() where TData : EntityRoot
         {
-            throw new NotImplementedException();
-        }
+            var type = typeof(TData).Name;
 
-        public void Dispose(bool disposing)
-        {
-            throw new NotImplementedException();
+            if (!_repositories.ContainsKey(type))
+            {
+                if (typeof (TData) == typeof (Cargo))
+                {
+                    _repositories.Add(type, new AdoCargoRepository(_context));
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            return (IRepository<TData>)_repositories[type];
         }
     }
 }

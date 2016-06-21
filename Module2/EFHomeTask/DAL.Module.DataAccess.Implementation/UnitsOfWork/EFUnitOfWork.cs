@@ -7,13 +7,13 @@ using EntityRoot = DAL.Module.DataAccess.Contract.Models.EntityRoot;
 
 namespace DAL.Module.DataAccess.Implementation.UnitsOfWork
 {
-    public class EFUnitOfWork : IUnitOfWork
+    public class EfUnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly bohdan_simianyk_cdp2016q1Entities _context;
         private bool _disposed;
         private Hashtable _repositories;
 
-        public EFUnitOfWork()
+        public EfUnitOfWork()
         {
             _repositories = new Hashtable();
             _context = new bohdan_simianyk_cdp2016q1Entities();
@@ -31,7 +31,7 @@ namespace DAL.Module.DataAccess.Implementation.UnitsOfWork
 
             if (!_repositories.ContainsKey(type))
             {
-                _repositories.Add(type, new EFRepository<TData>(_context));;
+                _repositories.Add(type, new EfRepository<TData>(_context));;
             }
 
             return (IRepository<TData>)_repositories[type];

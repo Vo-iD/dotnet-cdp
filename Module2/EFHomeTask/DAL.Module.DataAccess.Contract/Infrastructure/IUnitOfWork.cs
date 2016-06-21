@@ -3,12 +3,10 @@ using DAL.Module.DataAccess.Contract.Models;
 
 namespace DAL.Module.DataAccess.Contract.Infrastructure
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork
     {
         void Save();
 
         IRepository<TData> Repository<TData>() where TData : EntityRoot;
-
-        void Dispose(bool disposing);
     }
 }
