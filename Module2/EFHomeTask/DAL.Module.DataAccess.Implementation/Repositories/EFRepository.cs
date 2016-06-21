@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
-using DataAccess.Contract.Models;
 using DAL.Module.DataAccess.Contract.Exceptions;
 using DAL.Module.DataAccess.Contract.Infrastructure;
+using DAL.Module.DataAccess.Contract.Models;
 using EntityRoot = DAL.Module.DataAccess.Contract.Models.EntityRoot;
 
 namespace DAL.Module.DataAccess.Implementation.Repositories

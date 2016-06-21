@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
-using DataAccess.Contract.Models;
 using DAL.Module.DataAccess.Contract.Infrastructure;
+using DAL.Module.DataAccess.Contract.Models;
 using DAL.Module.DataAccess.Implementation.Repositories;
 using EntityRoot = DAL.Module.DataAccess.Contract.Models.EntityRoot;
 

@@ -1,10 +1,9 @@
 ﻿using System.Web;
 using System.Web.Http;
-using DAL.Module.WebApi;
 using DAL.Module.WebApi.DependencyInjection;
 using Ninject;
 
-namespace EFHomeTask
+namespace DAL.Module.WebApi
 {
     public class WebApiApplication : HttpApplication
     {

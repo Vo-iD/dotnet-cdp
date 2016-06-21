@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using DAL.Module.DataAccess.Contract.Commands;
 
@@ -10,9 +11,9 @@ namespace DAL.Module.DataAccess.Implementation
 
         public Queue<ISqlCommand> Commands { get; private set; }
 
-        public AdoContext(string connectionString)
+        public AdoContext()
         {
-            ConnectionString = connectionString;
+            ConnectionString = "name=bohdan_simianyk_cdp2016q1Entities";
 
             Commands = new Queue<ISqlCommand>();
         }

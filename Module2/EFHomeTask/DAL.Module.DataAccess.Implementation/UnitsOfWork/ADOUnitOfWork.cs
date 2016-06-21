@@ -12,6 +12,11 @@ namespace DAL.Module.DataAccess.Implementation.UnitsOfWork
         private bool _disposed;
         private Hashtable _repositories;
 
+        public AdoUnitOfWork()
+        {
+            _context = new AdoContext();
+        }
+
         public void Save()
         {
             _context.SaveChanges();
