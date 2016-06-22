@@ -6,14 +6,15 @@ using DAL.Module.DataAccess.Contract.Infrastructure;
 using DAL.Module.DataAccess.Contract.Models;
 using EntityRoot = DAL.Module.DataAccess.Contract.Models.EntityRoot;
 
-namespace DAL.Module.DataAccess.Implementation.Repositories
+namespace DAL.Module.DataAccess.Implementation.Repositories.EntityFrameworkRepositories
 {
-    public class EfRepository<TEntity> : IRepository<TEntity> where TEntity : EntityRoot
+    public class GenericRepository<TEntity> : IRepository<TEntity>, IReadAllRepository<TEntity>
+        where TEntity : EntityRoot
     {
         private readonly bohdan_simianyk_cdp2016q1Entities _context;
         private IDbSet<TEntity> _entities;
 
-        public EfRepository(bohdan_simianyk_cdp2016q1Entities context)
+        public GenericRepository(bohdan_simianyk_cdp2016q1Entities context)
         {
             _context = context;
             _entities = context.Set<TEntity>();

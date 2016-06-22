@@ -1,7 +1,5 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using DAL.Module.DataAccess.Contract.Exceptions;
 using DAL.Module.DataAccess.Contract.Infrastructure;
 using DAL.Module.DataAccess.Contract.Models;
@@ -16,11 +14,6 @@ namespace DAL.Module.DataAccess.Implementation.Repositories.AdoRepositories
         public AdoCargoRepository(AdoContext context)
         {
             _context = context;
-        }
-
-        public IQueryable<Cargo> Get()
-        {
-            throw new NotImplementedException();
         }
 
         public Cargo Get(int id)

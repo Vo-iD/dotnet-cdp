@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
@@ -18,15 +16,6 @@ namespace DAL.Module.WebApi.Controllers
         public CargoController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-        }
-
-        [HttpGet]
-        public IEnumerable<CargoDto> Get()
-        {
-            var cargoes = _unitOfWork.Repository<Cargo>().Get().ToList();
-            var webDtos = Mapper.Map<IEnumerable<CargoDto>>(cargoes);
-
-            return webDtos;
         }
 
         [HttpGet]

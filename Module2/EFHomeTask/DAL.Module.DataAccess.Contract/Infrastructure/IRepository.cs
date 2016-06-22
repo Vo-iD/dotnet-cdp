@@ -1,11 +1,9 @@
-﻿using System.Linq;
-using DAL.Module.DataAccess.Contract.Models;
+﻿using DAL.Module.DataAccess.Contract.Models;
 
 namespace DAL.Module.DataAccess.Contract.Infrastructure
 {
     public interface IRepository<TEntity> where TEntity : EntityRoot
     {
-        IQueryable<TEntity> Get();
         TEntity Get(int id);
         void Insert(TEntity entity);
         void Update(TEntity entity);

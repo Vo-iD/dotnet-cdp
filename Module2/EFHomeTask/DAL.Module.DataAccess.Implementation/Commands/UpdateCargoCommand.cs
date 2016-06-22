@@ -1,5 +1,4 @@
-﻿using System.Data;
-using DAL.Module.DataAccess.Contract.Models;
+﻿using DAL.Module.DataAccess.Contract.Models;
 
 namespace DAL.Module.DataAccess.Implementation.Commands
 {

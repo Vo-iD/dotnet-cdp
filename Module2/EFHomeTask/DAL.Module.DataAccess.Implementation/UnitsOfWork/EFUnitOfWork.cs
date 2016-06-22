@@ -2,7 +2,7 @@
 using System.Collections;
 using DAL.Module.DataAccess.Contract.Infrastructure;
 using DAL.Module.DataAccess.Contract.Models;
-using DAL.Module.DataAccess.Implementation.Repositories;
+using DAL.Module.DataAccess.Implementation.Repositories.EntityFrameworkRepositories;
 using EntityRoot = DAL.Module.DataAccess.Contract.Models.EntityRoot;
 
 namespace DAL.Module.DataAccess.Implementation.UnitsOfWork
@@ -31,7 +31,7 @@ namespace DAL.Module.DataAccess.Implementation.UnitsOfWork
 
             if (!_repositories.ContainsKey(type))
             {
-                _repositories.Add(type, new EfRepository<TData>(_context));;
+                _repositories.Add(type, new GenericRepository<TData>(_context));;
             }
 
             return (IRepository<TData>)_repositories[type];
