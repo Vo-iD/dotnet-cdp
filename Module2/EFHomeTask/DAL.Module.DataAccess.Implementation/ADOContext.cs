@@ -13,7 +13,7 @@ namespace DAL.Module.DataAccess.Implementation
 
         public AdoContext()
         {
-            ConnectionString = "name=bohdan_simianyk_cdp2016q1Entities";
+            ConnectionString = ConfigurationManager.ConnectionStrings["ShipmentEntitiesADO"].ConnectionString;
 
             Commands = new Queue<ISqlCommand>();
         }
@@ -35,9 +35,10 @@ namespace DAL.Module.DataAccess.Implementation
 
                         transaction.Commit();
                     }
-                    catch (SqlException)
+                    catch (SqlException ex)
                     {
                         transaction.Rollback();
+                        throw;
                     }
                 }
             }

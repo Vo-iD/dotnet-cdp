@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using DAL.Module.DataAccess.Contract.Exceptions;
 using DAL.Module.DataAccess.Contract.Infrastructure;
 using DAL.Module.DataAccess.Contract.Models;
 using DAL.Module.DataAccess.Implementation.Commands;
@@ -36,10 +37,9 @@ namespace DAL.Module.DataAccess.Implementation.Repositories.AdoRepositories
 
                     if (!reader.HasRows)
                     {
-                        throw new InvalidOperationException("Cargo not found");
+                        throw new EntityNotFoundException();
                     }
 
-                    reader.Read();
                     var cargo = MapCargo(reader);
 
                     return cargo;
@@ -70,18 +70,23 @@ namespace DAL.Module.DataAccess.Implementation.Repositories.AdoRepositories
 
         private Cargo MapCargo(SqlDataReader reader)
         {
-            Cargo cargo = new Cargo
+            if (reader.Read())
             {
-                Id = (int)reader["Id"],
-                Weight = (float)reader["Weight"],
-                Volume = (float)reader["Volume"],
-                SenderId = (int)reader["SenderId"],
-                RecepientId = (int)reader["RecepientId"],
-                RouteId = (int)reader["RouteId"],
-                Price = (decimal)reader["Price"]
-            };
+                var cargo = new Cargo
+                {
+                    Id = (int)reader["Id"],
+                    Weight = (double)reader["Weight"],
+                    Volume = (double)reader["Volume"],
+                    SenderId = (int)reader["SenderId"],
+                    RecepientId = (int)reader["RecepientId"],
+                    RouteId = (int)reader["RouteId"],
+                    Price = (decimal)reader["Price"]
+                };
 
-            return cargo;
+                return cargo;
+            }
+
+            return null;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace DAL.Module.ConsoleClient
     public class Program
     {
         private const string BaseUrl = "http://localhost:64814/api";
-        private const int Repeats = 2;
+        private const int Repeats = 1000000;
 
         static void Main(string[] args)
         {

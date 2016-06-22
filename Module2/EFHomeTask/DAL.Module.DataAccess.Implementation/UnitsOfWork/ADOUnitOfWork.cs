@@ -14,6 +14,7 @@ namespace DAL.Module.DataAccess.Implementation.UnitsOfWork
 
         public AdoUnitOfWork()
         {
+            _repositories = new Hashtable();
             _context = new AdoContext();
         }
 

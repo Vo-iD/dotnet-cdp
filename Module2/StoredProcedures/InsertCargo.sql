@@ -1,5 +1,7 @@
-﻿CREATE PROCEDURE [dbo].[InsertCargo]
-	@ShipmentId AS INT,
+﻿USE bohdan_simianyk_cdp2016q1
+GO
+
+CREATE PROCEDURE [dbo].[InsertCargo]
     @Weight AS REAL,
     @Volume AS REAL,
     @SenderId AS INT,

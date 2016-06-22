@@ -1,10 +1,12 @@
-﻿CREATE PROCEDURE [dbo].[UpdateCargo]
+﻿USE bohdan_simianyk_cdp2016q1
+GO
+
+CREATE PROCEDURE [dbo].[UpdateCargo]
 	@Id AS INT,
-	@ShipmentId AS INT,
     @Weight AS REAL,
     @Volume AS REAL,
     @SenderId AS INT,
-    @RecipientId AS INT,
+    @RecepientId AS INT,
     @RouteId AS INT,
     @Price AS REAL
 AS
@@ -13,7 +15,7 @@ SET
 	[Weight] = @Weight,
 	[Volume] = @Volume,
 	[SenderId] = @SenderId,
-	[RecepientId] = @RecipientId,
+	[RecepientId] = @RecepientId,
 	[RouteId] = @RouteId,
 	[Price] = @Price
 WHERE [Id] = @Id;
