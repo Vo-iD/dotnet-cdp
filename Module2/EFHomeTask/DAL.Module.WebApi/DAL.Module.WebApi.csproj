@@ -121,7 +121,7 @@
     <Compile Include="App_Start\DependencyInjection\NinjectScope.cs" />
     <Compile Include="App_Start\DependencyInjection\NinjectWebCommon.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\CargoController.cs" />
+    <Compile Include="Controllers\CargosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

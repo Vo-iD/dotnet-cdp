@@ -9,11 +9,11 @@ using DAL.Module.DataAccess.Contract.Models;
 
 namespace DAL.Module.WebApi.Controllers
 {
-    public class CargoController : ApiController
+    public class CargosController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public CargoController(IUnitOfWork unitOfWork)
+        public CargosController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
