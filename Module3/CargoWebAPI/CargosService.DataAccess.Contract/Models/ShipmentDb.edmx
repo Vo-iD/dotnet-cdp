@@ -1,0 +1,1246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bohdan_simianyk_cdp2016q1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+          <Property Name="Volume" Type="float" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="RecepientId" Type="int" Nullable="false" />
+          <Property Name="SenderId" Type="int" Nullable="false" />
+          <Property Name="RouteId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'bohdan_simianyk_cdp2016q1.dbo.CargoShipment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CargoShipment">
+          <Key>
+            <PropertyRef Name="CargoId" />
+            <PropertyRef Name="ShipmentId" />
+          </Key>
+          <Property Name="CargoId" Type="int" Nullable="false" />
+          <Property Name="ShipmentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Crew">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TruckId" Type="int" Nullable="false" />
+          <Property Name="DriverId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Birthdate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Distance" Type="int" Nullable="false" />
+          <Property Name="SourceId" Type="int" Nullable="false" />
+          <Property Name="DestinationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartureDate" Type="date" Nullable="false" />
+          <Property Name="DeliveryDate" Type="date" />
+          <Property Name="CrewId" Type="int" />
+          <Property Name="RouteId" Type="int" Nullable="false" />
+          <Property Name="ActualDistance" Type="int" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Truck">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegistrationNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Payload" Type="int" Nullable="false" />
+          <Property Name="FuelConsumption" Type="float" Nullable="false" />
+          <Property Name="Volume" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OfficeNumber" Type="int" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'bohdan_simianyk_cdp2016q1.dbo.vShipmentInfoCrossApply' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vShipmentInfoCrossApply">
+          <Key>
+            <PropertyRef Name="ShipmentDepartureDate" />
+            <PropertyRef Name="Distance" />
+            <PropertyRef Name="SourceCity" />
+            <PropertyRef Name="DestinationCity" />
+            <PropertyRef Name="Brand" />
+            <PropertyRef Name="TotalFuel" />
+          </Key>
+          <Property Name="ShipmentDepartureDate" Type="date" Nullable="false" />
+          <Property Name="ShipmentDeliveryDate" Type="date" />
+          <Property Name="Distance" Type="int" Nullable="false" />
+          <Property Name="SourceCity" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DestinationCity" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TotalWeight" Type="float" />
+          <Property Name="TotalVolume" Type="float" />
+          <Property Name="TotalFuel" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'bohdan_simianyk_cdp2016q1.dbo.vShipmentInfoCTE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vShipmentInfoCTE">
+          <Key>
+            <PropertyRef Name="ShipmentDepartureDate" />
+            <PropertyRef Name="Distance" />
+            <PropertyRef Name="SourceCity" />
+            <PropertyRef Name="DestinationCity" />
+            <PropertyRef Name="Brand" />
+            <PropertyRef Name="TotalFuel" />
+          </Key>
+          <Property Name="ShipmentDepartureDate" Type="date" Nullable="false" />
+          <Property Name="ShipmentDeliveryDate" Type="date" />
+          <Property Name="Distance" Type="int" Nullable="false" />
+          <Property Name="SourceCity" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DestinationCity" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TotalWeight" Type="float" />
+          <Property Name="TotalVolume" Type="float" />
+          <Property Name="TotalFuel" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'bohdan_simianyk_cdp2016q1.dbo.vShipmentInfoJoins' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vShipmentInfoJoins">
+          <Key>
+            <PropertyRef Name="ShipmentDepartureDate" />
+            <PropertyRef Name="Distance" />
+            <PropertyRef Name="SourceCity" />
+            <PropertyRef Name="DestinationCity" />
+            <PropertyRef Name="Brand" />
+            <PropertyRef Name="TotalFuel" />
+          </Key>
+          <Property Name="ShipmentDepartureDate" Type="date" Nullable="false" />
+          <Property Name="ShipmentDeliveryDate" Type="date" />
+          <Property Name="Distance" Type="int" Nullable="false" />
+          <Property Name="SourceCity" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DestinationCity" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TotalWeight" Type="float" />
+          <Property Name="TotalVolume" Type="float" />
+          <Property Name="TotalFuel" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'bohdan_simianyk_cdp2016q1.dbo.vShipments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vShipments">
+          <Key>
+            <PropertyRef Name="ShipmentDepartureDate" />
+            <PropertyRef Name="Distance" />
+            <PropertyRef Name="SourceCity" />
+            <PropertyRef Name="DestinationCity" />
+            <PropertyRef Name="TruckId" />
+            <PropertyRef Name="Brand" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="ShipmentDepartureDate" Type="date" Nullable="false" />
+          <Property Name="ShipmentDeliveryDate" Type="date" />
+          <Property Name="Distance" Type="int" Nullable="false" />
+          <Property Name="SourceCity" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DestinationCity" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TruckId" Type="int" Nullable="false" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="TotalWeight" Type="float" />
+          <Property Name="TotalVolume" Type="float" />
+          <Property Name="CargoCount" Type="int" />
+          <Property Name="UtilizedTruckCapacity" Type="float" />
+          <Property Name="UtilizedTruckPayload" Type="float" />
+        </EntityType>
+        <Association Name="fk_Cargo_CustomerRecipient">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cargo">
+              <PropertyRef Name="RecepientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cargo_CustomerSender">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cargo">
+              <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cargo_Route">
+          <End Role="Route" Type="Self.Route" Multiplicity="1" />
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cargo">
+              <PropertyRef Name="RouteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CargoShipment_Cargo">
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
+          <End Role="CargoShipment" Type="Self.CargoShipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cargo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CargoShipment">
+              <PropertyRef Name="CargoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CargoShipment_Shipment">
+          <End Role="Shipment" Type="Self.Shipment" Multiplicity="1" />
+          <End Role="CargoShipment" Type="Self.CargoShipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CargoShipment">
+              <PropertyRef Name="ShipmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Crew_Driver">
+          <End Role="Driver" Type="Self.Driver" Multiplicity="1" />
+          <End Role="Crew" Type="Self.Crew" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Crew">
+              <PropertyRef Name="DriverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Crew_Truck">
+          <End Role="Truck" Type="Self.Truck" Multiplicity="1" />
+          <End Role="Crew" Type="Self.Crew" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Truck">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Crew">
+              <PropertyRef Name="TruckId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Route_WarehouseDestination">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="DestinationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Route_WarehouseSource">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="SourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Shipment_Crew">
+          <End Role="Crew" Type="Self.Crew" Multiplicity="0..1" />
+          <End Role="Shipment" Type="Self.Shipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Crew">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shipment">
+              <PropertyRef Name="CrewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Shipment_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Shipment" Type="Self.Shipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shipment">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Shipmet_Route">
+          <End Role="Route" Type="Self.Route" Multiplicity="1" />
+          <End Role="Shipment" Type="Self.Shipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shipment">
+              <PropertyRef Name="RouteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Warehouse_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="DeleteCargo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetDriverInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetDriverInfoXmlParsingFirstWay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="XML" Type="xml" Mode="In" />
+        </Function>
+        <Function Name="GetDriverInfoXmlParsingSecondWay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="XML" Type="xml" Mode="In" />
+        </Function>
+        <Function Name="InsertCargo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Weight" Type="real" Mode="In" />
+          <Parameter Name="Volume" Type="real" Mode="In" />
+          <Parameter Name="SenderId" Type="int" Mode="In" />
+          <Parameter Name="RecepientId" Type="int" Mode="In" />
+          <Parameter Name="RouteId" Type="int" Mode="In" />
+          <Parameter Name="Price" Type="real" Mode="In" />
+          <Parameter Name="Id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="ParsingFirstWay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="XML" Type="xml" Mode="In" />
+        </Function>
+        <Function Name="ParsingSecondWay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="XML" Type="xml" Mode="In" />
+        </Function>
+        <Function Name="SelectCargo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdateCargo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Weight" Type="real" Mode="In" />
+          <Parameter Name="Volume" Type="real" Mode="In" />
+          <Parameter Name="SenderId" Type="int" Mode="In" />
+          <Parameter Name="RecepientId" Type="int" Mode="In" />
+          <Parameter Name="RouteId" Type="int" Mode="In" />
+          <Parameter Name="Price" Type="real" Mode="In" />
+        </Function>
+        <EntityContainer Name="bohdan_simianyk_cdp2016q1ModelStoreContainer">
+          <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Crew" EntityType="Self.Crew" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Driver" EntityType="Self.Driver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Route" EntityType="Self.Route" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shipment" EntityType="Self.Shipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Truck" EntityType="Self.Truck" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CargoShipment" EntityType="Self.CargoShipment" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CargoShipment].[CargoId] AS [CargoId], 
+    [CargoShipment].[ShipmentId] AS [ShipmentId]
+    FROM [dbo].[CargoShipment] AS [CargoShipment]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vShipmentInfoCrossApply" EntityType="Self.vShipmentInfoCrossApply" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vShipmentInfoCrossApply].[ShipmentDepartureDate] AS [ShipmentDepartureDate], 
+    [vShipmentInfoCrossApply].[ShipmentDeliveryDate] AS [ShipmentDeliveryDate], 
+    [vShipmentInfoCrossApply].[Distance] AS [Distance], 
+    [vShipmentInfoCrossApply].[SourceCity] AS [SourceCity], 
+    [vShipmentInfoCrossApply].[DestinationCity] AS [DestinationCity], 
+    [vShipmentInfoCrossApply].[Brand] AS [Brand], 
+    [vShipmentInfoCrossApply].[TotalWeight] AS [TotalWeight], 
+    [vShipmentInfoCrossApply].[TotalVolume] AS [TotalVolume], 
+    [vShipmentInfoCrossApply].[TotalFuel] AS [TotalFuel]
+    FROM [dbo].[vShipmentInfoCrossApply] AS [vShipmentInfoCrossApply]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vShipmentInfoCTE" EntityType="Self.vShipmentInfoCTE" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vShipmentInfoCTE].[ShipmentDepartureDate] AS [ShipmentDepartureDate], 
+    [vShipmentInfoCTE].[ShipmentDeliveryDate] AS [ShipmentDeliveryDate], 
+    [vShipmentInfoCTE].[Distance] AS [Distance], 
+    [vShipmentInfoCTE].[SourceCity] AS [SourceCity], 
+    [vShipmentInfoCTE].[DestinationCity] AS [DestinationCity], 
+    [vShipmentInfoCTE].[Brand] AS [Brand], 
+    [vShipmentInfoCTE].[TotalWeight] AS [TotalWeight], 
+    [vShipmentInfoCTE].[TotalVolume] AS [TotalVolume], 
+    [vShipmentInfoCTE].[TotalFuel] AS [TotalFuel]
+    FROM [dbo].[vShipmentInfoCTE] AS [vShipmentInfoCTE]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vShipmentInfoJoins" EntityType="Self.vShipmentInfoJoins" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vShipmentInfoJoins].[ShipmentDepartureDate] AS [ShipmentDepartureDate], 
+    [vShipmentInfoJoins].[ShipmentDeliveryDate] AS [ShipmentDeliveryDate], 
+    [vShipmentInfoJoins].[Distance] AS [Distance], 
+    [vShipmentInfoJoins].[SourceCity] AS [SourceCity], 
+    [vShipmentInfoJoins].[DestinationCity] AS [DestinationCity], 
+    [vShipmentInfoJoins].[Brand] AS [Brand], 
+    [vShipmentInfoJoins].[TotalWeight] AS [TotalWeight], 
+    [vShipmentInfoJoins].[TotalVolume] AS [TotalVolume], 
+    [vShipmentInfoJoins].[TotalFuel] AS [TotalFuel]
+    FROM [dbo].[vShipmentInfoJoins] AS [vShipmentInfoJoins]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vShipments" EntityType="Self.vShipments" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vShipments].[ShipmentDepartureDate] AS [ShipmentDepartureDate], 
+    [vShipments].[ShipmentDeliveryDate] AS [ShipmentDeliveryDate], 
+    [vShipments].[Distance] AS [Distance], 
+    [vShipments].[SourceCity] AS [SourceCity], 
+    [vShipments].[DestinationCity] AS [DestinationCity], 
+    [vShipments].[TruckId] AS [TruckId], 
+    [vShipments].[Brand] AS [Brand], 
+    [vShipments].[Status] AS [Status], 
+    [vShipments].[TotalWeight] AS [TotalWeight], 
+    [vShipments].[TotalVolume] AS [TotalVolume], 
+    [vShipments].[CargoCount] AS [CargoCount], 
+    [vShipments].[UtilizedTruckCapacity] AS [UtilizedTruckCapacity], 
+    [vShipments].[UtilizedTruckPayload] AS [UtilizedTruckPayload]
+    FROM [dbo].[vShipments] AS [vShipments]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_Cargo_CustomerRecipient" Association="Self.fk_Cargo_CustomerRecipient">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Cargo" EntitySet="Cargo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cargo_CustomerSender" Association="Self.fk_Cargo_CustomerSender">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Cargo" EntitySet="Cargo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cargo_Route" Association="Self.fk_Cargo_Route">
+            <End Role="Route" EntitySet="Route" />
+            <End Role="Cargo" EntitySet="Cargo" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CargoShipment_Cargo" Association="Self.fk_CargoShipment_Cargo">
+            <End Role="Cargo" EntitySet="Cargo" />
+            <End Role="CargoShipment" EntitySet="CargoShipment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CargoShipment_Shipment" Association="Self.fk_CargoShipment_Shipment">
+            <End Role="Shipment" EntitySet="Shipment" />
+            <End Role="CargoShipment" EntitySet="CargoShipment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Crew_Driver" Association="Self.fk_Crew_Driver">
+            <End Role="Driver" EntitySet="Driver" />
+            <End Role="Crew" EntitySet="Crew" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Crew_Truck" Association="Self.fk_Crew_Truck">
+            <End Role="Truck" EntitySet="Truck" />
+            <End Role="Crew" EntitySet="Crew" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Route_WarehouseDestination" Association="Self.fk_Route_WarehouseDestination">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="Route" EntitySet="Route" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Route_WarehouseSource" Association="Self.fk_Route_WarehouseSource">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="Route" EntitySet="Route" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Shipment_Crew" Association="Self.fk_Shipment_Crew">
+            <End Role="Crew" EntitySet="Crew" />
+            <End Role="Shipment" EntitySet="Shipment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Shipment_Status" Association="Self.fk_Shipment_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Shipment" EntitySet="Shipment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Shipmet_Route" Association="Self.fk_Shipmet_Route">
+            <End Role="Route" EntitySet="Route" />
+            <End Role="Shipment" EntitySet="Shipment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Warehouse_City" Association="Self.fk_Warehouse_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bohdan_simianyk_cdp2016q1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="Volume" Type="Double" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="RecepientId" Type="Int32" Nullable="false" />
+          <Property Name="SenderId" Type="Int32" Nullable="false" />
+          <Property Name="RouteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_Cargo_CustomerRecipient" FromRole="Cargo" ToRole="Customer" />
+          <NavigationProperty Name="Customer1" Relationship="Self.fk_Cargo_CustomerSender" FromRole="Cargo" ToRole="Customer" />
+          <NavigationProperty Name="Route" Relationship="Self.fk_Cargo_Route" FromRole="Cargo" ToRole="Route" />
+          <NavigationProperty Name="Shipments" Relationship="Self.CargoShipment" FromRole="Cargo" ToRole="Shipment" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Warehouses" Relationship="Self.fk_Warehouse_City" FromRole="City" ToRole="Warehouse" />
+        </EntityType>
+        <EntityType Name="Crew">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TruckId" Type="Int32" Nullable="false" />
+          <Property Name="DriverId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Driver" Relationship="Self.fk_Crew_Driver" FromRole="Crew" ToRole="Driver" />
+          <NavigationProperty Name="Truck" Relationship="Self.fk_Crew_Truck" FromRole="Crew" ToRole="Truck" />
+          <NavigationProperty Name="Shipments" Relationship="Self.fk_Shipment_Crew" FromRole="Crew" ToRole="Shipment" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cargoes" Relationship="Self.fk_Cargo_CustomerRecipient" FromRole="Customer" ToRole="Cargo" />
+          <NavigationProperty Name="Cargoes1" Relationship="Self.fk_Cargo_CustomerSender" FromRole="Customer" ToRole="Cargo" />
+        </EntityType>
+        <EntityType Name="Driver">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birthdate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Crews" Relationship="Self.fk_Crew_Driver" FromRole="Driver" ToRole="Crew" />
+        </EntityType>
+        <EntityType Name="Route">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Distance" Type="Int32" Nullable="false" />
+          <Property Name="SourceId" Type="Int32" Nullable="false" />
+          <Property Name="DestinationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cargoes" Relationship="Self.fk_Cargo_Route" FromRole="Route" ToRole="Cargo" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.fk_Route_WarehouseDestination" FromRole="Route" ToRole="Warehouse" />
+          <NavigationProperty Name="Warehouse1" Relationship="Self.fk_Route_WarehouseSource" FromRole="Route" ToRole="Warehouse" />
+          <NavigationProperty Name="Shipments" Relationship="Self.fk_Shipmet_Route" FromRole="Route" ToRole="Shipment" />
+        </EntityType>
+        <EntityType Name="Shipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartureDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DeliveryDate" Type="DateTime" Precision="0" />
+          <Property Name="CrewId" Type="Int32" />
+          <Property Name="RouteId" Type="Int32" Nullable="false" />
+          <Property Name="ActualDistance" Type="Int32" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Crew" Relationship="Self.fk_Shipment_Crew" FromRole="Shipment" ToRole="Crew" />
+          <NavigationProperty Name="Route" Relationship="Self.fk_Shipmet_Route" FromRole="Shipment" ToRole="Route" />
+          <NavigationProperty Name="Status1" Relationship="Self.fk_Shipment_Status" FromRole="Shipment" ToRole="Status" />
+          <NavigationProperty Name="Cargoes" Relationship="Self.CargoShipment" FromRole="Shipment" ToRole="Cargo" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Shipments" Relationship="Self.fk_Shipment_Status" FromRole="Status" ToRole="Shipment" />
+        </EntityType>
+        <EntityType Name="Truck">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Brand" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegistrationNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Payload" Type="Int32" Nullable="false" />
+          <Property Name="FuelConsumption" Type="Double" Nullable="false" />
+          <Property Name="Volume" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Crews" Relationship="Self.fk_Crew_Truck" FromRole="Truck" ToRole="Crew" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OfficeNumber" Type="Int32" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.fk_Warehouse_City" FromRole="Warehouse" ToRole="City" />
+          <NavigationProperty Name="Routes" Relationship="Self.fk_Route_WarehouseDestination" FromRole="Warehouse" ToRole="Route" />
+          <NavigationProperty Name="Routes1" Relationship="Self.fk_Route_WarehouseSource" FromRole="Warehouse" ToRole="Route" />
+        </EntityType>
+        <EntityType Name="vShipmentInfoCrossApply">
+          <Key>
+            <PropertyRef Name="ShipmentDepartureDate" />
+            <PropertyRef Name="Distance" />
+            <PropertyRef Name="SourceCity" />
+            <PropertyRef Name="DestinationCity" />
+            <PropertyRef Name="Brand" />
+            <PropertyRef Name="TotalFuel" />
+          </Key>
+          <Property Name="ShipmentDepartureDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ShipmentDeliveryDate" Type="DateTime" Precision="0" />
+          <Property Name="Distance" Type="Int32" Nullable="false" />
+          <Property Name="SourceCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DestinationCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Brand" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalWeight" Type="Double" />
+          <Property Name="TotalVolume" Type="Double" />
+          <Property Name="TotalFuel" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vShipmentInfoCTE">
+          <Key>
+            <PropertyRef Name="ShipmentDepartureDate" />
+            <PropertyRef Name="Distance" />
+            <PropertyRef Name="SourceCity" />
+            <PropertyRef Name="DestinationCity" />
+            <PropertyRef Name="Brand" />
+            <PropertyRef Name="TotalFuel" />
+          </Key>
+          <Property Name="ShipmentDepartureDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ShipmentDeliveryDate" Type="DateTime" Precision="0" />
+          <Property Name="Distance" Type="Int32" Nullable="false" />
+          <Property Name="SourceCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DestinationCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Brand" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalWeight" Type="Double" />
+          <Property Name="TotalVolume" Type="Double" />
+          <Property Name="TotalFuel" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vShipmentInfoJoin">
+          <Key>
+            <PropertyRef Name="ShipmentDepartureDate" />
+            <PropertyRef Name="Distance" />
+            <PropertyRef Name="SourceCity" />
+            <PropertyRef Name="DestinationCity" />
+            <PropertyRef Name="Brand" />
+            <PropertyRef Name="TotalFuel" />
+          </Key>
+          <Property Name="ShipmentDepartureDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ShipmentDeliveryDate" Type="DateTime" Precision="0" />
+          <Property Name="Distance" Type="Int32" Nullable="false" />
+          <Property Name="SourceCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DestinationCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Brand" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalWeight" Type="Double" />
+          <Property Name="TotalVolume" Type="Double" />
+          <Property Name="TotalFuel" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vShipment">
+          <Key>
+            <PropertyRef Name="ShipmentDepartureDate" />
+            <PropertyRef Name="Distance" />
+            <PropertyRef Name="SourceCity" />
+            <PropertyRef Name="DestinationCity" />
+            <PropertyRef Name="TruckId" />
+            <PropertyRef Name="Brand" />
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="ShipmentDepartureDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ShipmentDeliveryDate" Type="DateTime" Precision="0" />
+          <Property Name="Distance" Type="Int32" Nullable="false" />
+          <Property Name="SourceCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DestinationCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TruckId" Type="Int32" Nullable="false" />
+          <Property Name="Brand" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TotalWeight" Type="Double" />
+          <Property Name="TotalVolume" Type="Double" />
+          <Property Name="CargoCount" Type="Int32" />
+          <Property Name="UtilizedTruckCapacity" Type="Double" />
+          <Property Name="UtilizedTruckPayload" Type="Double" />
+        </EntityType>
+        <Association Name="fk_Cargo_CustomerRecipient">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cargo">
+              <PropertyRef Name="RecepientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cargo_CustomerSender">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cargo">
+              <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Cargo_Route">
+          <End Role="Route" Type="Self.Route" Multiplicity="1" />
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cargo">
+              <PropertyRef Name="RouteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Warehouse_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Crew_Driver">
+          <End Role="Driver" Type="Self.Driver" Multiplicity="1" />
+          <End Role="Crew" Type="Self.Crew" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Driver">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Crew">
+              <PropertyRef Name="DriverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Crew_Truck">
+          <End Role="Truck" Type="Self.Truck" Multiplicity="1" />
+          <End Role="Crew" Type="Self.Crew" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Truck">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Crew">
+              <PropertyRef Name="TruckId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Shipment_Crew">
+          <End Role="Crew" Type="Self.Crew" Multiplicity="0..1" />
+          <End Role="Shipment" Type="Self.Shipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Crew">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shipment">
+              <PropertyRef Name="CrewId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Route_WarehouseDestination">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="DestinationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Route_WarehouseSource">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="Route" Type="Self.Route" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Route">
+              <PropertyRef Name="SourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Shipmet_Route">
+          <End Role="Route" Type="Self.Route" Multiplicity="1" />
+          <End Role="Shipment" Type="Self.Shipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Route">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shipment">
+              <PropertyRef Name="RouteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Shipment_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Shipment" Type="Self.Shipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Shipment">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CargoShipment">
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
+          <End Role="Shipment" Type="Self.Shipment" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cargoes" EntityType="Self.Cargo" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Crews" EntityType="Self.Crew" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Drivers" EntityType="Self.Driver" />
+          <EntitySet Name="Routes" EntityType="Self.Route" />
+          <EntitySet Name="Shipments" EntityType="Self.Shipment" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="Trucks" EntityType="Self.Truck" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouse" />
+          <EntitySet Name="vShipmentInfoCrossApplies" EntityType="Self.vShipmentInfoCrossApply" />
+          <EntitySet Name="vShipmentInfoCTEs" EntityType="Self.vShipmentInfoCTE" />
+          <EntitySet Name="vShipmentInfoJoins" EntityType="Self.vShipmentInfoJoin" />
+          <EntitySet Name="vShipments" EntityType="Self.vShipment" />
+          <AssociationSet Name="fk_Cargo_CustomerRecipient" Association="Self.fk_Cargo_CustomerRecipient">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Cargo" EntitySet="Cargoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cargo_CustomerSender" Association="Self.fk_Cargo_CustomerSender">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Cargo" EntitySet="Cargoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Cargo_Route" Association="Self.fk_Cargo_Route">
+            <End Role="Route" EntitySet="Routes" />
+            <End Role="Cargo" EntitySet="Cargoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Warehouse_City" Association="Self.fk_Warehouse_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Warehouse" EntitySet="Warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Crew_Driver" Association="Self.fk_Crew_Driver">
+            <End Role="Driver" EntitySet="Drivers" />
+            <End Role="Crew" EntitySet="Crews" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Crew_Truck" Association="Self.fk_Crew_Truck">
+            <End Role="Truck" EntitySet="Trucks" />
+            <End Role="Crew" EntitySet="Crews" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Shipment_Crew" Association="Self.fk_Shipment_Crew">
+            <End Role="Crew" EntitySet="Crews" />
+            <End Role="Shipment" EntitySet="Shipments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Route_WarehouseDestination" Association="Self.fk_Route_WarehouseDestination">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="Route" EntitySet="Routes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Route_WarehouseSource" Association="Self.fk_Route_WarehouseSource">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="Route" EntitySet="Routes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Shipmet_Route" Association="Self.fk_Shipmet_Route">
+            <End Role="Route" EntitySet="Routes" />
+            <End Role="Shipment" EntitySet="Shipments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Shipment_Status" Association="Self.fk_Shipment_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Shipment" EntitySet="Shipments" />
+          </AssociationSet>
+          <AssociationSet Name="CargoShipment" Association="Self.CargoShipment">
+            <End Role="Cargo" EntitySet="Cargoes" />
+            <End Role="Shipment" EntitySet="Shipments" />
+          </AssociationSet>
+          <FunctionImport Name="DeleteCargo">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetDriverInfo" />
+          <FunctionImport Name="GetDriverInfoXmlParsingFirstWay" ReturnType="Collection(bohdan_simianyk_cdp2016q1Model.GetDriverInfoXmlParsingFirstWay_Result)">
+            <Parameter Name="XML" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetDriverInfoXmlParsingSecondWay" ReturnType="Collection(bohdan_simianyk_cdp2016q1Model.GetDriverInfoXmlParsingSecondWay_Result)">
+            <Parameter Name="XML" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertCargo">
+            <Parameter Name="Weight" Mode="In" Type="Single" />
+            <Parameter Name="Volume" Mode="In" Type="Single" />
+            <Parameter Name="SenderId" Mode="In" Type="Int32" />
+            <Parameter Name="RecepientId" Mode="In" Type="Int32" />
+            <Parameter Name="RouteId" Mode="In" Type="Int32" />
+            <Parameter Name="Price" Mode="In" Type="Single" />
+            <Parameter Name="Id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ParsingFirstWay" ReturnType="Collection(bohdan_simianyk_cdp2016q1Model.ParsingFirstWay_Result)">
+            <Parameter Name="XML" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ParsingSecondWay" ReturnType="Collection(bohdan_simianyk_cdp2016q1Model.ParsingSecondWay_Result)">
+            <Parameter Name="XML" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SelectCargo" ReturnType="Collection(bohdan_simianyk_cdp2016q1Model.SelectCargo_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateCargo">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Weight" Mode="In" Type="Single" />
+            <Parameter Name="Volume" Mode="In" Type="Single" />
+            <Parameter Name="SenderId" Mode="In" Type="Int32" />
+            <Parameter Name="RecepientId" Mode="In" Type="Int32" />
+            <Parameter Name="RouteId" Mode="In" Type="Int32" />
+            <Parameter Name="Price" Mode="In" Type="Single" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetDriverInfoXmlParsingFirstWay_Result">
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Birthdate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetDriverInfoXmlParsingSecondWay_Result">
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Birthdate" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ParsingFirstWay_Result">
+          <Property Type="String" Name="FieldName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FieldValue" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="ParsingSecondWay_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="FieldName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FieldValue" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SelectCargo_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Double" Name="Weight" Nullable="false" />
+          <Property Type="Double" Name="Volume" Nullable="false" />
+          <Property Type="Int32" Name="SenderId" Nullable="false" />
+          <Property Type="Int32" Name="RecepientId" Nullable="false" />
+          <Property Type="Int32" Name="RouteId" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bohdan_simianyk_cdp2016q1ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Cargoes">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.Cargo">
+              <MappingFragment StoreEntitySet="Cargo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="RecepientId" ColumnName="RecepientId" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="RouteId" ColumnName="RouteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Crews">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.Crew">
+              <MappingFragment StoreEntitySet="Crew">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TruckId" ColumnName="TruckId" />
+                <ScalarProperty Name="DriverId" ColumnName="DriverId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Drivers">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.Driver">
+              <MappingFragment StoreEntitySet="Driver">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Routes">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.Route">
+              <MappingFragment StoreEntitySet="Route">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="DestinationId" ColumnName="DestinationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shipments">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.Shipment">
+              <MappingFragment StoreEntitySet="Shipment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DepartureDate" ColumnName="DepartureDate" />
+                <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+                <ScalarProperty Name="CrewId" ColumnName="CrewId" />
+                <ScalarProperty Name="RouteId" ColumnName="RouteId" />
+                <ScalarProperty Name="ActualDistance" ColumnName="ActualDistance" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trucks">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.Truck">
+              <MappingFragment StoreEntitySet="Truck">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Payload" ColumnName="Payload" />
+                <ScalarProperty Name="FuelConsumption" ColumnName="FuelConsumption" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OfficeNumber" ColumnName="OfficeNumber" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vShipmentInfoCrossApplies">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.vShipmentInfoCrossApply">
+              <MappingFragment StoreEntitySet="vShipmentInfoCrossApply">
+                <ScalarProperty Name="ShipmentDepartureDate" ColumnName="ShipmentDepartureDate" />
+                <ScalarProperty Name="ShipmentDeliveryDate" ColumnName="ShipmentDeliveryDate" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="SourceCity" ColumnName="SourceCity" />
+                <ScalarProperty Name="DestinationCity" ColumnName="DestinationCity" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="TotalWeight" ColumnName="TotalWeight" />
+                <ScalarProperty Name="TotalVolume" ColumnName="TotalVolume" />
+                <ScalarProperty Name="TotalFuel" ColumnName="TotalFuel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vShipmentInfoCTEs">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.vShipmentInfoCTE">
+              <MappingFragment StoreEntitySet="vShipmentInfoCTE">
+                <ScalarProperty Name="ShipmentDepartureDate" ColumnName="ShipmentDepartureDate" />
+                <ScalarProperty Name="ShipmentDeliveryDate" ColumnName="ShipmentDeliveryDate" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="SourceCity" ColumnName="SourceCity" />
+                <ScalarProperty Name="DestinationCity" ColumnName="DestinationCity" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="TotalWeight" ColumnName="TotalWeight" />
+                <ScalarProperty Name="TotalVolume" ColumnName="TotalVolume" />
+                <ScalarProperty Name="TotalFuel" ColumnName="TotalFuel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vShipmentInfoJoins">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.vShipmentInfoJoin">
+              <MappingFragment StoreEntitySet="vShipmentInfoJoins">
+                <ScalarProperty Name="ShipmentDepartureDate" ColumnName="ShipmentDepartureDate" />
+                <ScalarProperty Name="ShipmentDeliveryDate" ColumnName="ShipmentDeliveryDate" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="SourceCity" ColumnName="SourceCity" />
+                <ScalarProperty Name="DestinationCity" ColumnName="DestinationCity" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="TotalWeight" ColumnName="TotalWeight" />
+                <ScalarProperty Name="TotalVolume" ColumnName="TotalVolume" />
+                <ScalarProperty Name="TotalFuel" ColumnName="TotalFuel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vShipments">
+            <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.vShipment">
+              <MappingFragment StoreEntitySet="vShipments">
+                <ScalarProperty Name="ShipmentDepartureDate" ColumnName="ShipmentDepartureDate" />
+                <ScalarProperty Name="ShipmentDeliveryDate" ColumnName="ShipmentDeliveryDate" />
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="SourceCity" ColumnName="SourceCity" />
+                <ScalarProperty Name="DestinationCity" ColumnName="DestinationCity" />
+                <ScalarProperty Name="TruckId" ColumnName="TruckId" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TotalWeight" ColumnName="TotalWeight" />
+                <ScalarProperty Name="TotalVolume" ColumnName="TotalVolume" />
+                <ScalarProperty Name="CargoCount" ColumnName="CargoCount" />
+                <ScalarProperty Name="UtilizedTruckCapacity" ColumnName="UtilizedTruckCapacity" />
+                <ScalarProperty Name="UtilizedTruckPayload" ColumnName="UtilizedTruckPayload" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CargoShipment" TypeName="bohdan_simianyk_cdp2016q1Model.CargoShipment" StoreEntitySet="CargoShipment">
+            <EndProperty Name="Cargo">
+              <ScalarProperty Name="Id" ColumnName="CargoId" />
+            </EndProperty>
+            <EndProperty Name="Shipment">
+              <ScalarProperty Name="Id" ColumnName="ShipmentId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="DeleteCargo" FunctionName="bohdan_simianyk_cdp2016q1Model.Store.DeleteCargo" />
+          <FunctionImportMapping FunctionImportName="GetDriverInfo" FunctionName="bohdan_simianyk_cdp2016q1Model.Store.GetDriverInfo" />
+          <FunctionImportMapping FunctionImportName="GetDriverInfoXmlParsingFirstWay" FunctionName="bohdan_simianyk_cdp2016q1Model.Store.GetDriverInfoXmlParsingFirstWay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.GetDriverInfoXmlParsingFirstWay_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDriverInfoXmlParsingSecondWay" FunctionName="bohdan_simianyk_cdp2016q1Model.Store.GetDriverInfoXmlParsingSecondWay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.GetDriverInfoXmlParsingSecondWay_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertCargo" FunctionName="bohdan_simianyk_cdp2016q1Model.Store.InsertCargo" />
+          <FunctionImportMapping FunctionImportName="ParsingFirstWay" FunctionName="bohdan_simianyk_cdp2016q1Model.Store.ParsingFirstWay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.ParsingFirstWay_Result">
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="FieldValue" ColumnName="FieldValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ParsingSecondWay" FunctionName="bohdan_simianyk_cdp2016q1Model.Store.ParsingSecondWay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.ParsingSecondWay_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="FieldValue" ColumnName="FieldValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectCargo" FunctionName="bohdan_simianyk_cdp2016q1Model.Store.SelectCargo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.SelectCargo_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="RecepientId" ColumnName="RecepientId" />
+                <ScalarProperty Name="RouteId" ColumnName="RouteId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateCargo" FunctionName="bohdan_simianyk_cdp2016q1Model.Store.UpdateCargo" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
