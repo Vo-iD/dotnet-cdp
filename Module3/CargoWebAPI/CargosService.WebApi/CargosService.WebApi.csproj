@@ -122,6 +122,7 @@
     <Compile Include="App_Start\DependencyInjection\NinjectWebCommon.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CargosController.cs" />
+    <Compile Include="Controllers\PackagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -140,9 +141,25 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CargosService.Business.Contract\CargosService.Business.Contract.csproj">
+      <Project>{c5af24e0-c225-498d-a622-7117465cd762}</Project>
+      <Name>CargosService.Business.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CargosService.Business.Implementation\CargosService.Business.Implementation.csproj">
+      <Project>{6ad1ede1-c6c7-4d36-a543-52cd6ca4b7ba}</Project>
+      <Name>CargosService.Business.Implementation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CargosService.Common\CargosService.Common.csproj">
       <Project>{7c2fa1d3-01f0-42d5-b7e2-6622fbe00c5e}</Project>
       <Name>CargosService.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CargosService.Configuration.Contract\CargosService.Configuration.Contract.csproj">
+      <Project>{6954e620-4295-471a-abb5-9200b3ca91ba}</Project>
+      <Name>CargosService.Configuration.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CargosService.Configuration.Implementation\CargosService.Configuration.Implementation.csproj">
+      <Project>{79e59bc1-53dd-4e07-8dff-4d27913cbee8}</Project>
+      <Name>CargosService.Configuration.Implementation</Name>
     </ProjectReference>
     <ProjectReference Include="..\CargosService.DataAccess.Contract\CargosService.DataAccess.Contract.csproj">
       <Project>{5a269405-40fb-4760-9a83-ee6e47ed2f62}</Project>
