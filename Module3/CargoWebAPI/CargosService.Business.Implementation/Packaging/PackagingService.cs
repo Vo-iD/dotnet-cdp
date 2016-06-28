@@ -33,7 +33,7 @@ namespace CargosService.Business.Implementation.Packaging
                 }
                 case OptimizationStrategy.Weight:
                 {
-                    return new WeightTruckPackager(_manager);
+                    return new WeightTruckPackager(_manager, _configuration);
                 }
             }
 

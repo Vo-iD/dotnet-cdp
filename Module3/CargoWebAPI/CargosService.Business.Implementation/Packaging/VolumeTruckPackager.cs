@@ -6,20 +6,14 @@ using CargosService.DataAccess.Contract.Models;
 
 namespace CargosService.Business.Implementation.Packaging
 {
-    public class VolumeTruckPackager : ITruckPackager
+    public class VolumeTruckPackager : TruckPackager
     {
-        private readonly IPackagingManager _manager;
-        private readonly IPackagingConfiguration _configuration;
-        private const string PrioritiseWarning = "Prioritised cargos still exist at store";
-        private const string ToLowFillingWarning = "Truck filling is low. Expected >= {0}, but now = {1}";
-
         public VolumeTruckPackager(IPackagingManager manager, IPackagingConfiguration configuration)
+            : base(manager, configuration)
         {
-            _manager = manager;
-            _configuration = configuration;
         }
 
-        public ITruckPackage PackTruck(Truck truck)
+        public override ITruckPackage PackTruck(Truck truck)
         {
             var pack = new TruckPackage();
 
@@ -32,7 +26,7 @@ namespace CargosService.Business.Implementation.Packaging
                 PackWithNonPrioritised(truck, pack, ref totalVolume, ref totalWeight);
             }
 
-            var fillingThreshold = (double) _configuration.FillThreshold/100*truck.Volume;
+            var fillingThreshold = (double) Configuration.FillThreshold/100*truck.Volume;
             if (totalVolume < fillingThreshold)
             {
                 pack.Warnings.Add(string.Format(ToLowFillingWarning, fillingThreshold, totalVolume));
@@ -41,24 +35,8 @@ namespace CargosService.Business.Implementation.Packaging
             return pack;
         }
 
-        private void PackWithPrioritised(Truck truck, ITruckPackage pack, ref double totalVolume, ref double totalWeight)
-        {
-            var prioritisedCargos = _manager.GetPrioritisedCargos(truck.Volume, truck.Payload).OrderBy(x => x.Volume);
-            EnumerateCargos(prioritisedCargos, truck, pack, ref totalVolume, ref totalWeight);
-
-            if (prioritisedCargos.Count() > pack.Cargos.Count)
-            {
-                pack.Warnings.Add(PrioritiseWarning);
-            }
-        }
-
-        private void PackWithNonPrioritised(Truck truck, ITruckPackage pack, ref double totalVolume, ref double totalWeight)
-        {
-            var nonPrioritisedCargos = _manager.GetNonPrioritisedCargos(truck.Volume, truck.Payload).OrderBy(x => x.Volume);
-            EnumerateCargos(nonPrioritisedCargos, truck, pack, ref totalVolume, ref totalWeight);
-        }
-
-        private void EnumerateCargos(IEnumerable<Cargo> cargoes, Truck truck, ITruckPackage pack, ref double totalVolume, ref double totalWeight)
+        protected override void EnumerateCargos(IEnumerable<Cargo> cargoes, Truck truck, ITruckPackage pack,
+            ref double totalVolume, ref double totalWeight)
         {
             foreach (var cargo in cargoes)
             {
@@ -75,6 +53,11 @@ namespace CargosService.Business.Implementation.Packaging
                     pack.Cargos.Add(cargo);
                 }
             }
+        }
+
+        protected override IEnumerable<Cargo> GetOrderedEnumeration(IQueryable<Cargo> cargoes)
+        {
+            return cargoes.OrderBy(c => c.Volume);
         }
     }
 }

@@ -42,6 +42,7 @@
     <Compile Include="Packaging\PackagingManager.cs" />
     <Compile Include="Packaging\PackagingService.cs" />
     <Compile Include="Packaging\TruckPackage.cs" />
+    <Compile Include="Packaging\TruckPackager.cs" />
     <Compile Include="Packaging\VolumeTruckPackager.cs" />
     <Compile Include="Packaging\WeightTruckPackager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

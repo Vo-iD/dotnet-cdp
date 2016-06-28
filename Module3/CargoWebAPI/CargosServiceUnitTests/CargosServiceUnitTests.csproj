@@ -65,7 +65,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Business\PackagingManagerTests.cs" />
+    <Compile Include="Business\PackagingServiceTests.cs" />
     <Compile Include="Business\VolumeTruckPackagerTests.cs" />
+    <Compile Include="Business\WeightTruckPackagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +81,10 @@
     <ProjectReference Include="..\CargosService.Business.Implementation\CargosService.Business.Implementation.csproj">
       <Project>{6AD1EDE1-C6C7-4D36-A543-52CD6CA4B7BA}</Project>
       <Name>CargosService.Business.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CargosService.Common\CargosService.Common.csproj">
+      <Project>{7C2FA1D3-01F0-42D5-B7E2-6622FBE00C5E}</Project>
+      <Name>CargosService.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\CargosService.Configuration.Contract\CargosService.Configuration.Contract.csproj">
       <Project>{6954E620-4295-471A-ABB5-9200B3CA91BA}</Project>

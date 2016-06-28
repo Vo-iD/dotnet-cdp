@@ -18,7 +18,20 @@ namespace CargosService.TestFramework.CargoHelpers
         public static IQueryable<Cargo> GetBigVolumeList()
         {
             var cargo = GetTestCargo();
-            cargo.Volume = 48;
+            cargo.Volume = 49;
+
+            var cargoList = new List<Cargo>
+            {
+                cargo, cargo, cargo, cargo, cargo
+            };
+
+            return new EnumerableQuery<Cargo>(cargoList);
+        } 
+
+        public static IQueryable<Cargo> GetBigWeightList()
+        {
+            var cargo = GetTestCargo();
+            cargo.Weight = 10000;
 
             var cargoList = new List<Cargo>
             {
