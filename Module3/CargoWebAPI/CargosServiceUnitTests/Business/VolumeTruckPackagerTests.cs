@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using CargosService.Business.Contract.Packaging;
+﻿using CargosService.Business.Contract.Packaging;
 using CargosService.Business.Implementation.Packaging;
 using CargosService.Configuration.Contract.Settings;
 using CargosService.TestFramework.CargoHelpers;
