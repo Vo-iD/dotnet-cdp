@@ -57,7 +57,7 @@ namespace CargosService.Business.Implementation.Packaging
 
         protected override IEnumerable<Cargo> GetOrderedEnumeration(IQueryable<Cargo> cargoes)
         {
-            return cargoes.OrderBy(c => c.Weight);
+            return cargoes.OrderByDescending(c => c.Weight);
         }
     }
 }

@@ -24,10 +24,10 @@ namespace CargosService.Business.Implementation.Packaging
 
         protected void PackWithPrioritised(Truck truck, ITruckPackage pack, ref double totalVolume, ref double totalWeight)
         {
-            var prioritisedCargos = GetOrderedEnumeration(Manager.GetPrioritisedCargos(truck.Volume, truck.Payload));
+            var prioritisedCargos = GetOrderedEnumeration(Manager.GetPrioritisedCargos(truck.Volume, truck.Payload)).ToList();
             EnumerateCargos(prioritisedCargos, truck, pack, ref totalVolume, ref totalWeight);
 
-            if (prioritisedCargos.Count() > pack.Cargos.Count)
+            if (prioritisedCargos.Count > pack.Cargos.Count)
             {
                 pack.Warnings.Add(PrioritiseWarning);
             }

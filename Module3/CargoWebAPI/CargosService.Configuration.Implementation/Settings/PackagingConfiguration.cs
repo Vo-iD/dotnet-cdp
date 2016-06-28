@@ -1,47 +1,79 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using CargosService.Common.Contracts;
 using CargosService.Configuration.Contract.Settings;
 
 namespace CargosService.Configuration.Implementation.Settings
 {
-    public class PackagingConfiguration : ConfigurationSection, IPackagingConfiguration
+    public class PackagingConfiguration : IPackagingConfiguration
     {
+        private const string ErrorMessage = "Looks like, configuration {0} has wrong value. Expected: {1}, but was {2}";
         private const string StrategyNodeName = "Strategy";
         private const string FillThresholdNodeName = "FillThreshold";
         private const string HighPriorityDayThresholdNodeName = "HighPriorityDayThreshold";
 
-        private static ConfigurationProperty _strategy;
-        private static ConfigurationProperty _fillThreshold;
-        private static ConfigurationProperty _highPriorityDayThreshold;
-
-        public PackagingConfiguration()
-        {
-            _strategy = new ConfigurationProperty(StrategyNodeName, typeof (string),
-                null, ConfigurationPropertyOptions.IsRequired); // todo try to refactor with default value
-            _fillThreshold = new ConfigurationProperty(FillThresholdNodeName, typeof(string),
-                null, ConfigurationPropertyOptions.IsRequired);
-            _highPriorityDayThreshold = new ConfigurationProperty(HighPriorityDayThresholdNodeName, typeof(string),
-                null, ConfigurationPropertyOptions.IsRequired); 
-        }
-
         [ConfigurationProperty(StrategyNodeName, IsRequired = true)]
         public OptimizationStrategy Strategy
         {
-            //get { return (OptimizationStrategy) Enum.Parse(typeof (OptimizationStrategy), base[_strategy].ToString()); }
-            get { return OptimizationStrategy.Volume; }
+            get
+            {
+                OptimizationStrategy result;
+                var value = ConfigurationManager.AppSettings[StrategyNodeName];
+
+                var isParsed = Enum.TryParse(value, out result);
+                if (!isParsed)
+                {
+                    throw new ArgumentException(string.Format(ErrorMessage, StrategyNodeName, "Volume or Weight", value));
+                }
+
+                return result;
+            }
         }
 
-        [ConfigurationProperty(StrategyNodeName, IsRequired = true)]
+        [ConfigurationProperty(FillThresholdNodeName, DefaultValue = 60, IsRequired = true)]
         public int FillThreshold
         {
-            //get { return int.Parse(base[_fillThreshold].ToString()); } // todo add validation
-            get { return 60; }
+            get
+            {
+                int result;
+                var value = ConfigurationManager.AppSettings[FillThresholdNodeName];
+                var isParsed = int.TryParse(value, out result);
+
+                if (!isParsed)
+                {
+                    throw new ArgumentException(string.Format(ErrorMessage, FillThresholdNodeName, "int", value));
+                }
+
+                if (result < 0 || result > 100)
+                {
+                    throw new ArgumentException(string.Format(ErrorMessage, HighPriorityDayThresholdNodeName, "[0; 100]", result));
+                }
+
+                return result;
+            }
         }
 
+        [ConfigurationProperty(HighPriorityDayThresholdNodeName, DefaultValue = 2, IsRequired = true)]
         public int HighPriorityDayThreshold
-        {   
-            get { return int.Parse(base[_highPriorityDayThreshold].ToString()); } // todo add validation
-            //get { return 2; }
+        {
+            get
+            {
+                int result;
+                var value = ConfigurationManager.AppSettings[HighPriorityDayThresholdNodeName];
+                var isParsed = int.TryParse(value, out result);
+
+                if (!isParsed)
+                {
+                    throw new ArgumentException(string.Format(ErrorMessage, HighPriorityDayThresholdNodeName, "int", value));
+                }
+
+                if (result <= 0)
+                {
+                    throw new ArgumentException(string.Format(ErrorMessage, HighPriorityDayThresholdNodeName, "> 0", result));
+                }
+
+                return result;
+            }
         }
     }
 }
