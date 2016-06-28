@@ -46,7 +46,7 @@ namespace CargosServiceUnitTests.Business
             _managerMock.Setup(x => x.GetPrioritisedCargos(truck.Volume, truck.Payload))
                 .Returns(CargoHelper.GetBigWeightList);
             _configurationMock.Setup(c => c.FillThreshold).Returns(10);
-            _configurationMock.Setup(c => c.Strategy).Returns(OptimizationStrategy.Volume);
+            _configurationMock.Setup(c => c.Strategy).Returns(OptimizationStrategy.Weight);
 
             var pack = _service.LoadTruck(truck);
 
