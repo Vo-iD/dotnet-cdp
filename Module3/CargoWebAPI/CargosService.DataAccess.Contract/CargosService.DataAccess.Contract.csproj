@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="Exceptions\EntityAlreadyExistException.cs" />
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
-    <Compile Include="Infrastructure\IReadAllRepository.cs" />
+    <Compile Include="Infrastructure\IFullRepository.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Commands\ISqlCommand.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />

@@ -26,6 +26,7 @@ namespace CargosService.DataAccess.Contract.Models
         public int RecepientId { get; set; }
         public int SenderId { get; set; }
         public int RouteId { get; set; }
+        public System.DateTime RegisterDate { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Customer Customer1 { get; set; }

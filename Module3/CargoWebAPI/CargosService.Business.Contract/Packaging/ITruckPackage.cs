@@ -5,7 +5,7 @@ namespace CargosService.Business.Contract.Packaging
 {
     public interface ITruckPackage
     {
-        IEnumerable<Cargo> Cargos { get; }
-        IEnumerable<string> Warnings { get; } 
+        IList<Cargo> Cargos { get; }
+        IList<string> Warnings { get; } 
     }
 }

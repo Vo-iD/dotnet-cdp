@@ -8,7 +8,7 @@ using EntityRoot = CargosService.DataAccess.Contract.Models.EntityRoot;
 
 namespace CargosService.DataAccess.Implementation.Repositories.EntityFrameworkRepositories
 {
-    public class GenericRepository<TEntity> : IRepository<TEntity>, IReadAllRepository<TEntity>
+    public class GenericRepository<TEntity> : IFullRepository<TEntity>
         where TEntity : EntityRoot
     {
         private readonly DbFirstContext _context;

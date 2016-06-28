@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Packaging\IPackagingManager.cs" />
     <Compile Include="Packaging\ITruckPackager.cs" />
     <Compile Include="Packaging\IPackagingService.cs" />
     <Compile Include="Packaging\ITruckPackage.cs" />

@@ -28,6 +28,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargosService.Configuration
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargosService.Configuration.Implementation", "CargosService.Configuration.Implementation\CargosService.Configuration.Implementation.csproj", "{79E59BC1-53DD-4E07-8DFF-4D27913CBEE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargosServiceUnitTests", "CargosServiceUnitTests\CargosServiceUnitTests.csproj", "{0663F44F-CC90-4DB7-8428-47C325EE16AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CargosService.TestFramework", "CargosService.TestFramework\CargosService.TestFramework.csproj", "{B9545857-768E-4DFB-8997-C3BF6B4071CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +74,14 @@ Global
 		{79E59BC1-53DD-4E07-8DFF-4D27913CBEE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79E59BC1-53DD-4E07-8DFF-4D27913CBEE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79E59BC1-53DD-4E07-8DFF-4D27913CBEE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0663F44F-CC90-4DB7-8428-47C325EE16AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0663F44F-CC90-4DB7-8428-47C325EE16AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0663F44F-CC90-4DB7-8428-47C325EE16AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0663F44F-CC90-4DB7-8428-47C325EE16AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9545857-768E-4DFB-8997-C3BF6B4071CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9545857-768E-4DFB-8997-C3BF6B4071CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9545857-768E-4DFB-8997-C3BF6B4071CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9545857-768E-4DFB-8997-C3BF6B4071CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

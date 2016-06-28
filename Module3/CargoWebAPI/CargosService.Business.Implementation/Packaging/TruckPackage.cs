@@ -12,7 +12,7 @@ namespace CargosService.Business.Implementation.Packaging
             Warnings = new List<string>();
         }
 
-        public IEnumerable<Cargo> Cargos { get; private set; }
-        public IEnumerable<string> Warnings { get; private set; } 
+        public IList<Cargo> Cargos { get; private set; }
+        public IList<string> Warnings { get; private set; } 
     }
 }

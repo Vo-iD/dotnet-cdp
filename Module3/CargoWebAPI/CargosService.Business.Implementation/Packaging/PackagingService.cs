@@ -1,19 +1,18 @@
 ﻿using CargosService.Business.Contract.Packaging;
 using CargosService.Common.Contracts;
 using CargosService.Configuration.Contract.Settings;
-using CargosService.DataAccess.Contract.Infrastructure;
 using CargosService.DataAccess.Contract.Models;
 
 namespace CargosService.Business.Implementation.Packaging
 {
     public class PackagingService : IPackagingService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IPackagingManager _manager;
         private readonly IPackagingConfiguration _configuration;
 
-        public PackagingService(IUnitOfWork unitOfWork, IPackagingConfiguration configuration)
+        public PackagingService(IPackagingManager manager, IPackagingConfiguration configuration)
         {
-            _unitOfWork = unitOfWork;
+            _manager = manager;
             _configuration = configuration;
         }
 
@@ -30,11 +29,11 @@ namespace CargosService.Business.Implementation.Packaging
             {
                 case OptimizationStrategy.Volume:
                 {
-                    return new VolumeTruckPackager(_unitOfWork);
+                    return new VolumeTruckPackager(_manager, _configuration);
                 }
                 case OptimizationStrategy.Weight:
                 {
-                    return new WeightTruckPackager(_unitOfWork);
+                    return new WeightTruckPackager(_manager);
                 }
             }
 
