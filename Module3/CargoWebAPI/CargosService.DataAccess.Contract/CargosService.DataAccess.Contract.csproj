@@ -59,88 +59,88 @@
     <Compile Include="Commands\ISqlCommand.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Models\Cargo.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\City.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Crew.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Driver.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EntityRoot.cs" />
     <Compile Include="Models\GetDriverInfoXmlParsingFirstWay_Result.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetDriverInfoXmlParsingSecondWay_Result.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ParsingFirstWay_Result.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ParsingSecondWay_Result.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Route.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SelectCargo_Result.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Shipment.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Shipment.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Shipment.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ShipmentDb.Context.cs">
+    <Compile Include="Models\Shipment.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ShipmentDb.Context.tt</DependentUpon>
+      <DependentUpon>Shipment.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\ShipmentDb.cs">
+    <Compile Include="Models\Shipment1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ShipmentDb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ShipmentDb.edmx</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Status.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Truck.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vShipment.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vShipmentInfoCrossApply.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vShipmentInfoCTE.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vShipmentInfoJoin.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Warehouse.cs">
-      <DependentUpon>ShipmentDb.tt</DependentUpon>
+      <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Models\ShipmentDb.edmx">
+    <EntityDeploy Include="Models\Shipment.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ShipmentDb.Designer.cs</LastGenOutput>
+      <LastGenOutput>Shipment.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\ShipmentDb.edmx.diagram">
-      <DependentUpon>ShipmentDb.edmx</DependentUpon>
+    <None Include="Models\Shipment.edmx.diagram">
+      <DependentUpon>Shipment.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -148,15 +148,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\ShipmentDb.Context.tt">
+    <Content Include="Models\Shipment.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShipmentDb.edmx</DependentUpon>
-      <LastGenOutput>ShipmentDb.Context.cs</LastGenOutput>
+      <DependentUpon>Shipment.edmx</DependentUpon>
+      <LastGenOutput>Shipment.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\ShipmentDb.tt">
+    <Content Include="Models\Shipment.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ShipmentDb.edmx</DependentUpon>
-      <LastGenOutput>ShipmentDb.cs</LastGenOutput>
+      <DependentUpon>Shipment.edmx</DependentUpon>
+      <LastGenOutput>Shipment1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

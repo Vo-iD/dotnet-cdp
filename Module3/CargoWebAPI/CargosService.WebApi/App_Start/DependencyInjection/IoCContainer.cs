@@ -17,6 +17,7 @@ namespace CargosService.WebApi.DependencyInjection
         {
             kernel.Bind<IPackagingConfiguration>().To<PackagingConfiguration>();
             kernel.Bind<IPackagingService>().To<PackagingService>();
+            kernel.Bind<IPackagingManager>().To<PackagingManager>();
             kernel.Bind<IFullRepository<Cargo>>().To<GenericRepository<Cargo>>();
 
             ConfigurableServices(kernel);

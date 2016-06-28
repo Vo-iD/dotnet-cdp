@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="bohdan_simianyk_cdp2016q1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="bohdan_simianyk_cdp2016q1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cargo">
           <Key>
             <PropertyRef Name="Id" />
@@ -518,7 +518,8 @@ warning 6002: The table/view 'bohdan_simianyk_cdp2016q1.dbo.vShipments' does not
             <End Role="Warehouse" EntitySet="Warehouse" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="bohdan_simianyk_cdp2016q1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -533,11 +534,11 @@ warning 6002: The table/view 'bohdan_simianyk_cdp2016q1.dbo.vShipments' does not
           <Property Name="RecepientId" Type="Int32" Nullable="false" />
           <Property Name="SenderId" Type="Int32" Nullable="false" />
           <Property Name="RouteId" Type="Int32" Nullable="false" />
+          <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Customer" Relationship="Self.fk_Cargo_CustomerRecipient" FromRole="Cargo" ToRole="Customer" />
           <NavigationProperty Name="Customer1" Relationship="Self.fk_Cargo_CustomerSender" FromRole="Cargo" ToRole="Customer" />
           <NavigationProperty Name="Route" Relationship="Self.fk_Cargo_Route" FromRole="Cargo" ToRole="Route" />
           <NavigationProperty Name="Shipments" Relationship="Self.CargoShipment" FromRole="Cargo" ToRole="Shipment" />
-          <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -922,14 +923,14 @@ warning 6002: The table/view 'bohdan_simianyk_cdp2016q1.dbo.vShipments' does not
             <End Role="Shipment" EntitySet="Shipments" />
           </AssociationSet>
           <FunctionImport Name="DeleteCargo">
-          <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetDriverInfo" />
           <FunctionImport Name="GetDriverInfoXmlParsingFirstWay" ReturnType="Collection(bohdan_simianyk_cdp2016q1Model.GetDriverInfoXmlParsingFirstWay_Result)">
-          <Parameter Name="XML" Mode="In" Type="String" />
+            <Parameter Name="XML" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GetDriverInfoXmlParsingSecondWay" ReturnType="Collection(bohdan_simianyk_cdp2016q1Model.GetDriverInfoXmlParsingSecondWay_Result)">
-          <Parameter Name="XML" Mode="In" Type="String" />
+            <Parameter Name="XML" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="InsertCargo">
             <Parameter Name="Weight" Mode="In" Type="Single" />
@@ -941,13 +942,13 @@ warning 6002: The table/view 'bohdan_simianyk_cdp2016q1.dbo.vShipments' does not
             <Parameter Name="Id" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ParsingFirstWay" ReturnType="Collection(bohdan_simianyk_cdp2016q1Model.ParsingFirstWay_Result)">
-          <Parameter Name="XML" Mode="In" Type="String" />
+            <Parameter Name="XML" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ParsingSecondWay" ReturnType="Collection(bohdan_simianyk_cdp2016q1Model.ParsingSecondWay_Result)">
-          <Parameter Name="XML" Mode="In" Type="String" />
+            <Parameter Name="XML" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SelectCargo" ReturnType="Collection(bohdan_simianyk_cdp2016q1Model.SelectCargo_Result)">
-          <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="UpdateCargo">
             <Parameter Name="Id" Mode="In" Type="Int32" />
@@ -996,7 +997,6 @@ warning 6002: The table/view 'bohdan_simianyk_cdp2016q1.dbo.vShipments' does not
           <EntitySetMapping Name="Cargoes">
             <EntityTypeMapping TypeName="bohdan_simianyk_cdp2016q1Model.Cargo">
               <MappingFragment StoreEntitySet="Cargo">
-                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="Volume" ColumnName="Volume" />
@@ -1004,6 +1004,7 @@ warning 6002: The table/view 'bohdan_simianyk_cdp2016q1.dbo.vShipments' does not
                 <ScalarProperty Name="RecepientId" ColumnName="RecepientId" />
                 <ScalarProperty Name="SenderId" ColumnName="SenderId" />
                 <ScalarProperty Name="RouteId" ColumnName="RouteId" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

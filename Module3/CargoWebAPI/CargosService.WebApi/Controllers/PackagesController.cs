@@ -16,7 +16,11 @@ namespace CargosService.WebApi.Controllers
         [HttpGet]
         public void Get()
         {
-            _service.LoadTruck(new Truck());
+            _service.LoadTruck(new Truck
+            {
+                Payload = 15000,
+                Volume = 100
+            });
         }
     }
 }

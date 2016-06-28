@@ -39,8 +39,9 @@ namespace CargosService.Configuration.Implementation.Settings
         }
 
         public int HighPriorityDayThreshold
-        {   //get { return int.Parse(base[_highPriorityDayThreshold].ToString()); } // todo add validation
-            get { return 2; }
+        {   
+            get { return int.Parse(base[_highPriorityDayThreshold].ToString()); } // todo add validation
+            //get { return 2; }
         }
     }
 }
