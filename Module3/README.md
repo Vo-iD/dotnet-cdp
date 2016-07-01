@@ -4,5 +4,9 @@ Teamcity:
 	http://epuakhaw0685:10240/
 	login: "Maksym"
 	password: "Maksym1024"
+	
+	Screenshots: https://gitpct.epam.com/bohdan_simianyk/mentoring_program/tree/master/Module3/Screenshots%20from%20TeamCity
 Notes (BS): 
 	I didn't do extra tasks. Only required tasks. 
+	
+	
