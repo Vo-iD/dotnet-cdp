@@ -47,5 +47,12 @@ namespace StringCalculatorKata
         {
             Assert.AreEqual(expected, _calculator.Add(input));
         }
+
+        [TestCase("//;\n1;2;3", 6)]
+        [TestCase("//*\n1*2*3", 6)]
+        public void Should_Support_Different_Delimiters(string input, int expected)
+        {
+            Assert.AreEqual(expected, _calculator.Add(input));
+        }
     }
 }
