@@ -39,5 +39,13 @@ namespace StringCalculatorKata
         {
             Assert.AreEqual(expected, _calculator.Add(input));
         }
+
+        [TestCase("1\n2,3", 6)]
+        [TestCase("1\n2\n3", 6)]
+        [TestCase("1,0\n0", 1)]
+        public void Should_Handle_New_Lines_Between_Numbers(string input, int expected)
+        {
+            Assert.AreEqual(expected, _calculator.Add(input));
+        }
     }
 }
