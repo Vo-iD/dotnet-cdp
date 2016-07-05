@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace StringCalculatorKata
 {
@@ -53,6 +54,12 @@ namespace StringCalculatorKata
         public void Should_Support_Different_Delimiters(string input, int expected)
         {
             Assert.AreEqual(expected, _calculator.Add(input));
+        }
+
+        [Test]
+        public void Should_Not_Support_Negative_Numbers()
+        {
+            Assert.Throws<ArgumentException>(() => _calculator.Add("//*\n1*-2*3"));
         }
     }
 }

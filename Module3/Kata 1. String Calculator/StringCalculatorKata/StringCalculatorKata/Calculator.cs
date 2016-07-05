@@ -18,7 +18,7 @@ namespace StringCalculatorKata
 
             var delimiters = GetDelimiters(numbers);
             var numbersAsString = GetClearNumbersString(numbers);
-            var result = numbersAsString.Split(delimiters).Sum(x => int.Parse(x));
+            var result = GetSum(numbersAsString, delimiters);
 
             return result;
         }
@@ -43,6 +43,19 @@ namespace StringCalculatorKata
             }
 
             return input;
+        }
+
+        private int GetSum(string input, char[] delimiters)
+        {
+            var stringNumbers = input.Split(delimiters);
+            var numbers = stringNumbers.Select(int.Parse);
+            if (numbers.Any(n => n < 0))
+            {
+                throw new ArgumentException(string.Format("Negatives not allowed. Numbers: {0}",
+                    string.Join(";", numbers.Where(n => n < 0))));
+            }
+
+            return numbers.Sum();
         }
     }
 }
