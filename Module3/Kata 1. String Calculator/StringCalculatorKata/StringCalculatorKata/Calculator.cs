@@ -9,6 +9,7 @@ namespace StringCalculatorKata
         private static readonly string[] DefaultDelimiters = {",", "\n"};
         private static string DelimiterPattern = "//.\n.+";
         private static string BigDelimiterPattern = "//\\[.+\\]\n.+";
+        private static string FewDelimitersPattern = "//.+\n";
 
         public int Add(string numbers)
         {
@@ -33,6 +34,13 @@ namespace StringCalculatorKata
                 return new[] {delimiter};
             }
 
+            match = Regex.Match(input, FewDelimitersPattern, RegexOptions.IgnoreCase);
+            if (match.Success)
+            {
+                var notReadyDelimiters = match.Value.Substring(2, match.Value.Length - 2).Split(']');
+                return notReadyDelimiters.Select(delimiter => delimiter.Substring(1)).ToArray();
+            }
+
             match = Regex.Match(input, BigDelimiterPattern, RegexOptions.IgnoreCase);
             if (match.Success)
             {
@@ -45,7 +53,7 @@ namespace StringCalculatorKata
 
         private string GetClearNumbersString(string input)
         {
-            if(Regex.IsMatch(input, DelimiterPattern, RegexOptions.IgnoreCase)
+            if (Regex.IsMatch(input, DelimiterPattern, RegexOptions.IgnoreCase)
                 || Regex.IsMatch(input, BigDelimiterPattern, RegexOptions.IgnoreCase))
             {
                 return input.Substring(input.IndexOf("\n", StringComparison.Ordinal));
