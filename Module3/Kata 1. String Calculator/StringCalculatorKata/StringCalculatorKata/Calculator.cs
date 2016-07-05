@@ -6,8 +6,9 @@ namespace StringCalculatorKata
 {
     class Calculator
     {
-        private static readonly char[] DefaultDelimiters = {',', '\n'};
+        private static readonly string[] DefaultDelimiters = {",", "\n"};
         private static string DelimiterPattern = "//.\n.+";
+        private static string BigDelimiterPattern = "//\\[.+\\]\n.+";
 
         public int Add(string numbers)
         {
@@ -23,13 +24,20 @@ namespace StringCalculatorKata
             return result;
         }
 
-        private char[] GetDelimiters(string input)
+        private string[] GetDelimiters(string input)
         {
             var match = Regex.Match(input, DelimiterPattern, RegexOptions.IgnoreCase);
             if (match.Success)
             {
-                var delimiter = match.Value.Substring(2, 1).ToCharArray();
-                return delimiter;
+                var delimiter = match.Value.Substring(2, 1);
+                return new[] {delimiter};
+            }
+
+            match = Regex.Match(input, BigDelimiterPattern, RegexOptions.IgnoreCase);
+            if (match.Success)
+            {
+                var delimiter = match.Value.Substring(3, input.IndexOf("\n") - 4);
+                return new[] { delimiter };
             }
 
             return DefaultDelimiters;
@@ -37,7 +45,8 @@ namespace StringCalculatorKata
 
         private string GetClearNumbersString(string input)
         {
-            if(Regex.IsMatch(input, DelimiterPattern, RegexOptions.IgnoreCase))
+            if(Regex.IsMatch(input, DelimiterPattern, RegexOptions.IgnoreCase)
+                || Regex.IsMatch(input, BigDelimiterPattern, RegexOptions.IgnoreCase))
             {
                 return input.Substring(input.IndexOf("\n", StringComparison.Ordinal));
             }
@@ -45,9 +54,9 @@ namespace StringCalculatorKata
             return input;
         }
 
-        private int GetSum(string input, char[] delimiters)
+        private int GetSum(string input, string[] delimiters)
         {
-            var stringNumbers = input.Split(delimiters);
+            var stringNumbers = input.Split(delimiters, StringSplitOptions.None);
             var numbers = stringNumbers.Select(int.Parse);
             if (numbers.Any(n => n < 0))
             {
