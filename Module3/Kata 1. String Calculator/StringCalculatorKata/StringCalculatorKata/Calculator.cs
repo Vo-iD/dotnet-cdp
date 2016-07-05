@@ -8,7 +8,6 @@ namespace StringCalculatorKata
     {
         private static readonly string[] DefaultDelimiters = {",", "\n"};
         private static string DelimiterPattern = "//.\n.+";
-        private static string BigDelimiterPattern = "//\\[.+\\]\n.+";
         private static string FewDelimitersPattern = "//.+\n";
 
         public int Add(string numbers)
@@ -27,39 +26,52 @@ namespace StringCalculatorKata
 
         private string[] GetDelimiters(string input)
         {
-            var match = Regex.Match(input, DelimiterPattern, RegexOptions.IgnoreCase);
-            if (match.Success)
+            var delimiters = GetSimpleDelimiter(input);
+
+            if (!delimiters.Any())
             {
-                var delimiter = match.Value.Substring(2, 1);
-                return new[] {delimiter};
+                delimiters = GetFewDelimiters(input);
             }
 
-            match = Regex.Match(input, FewDelimitersPattern, RegexOptions.IgnoreCase);
-            if (match.Success)
-            {
-                var notReadyDelimiters = match.Value.Substring(2, match.Value.Length - 2).Split(']');
-                return notReadyDelimiters.Select(delimiter => delimiter.Substring(1)).ToArray();
-            }
-
-            match = Regex.Match(input, BigDelimiterPattern, RegexOptions.IgnoreCase);
-            if (match.Success)
-            {
-                var delimiter = match.Value.Substring(3, input.IndexOf("\n") - 4);
-                return new[] { delimiter };
-            }
-
-            return DefaultDelimiters;
+            return delimiters.Any() ? delimiters : DefaultDelimiters;
         }
+
 
         private string GetClearNumbersString(string input)
         {
             if (Regex.IsMatch(input, DelimiterPattern, RegexOptions.IgnoreCase)
-                || Regex.IsMatch(input, BigDelimiterPattern, RegexOptions.IgnoreCase))
+                || Regex.IsMatch(input, FewDelimitersPattern, RegexOptions.IgnoreCase))
             {
                 return input.Substring(input.IndexOf("\n", StringComparison.Ordinal));
             }
 
             return input;
+        }
+
+        private string[] GetSimpleDelimiter(string input)
+        {
+            var delimters = new string[] {};
+            var match = Regex.Match(input, DelimiterPattern, RegexOptions.IgnoreCase);
+            if (match.Success)
+            {
+                var delimiter = match.Value.Substring(2, 1);
+                delimters = new[] {delimiter};
+            }
+
+            return delimters;
+        }
+
+        private string[] GetFewDelimiters(string input)
+        {
+            var delimters = new string[] { };
+            var match = Regex.Match(input, FewDelimitersPattern, RegexOptions.IgnoreCase);
+            if (match.Success)
+            {
+                var notReadyDelimiters = match.Value.Substring(2, match.Value.Length - 2).Split(']');
+                delimters = notReadyDelimiters.Select(delimiter => delimiter.Substring(1)).ToArray();
+            }
+
+            return delimters;
         }
 
         private int GetSum(string input, string[] delimiters)
