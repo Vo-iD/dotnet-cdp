@@ -55,7 +55,7 @@ namespace StringCalculatorKata
                     string.Join(";", numbers.Where(n => n < 0))));
             }
 
-            return numbers.Sum();
+            return numbers.Where(n => n <= 1000).Sum();
         }
     }
 }

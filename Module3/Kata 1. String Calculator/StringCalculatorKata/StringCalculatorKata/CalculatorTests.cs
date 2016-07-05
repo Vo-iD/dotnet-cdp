@@ -61,5 +61,13 @@ namespace StringCalculatorKata
         {
             Assert.Throws<ArgumentException>(() => _calculator.Add("//*\n1*-2*3"));
         }
+
+        [TestCase("1,1001,3,4", 8)]
+        [TestCase("1,1000,3,4", 1008)]
+        [TestCase("1,1002,1003,1004", 1)]
+        public void Should_Ignore_Numbers_More_Than_Thousand(string input, int expected)
+        {
+            Assert.AreEqual(expected, _calculator.Add(input));
+        }
     }
 }
