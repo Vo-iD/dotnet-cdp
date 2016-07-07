@@ -10,7 +10,8 @@ namespace Kata.UnitTests
     public class CalculatorTests
     {
         private Mock<ILogger> _loggerMock;
-        private Mock<IWebService> _webServiceMock; 
+        private Mock<IWebService> _webServiceMock;
+        private Mock<IConsoleProxy> _consoleProxyMock; 
         private Calculator _calculator;
 
         [SetUp]
@@ -18,11 +19,12 @@ namespace Kata.UnitTests
         {
             _loggerMock = new Mock<ILogger>();
             _webServiceMock = new Mock<IWebService>();
+            _consoleProxyMock = new Mock<IConsoleProxy>();
 
             _loggerMock.Setup(l => l.Write(It.IsAny<string>()))
                 .Callback<string>(message => Console.WriteLine("Mocked log: {0}", message));
 
-            _calculator = new Calculator(_loggerMock.Object, _webServiceMock.Object);
+            _calculator = new Calculator(_loggerMock.Object, _webServiceMock.Object, _consoleProxyMock.Object);
         }
 
         [Test]
@@ -115,6 +117,16 @@ namespace Kata.UnitTests
             _calculator.Add("5,1");
 
             _webServiceMock.Verify(s => s.Notify(It.IsAny<string>()), Times.Once);
+        }
+
+        [Test]
+        public void Should_Write_To_Console_Result()
+        {
+            string messageToConsole = null;
+            _consoleProxyMock.Setup(p => p.WriteLine(It.IsAny<string>())).Callback<string>(m => messageToConsole = m);
+            _calculator.Add("5,1");
+
+            Assert.AreEqual(6, int.Parse(messageToConsole));
         }
     }
 }

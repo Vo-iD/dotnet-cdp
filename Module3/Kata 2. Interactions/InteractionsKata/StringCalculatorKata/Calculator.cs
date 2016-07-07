@@ -12,11 +12,13 @@ namespace StringCalculatorKata
         private static string FewDelimitersPattern = "//.+\n";
         private readonly ILogger _logger;
         private readonly IWebService _webService;
+        private readonly IConsoleProxy _consoleProxy;
 
-        public Calculator(ILogger logger, IWebService webService)
+        public Calculator(ILogger logger, IWebService webService, IConsoleProxy consoleProxy)
         {
             _logger = logger;
             _webService = webService;
+            _consoleProxy = consoleProxy;
         }
 
         public int Add(string numbers)
@@ -37,6 +39,8 @@ namespace StringCalculatorKata
             {
                 _webService.Notify(string.Format("Logger throwed an exception with message: {0}", ex.Message));
             }
+
+            _consoleProxy.WriteLine(result.ToString());
 
             return result;
         }

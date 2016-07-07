@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalFeatures\IConsoleProxy.cs" />
     <Compile Include="AdditionalFeatures\ILogger.cs" />
     <Compile Include="AdditionalFeatures\IWebService.cs" />
     <Compile Include="Calculator.cs" />
