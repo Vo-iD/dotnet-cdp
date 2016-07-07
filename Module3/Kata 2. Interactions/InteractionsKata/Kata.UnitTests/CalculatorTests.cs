@@ -1,9 +1,10 @@
 ﻿using System;
 using Moq;
 using NUnit.Framework;
+using StringCalculatorKata;
 using StringCalculatorKata.AdditionalFeatures;
 
-namespace StringCalculatorKata
+namespace Kata.UnitTests
 {
     [TestFixture]
     public class CalculatorTests

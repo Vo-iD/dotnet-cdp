@@ -5,7 +5,7 @@ using StringCalculatorKata.AdditionalFeatures;
 
 namespace StringCalculatorKata
 {
-    class Calculator
+    public class Calculator
     {
         private static readonly string[] DefaultDelimiters = {",", "\n"};
         private static string DelimiterPattern = "//.\n.+";
