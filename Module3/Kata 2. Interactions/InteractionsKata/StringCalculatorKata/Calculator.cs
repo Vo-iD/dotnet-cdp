@@ -11,10 +11,12 @@ namespace StringCalculatorKata
         private static string DelimiterPattern = "//.\n.+";
         private static string FewDelimitersPattern = "//.+\n";
         private readonly ILogger _logger;
+        private readonly IWebService _webService;
 
-        public Calculator(ILogger logger)
+        public Calculator(ILogger logger, IWebService webService)
         {
             _logger = logger;
+            _webService = webService;
         }
 
         public int Add(string numbers)
@@ -27,7 +29,15 @@ namespace StringCalculatorKata
                 result = GetSum(numbersAsString, delimiters);
             }
 
-            _logger.Write(string.Format("Result = {0}", result));
+            try
+            {
+                _logger.Write(string.Format("Result = {0}", result));
+            }
+            catch (Exception ex)
+            {
+                _webService.Notify(string.Format("Logger throwed an exception with message: {0}", ex.Message));
+            }
+
             return result;
         }
 

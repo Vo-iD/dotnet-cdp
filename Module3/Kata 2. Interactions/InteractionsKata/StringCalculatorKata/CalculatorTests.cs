@@ -8,17 +8,20 @@ namespace StringCalculatorKata
     [TestFixture]
     public class CalculatorTests
     {
-        private Mock<ILogger> _loggerMock; 
+        private Mock<ILogger> _loggerMock;
+        private Mock<IWebService> _webServiceMock; 
         private Calculator _calculator;
 
         [SetUp]
         public void SetUp()
         {
             _loggerMock = new Mock<ILogger>();
+            _webServiceMock = new Mock<IWebService>();
+
             _loggerMock.Setup(l => l.Write(It.IsAny<string>()))
                 .Callback<string>(message => Console.WriteLine("Mocked log: {0}", message));
 
-            _calculator = new Calculator(_loggerMock.Object);
+            _calculator = new Calculator(_loggerMock.Object, _webServiceMock.Object);
         }
 
         [Test]
@@ -101,6 +104,16 @@ namespace StringCalculatorKata
             _calculator.Add(input);
 
             _loggerMock.Verify(l => l.Write(It.IsAny<string>()), Times.AtLeastOnce);
+        }
+
+        [Test]
+        public void Should_Notify_If_Logger_Throwed_An_Exception()
+        {
+            _loggerMock.Setup(l => l.Write(It.IsAny<string>())).Throws<Exception>();
+
+            _calculator.Add("5,1");
+
+            _webServiceMock.Verify(s => s.Notify(It.IsAny<string>()), Times.Once);
         }
     }
 }

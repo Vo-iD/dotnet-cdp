@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdditionalFeatures\ILogger.cs" />
-    <Compile Include="AdditionalFeatures\Logger.cs" />
+    <Compile Include="AdditionalFeatures\IWebService.cs" />
     <Compile Include="Calculator.cs" />
     <Compile Include="CalculatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
