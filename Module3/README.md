@@ -9,4 +9,12 @@ Teamcity:
 Notes (BS): 
 	I didn't do extra tasks. Only required tasks. 
 	
-	
+Kata 1 (String calculator - Practical task 1):
+
+	https://gitpct.epam.com/bohdan_simianyk/mentoring_program/tree/master/Module3/Kata%201.%20String%20Calculator/StringCalculatorKata
+Kata 2 (String calculator with console app):
+
+	https://gitpct.epam.com/bohdan_simianyk/mentoring_program/tree/master/Module3/Kata%202.%20Interactions/InteractionsKata
+Kata 3 (GildedRose - Practical task 2):
+
+	https://gitpct.epam.com/bohdan_simianyk/mentoring_program/tree/master/Module3/Kata%202.%20Interactions/InteractionsKata
