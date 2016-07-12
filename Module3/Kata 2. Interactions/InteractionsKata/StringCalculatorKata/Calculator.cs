@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using StringCalculatorKata.AdditionalFeatures;
+using StringCalculatorKata.Contracts;
 
 namespace StringCalculatorKata
 {
@@ -40,7 +40,7 @@ namespace StringCalculatorKata
                 _webService.Notify(string.Format("Logger throwed an exception with message: {0}", ex.Message));
             }
 
-            _consoleProxy.WriteLine(result.ToString());
+            _consoleProxy.WriteLine(string.Format("The result is {0}", result));
 
             return result;
         }

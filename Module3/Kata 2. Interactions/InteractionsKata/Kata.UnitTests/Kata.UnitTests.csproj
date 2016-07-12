@@ -63,15 +63,16 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CalculatorTests.cs" />
+    <Compile Include="ScalcTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\StringCalculatorApplication\StringCalculatorApplication.csproj">
+    <ProjectReference Include="..\StringCalculatorApplication\scalc.csproj">
       <Project>{bca4d97b-a987-4c08-8298-783352e58f73}</Project>
-      <Name>StringCalculatorApplication</Name>
+      <Name>scalc</Name>
     </ProjectReference>
     <ProjectReference Include="..\StringCalculatorKata\StringCalculatorKata.csproj">
       <Project>{8c0dfe24-e60d-46cb-abc4-34e724df040c}</Project>

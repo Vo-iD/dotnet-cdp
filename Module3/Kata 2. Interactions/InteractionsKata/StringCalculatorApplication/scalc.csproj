@@ -7,8 +7,8 @@
     <ProjectGuid>{BCA4D97B-A987-4C08-8298-783352E58F73}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StringCalculatorApplication</RootNamespace>
-    <AssemblyName>StringCalculatorApplication</AssemblyName>
+    <RootNamespace>scalc</RootNamespace>
+    <AssemblyName>scalc</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,11 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\ConsoleProxy.cs" />
+    <Compile Include="Components\Logger.cs" />
+    <Compile Include="Components\WebService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StringCalculatorKata\StringCalculatorKata.csproj">
+      <Project>{8C0DFE24-E60D-46CB-ABC4-34E724DF040C}</Project>
+      <Name>StringCalculatorKata</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

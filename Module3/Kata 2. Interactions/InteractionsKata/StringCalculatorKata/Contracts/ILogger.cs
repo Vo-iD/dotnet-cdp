@@ -1,4 +1,4 @@
-﻿namespace StringCalculatorKata.AdditionalFeatures
+﻿namespace StringCalculatorKata.Contracts
 {
     public interface ILogger
     {

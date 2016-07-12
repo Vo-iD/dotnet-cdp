@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using StringCalculatorKata;
-using StringCalculatorKata.AdditionalFeatures;
+using StringCalculatorKata.Contracts;
 
 namespace Kata.UnitTests
 {
@@ -126,7 +126,7 @@ namespace Kata.UnitTests
             _consoleProxyMock.Setup(p => p.WriteLine(It.IsAny<string>())).Callback<string>(m => messageToConsole = m);
             _calculator.Add("5,1");
 
-            Assert.AreEqual(6, int.Parse(messageToConsole));
+            Assert.AreEqual("The result is 6", messageToConsole);
         }
     }
 }
