@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace GildedRose
 {
-    class GildedRose
+    public class GildedRose
     {
         IList<Item> _items;
         public GildedRose(IList<Item> items)
@@ -12,99 +12,115 @@ namespace GildedRose
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < _items.Count; i++)
+            foreach (var item in _items)
             {
-                if (_items[i].Name != "Aged Brie" && _items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                switch (item.Name)
                 {
-                    if (_items[i].Quality > 0)
+                    case "Aged Brie":
                     {
-                        if (_items[i].Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            _items[i].Quality = _items[i].Quality - 1;
-                        }
-
-                        if (_items[i].Name == "Conjured Mana Cake")
-                        {
-                            _items[i].Quality = _items[i].Quality - 1;
-                        }
+                        UpdateBrieQuality(item);
+                        break;
                     }
-                }
-                else
-                {
-                    if (_items[i].Quality < 50)
+                    case "Backstage passes to a TAFKAL80ETC concert":
                     {
-                        _items[i].Quality = _items[i].Quality + 1;
-
-                        if (_items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (_items[i].SellIn < 11)
-                            {
-                                if (_items[i].Quality < 50)
-                                {
-                                    _items[i].Quality = _items[i].Quality + 1;
-                                }
-                            }
-
-                            if (_items[i].SellIn < 6)
-                            {
-                                if (_items[i].Quality < 50)
-                                {
-                                    _items[i].Quality = _items[i].Quality + 1;
-                                }
-                            }
-                        }
+                        UpdateBackstagePassesQuality(item);
+                        break;
                     }
-                }
-
-                if (_items[i].Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    _items[i].SellIn = _items[i].SellIn - 1;
-                }
-
-                if (_items[i].SellIn < 0)
-                {
-                    if (_items[i].Name != "Aged Brie")
+                    case "Conjured Mana Cake":
                     {
-                        if (_items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (_items[i].Quality > 0)
-                            {
-                                if (_items[i].Name != "Sulfuras, Hand of Ragnaros")
-                                {
-                                    _items[i].Quality = _items[i].Quality - 1;
-                                }
-
-                                if (_items[i].Name == "Conjured Mana Cake")
-                                {
-                                    _items[i].Quality = _items[i].Quality - 1;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            _items[i].Quality = _items[i].Quality - _items[i].Quality;
-                        }
+                        UpdateConjuredQuality(item);
+                        break;
                     }
-                    else
+                    case "Sulfuras, Hand of Ragnaros":
                     {
-                        if (_items[i].Quality < 50)
-                        {
-                            _items[i].Quality = _items[i].Quality + 1;
-                        }
+                        UpdateSulfurasQuality();
+                        break;
+                    }
+                    default:
+                    {
+                        UpdateUnknownItem(item);
+                        break;
                     }
                 }
             }
         }
 
+        private void UpdateBrieQuality(Item brie)
+        {
+            brie.SellIn--;
+
+            if (brie.Quality < 50)
+            {
+                brie.Quality++;
+                if (brie.SellIn < 0 && brie.Quality < 50)
+                {
+                    brie.Quality++;
+                }
+            }
+        }
+
+        private void UpdateSulfurasQuality()
+        {
+        }
+
+        private void UpdateBackstagePassesQuality(Item backstage)
+        {
+            backstage.SellIn--;
+
+            if (backstage.Quality < 50)
+            {
+                backstage.Quality++;
+
+                if (backstage.SellIn < 10 && backstage.Quality < 50)
+                {
+                    backstage.Quality++;
+                }
+
+                if (backstage.SellIn < 5 && backstage.Quality < 50)
+                {
+                    backstage.Quality++;
+                }
+
+                if (backstage.SellIn < 0)
+                {
+                    backstage.Quality = 0;
+                }
+            }
+        }
+
+        private void UpdateConjuredQuality(Item conjured)
+        {
+            conjured.SellIn--;
+
+            if (conjured.SellIn >= 0)
+            {
+                if (conjured.Quality >= 2)
+                {
+                    conjured.Quality -= 2;
+                }
+            }
+            else
+            {
+                if (conjured.Quality >= 4)
+                {
+                    conjured.Quality -= 4;
+                }
+            }
+        }
+
+        private void UpdateUnknownItem(Item unknown)
+        {
+            unknown.SellIn--;
+
+            if (unknown.Quality > 0)
+            {
+                unknown.Quality--;
+            }
+
+            if (unknown.SellIn < 0 && unknown.Quality > 0)
+            {
+                unknown.Quality--;
+            }
+        }
     }
-
-    public class Item
-    {
-        public string Name { get; set; }
-
-        public int SellIn { get; set; }
-
-        public int Quality { get; set; }
-    }
-
 }

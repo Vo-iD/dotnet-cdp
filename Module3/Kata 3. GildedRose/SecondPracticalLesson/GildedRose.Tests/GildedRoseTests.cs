@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 
-namespace GildedRose
+namespace GildedRose.Tests
 {
     [TestFixture]
     public class GildedRoseTests
@@ -12,7 +11,7 @@ namespace GildedRose
         [Test]
         public void Should_Keep_Quality_In_Range_Zero_To_Fifty()
         {
-            IList<Item> items = TestDataContainer.GetDefaultItemList();
+            var items = TestDataContainer.GetDefaultItemList();
             _gildedRose = new GildedRose(items);
 
             UpdateQuality(_gildedRose);
@@ -26,7 +25,7 @@ namespace GildedRose
         [Test]
         public void Should_Degrade_Qulatity_Twice_As_Fast_After_Passed_Sell_By_Date_For_Aged_Brie()
         {
-            IList<Item> items = TestDataContainer.GetListWithAgedBrieOnly();
+            var items = TestDataContainer.GetListWithAgedBrieOnly();
             _gildedRose = new GildedRose(items);
 
             UpdateQuality(_gildedRose, 4);
@@ -37,7 +36,7 @@ namespace GildedRose
         [Test]
         public void Should_Increase_Quality_For_Aged_Brie_The_Older_It_Gets()
         {
-            IList<Item> items = TestDataContainer.GetListWithAgedBrieOnly();
+            var items = TestDataContainer.GetListWithAgedBrieOnly();
             _gildedRose = new GildedRose(items);
 
             _gildedRose.UpdateQuality();
@@ -52,7 +51,7 @@ namespace GildedRose
         [Test]
         public void Should_Increase_Quality_For_Backstage_Passes_The_Older_It_Gets()
         {
-            IList<Item> items = TestDataContainer.GetListWithAgedBackstagePasses();
+            var items = TestDataContainer.GetListWithAgedBackstagePasses();
             _gildedRose = new GildedRose(items);
 
             _gildedRose.UpdateQuality();
@@ -67,7 +66,7 @@ namespace GildedRose
         [Test]
         public void Should_Increase_Quality_For_Backstage_By_Two_If_Days_Are_In_Range_Five_To_Ten()
         {
-            IList<Item> items = TestDataContainer.GetListWithAgedBackstagePasses();
+            var items = TestDataContainer.GetListWithAgedBackstagePasses();
             _gildedRose = new GildedRose(items);
 
             UpdateQuality(_gildedRose, 12);
@@ -78,7 +77,7 @@ namespace GildedRose
         [Test]
         public void Should_Increase_Quality_For_Backstage_By_Three_If_Days_Are_In_Range_Zero_To_Five()
         {
-            IList<Item> items = TestDataContainer.GetListWithAgedBackstagePasses();
+            var items = TestDataContainer.GetListWithAgedBackstagePasses();
             _gildedRose = new GildedRose(items);
 
             UpdateQuality(_gildedRose, 16);
@@ -89,7 +88,7 @@ namespace GildedRose
         [Test]
         public void Should_Dropt_Quality_To_Zero_For_Backstage_After_The_Concert()
         {
-            IList<Item> items = TestDataContainer.GetListWithAgedBackstagePasses();
+            var items = TestDataContainer.GetListWithAgedBackstagePasses();
             _gildedRose = new GildedRose(items);
 
             UpdateQuality(_gildedRose, 21);
@@ -100,7 +99,7 @@ namespace GildedRose
         [Test]
         public void Should_Not_Change_Quality_For_Sulfuras()
         {
-            IList<Item> items = TestDataContainer.GetListWithSulfurasOnly();
+            var items = TestDataContainer.GetListWithSulfurasOnly();
             var startedQuality = items.First().Quality;
             _gildedRose = new GildedRose(items);
 
@@ -112,7 +111,7 @@ namespace GildedRose
         [Test]
         public void Should_Decrease_Days_For_Not_Specified_Item()
         {
-            IList<Item> items = TestDataContainer.GetListWithoutSpecifiedItems();
+            var items = TestDataContainer.GetListWithoutSpecifiedItems();
             var startedSellIn = items.First().SellIn;
             _gildedRose = new GildedRose(items);
 
@@ -124,7 +123,7 @@ namespace GildedRose
         [Test]
         public void Should_Decrease_Quality_For_Not_Specified_Item()
         {
-            IList<Item> items = TestDataContainer.GetListWithoutSpecifiedItems();
+            var items = TestDataContainer.GetListWithoutSpecifiedItems();
             var startedQuality = items.First().Quality;
             _gildedRose = new GildedRose(items);
 
@@ -136,7 +135,7 @@ namespace GildedRose
         [Test]
         public void Should_Decrease_Quality_For_Not_Specified_Item_If_SellIn_Less_Than_Zero()
         {
-            IList<Item> items = TestDataContainer.GetListWithoutSpecifiedItemsWithZeroSellIn();
+            var items = TestDataContainer.GetListWithoutSpecifiedItemsWithZeroSellIn();
             _gildedRose = new GildedRose(items);
             var expectedQuality = items.First().Quality - 2;
 
@@ -148,7 +147,7 @@ namespace GildedRose
         [Test]
         public void Should_Decrease_Quality_By_Two_Each_Day_If_Sell_In_More_Than_Zero()
         {
-            IList<Item> items = TestDataContainer.GetListWithConjuredOnly();
+            var items = TestDataContainer.GetListWithConjuredOnly();
             var expectedQuality = items.First().Quality - 2;
             _gildedRose = new GildedRose(items);
 
@@ -160,7 +159,7 @@ namespace GildedRose
         [Test]
         public void Should_Decrease_Quality_By_Four_Each_Day_If_Sell_In_Less_Than_Zero()
         {
-            IList<Item> items = TestDataContainer.GetListWithConjuredOnlyWithZeroSellIn();
+            var items = TestDataContainer.GetListWithConjuredOnlyWithZeroSellIn();
             var expectedQuality = items.First().Quality - 4;
             _gildedRose = new GildedRose(items);
 
@@ -171,7 +170,7 @@ namespace GildedRose
 
         private void UpdateQuality(GildedRose gildedRose, int times = 50)
         {
-            for (int t = 0; t < times; t++)
+            for (var t = 0; t < times; t++)
             {
                 gildedRose.UpdateQuality();
             }
