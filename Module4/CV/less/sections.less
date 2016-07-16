@@ -1,0 +1,205 @@
+﻿@import 'variables.less';
+
+#content {
+    max-width: @content-width;
+    margin: @sidebar-margin;
+    position: absolute;
+    left: @sidebar-width;
+}
+
+/* Timeline */
+.timeline-wrapper {
+    overflow: auto;
+    height: 300px;
+}
+
+.timeline {
+    position: relative;
+    padding: 1px 0;
+
+    &:before {
+        background: linear-gradient(to bottom, @white 0%, @shamrock 7%, @shamrock 93%, @white 100%);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 10px;
+        width: 4px;
+        content: '';
+        margin-left: 8px;
+    }
+
+    li {
+        clear: right;
+        margin: 5px;
+
+        .timeline-date {
+            @item-size: 40px;
+
+            background: @white;
+            float: left;
+            height: @item-size;
+            width: @item-size;
+            position: relative;
+            font-weight: bold;
+            text-align: center;
+            line-height: @item-size;
+            margin-left: -10px;
+        }
+
+        .timeline-event {
+            position: relative;
+            margin: 10px 0 0 10%;
+            background: @gallery;
+            padding: 15px;
+
+            &:before {
+                position: absolute;
+                content: '';
+                border: 10px solid transparent;
+                border-right-color: @gallery;
+                border-left: 0 @gallery;
+                margin-left: -20px;
+            }
+        }
+    }
+}
+
+/* Experience list*/
+.experiences {
+
+    dt {
+        clear: left;
+        float: left;
+        width: 100px;
+        font-size: 10px;
+
+        time {
+            color: @raven;
+            font-size: 15px;
+        }
+    }
+
+    dd {
+        margin-left: 110px;
+        margin-bottom: 30px;
+        clear: right;
+    }
+}
+
+/* Contact list */
+.contacts {
+
+    li {
+        @icon-size: 50px;
+        line-height: @icon-size;
+        display: table;
+
+        .contact-icon {
+            text-align: center;
+            font-size: 25px;
+            float: left;
+            width: @icon-size;
+            height: @icon-size;
+            border-right: 1px solid @alto;
+
+            a {
+                color: @shamrock;
+            }
+        }
+
+        .contact-content {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+            line-height: 1;
+            clear: right;
+
+            mark {
+                font-weight: 700;
+                background-color: transparent;
+            }
+        }
+
+        &:not(:last-child) {
+
+            .contact-icon {
+                border-bottom: 1px solid @alto;
+            }
+        }
+    }
+}
+
+/* Skills */
+#manage-skills-panel {
+    display: none;
+}
+
+.skills-graph {
+
+    li div {
+        background: @shamrock;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+        color: @white;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        box-sizing: border-box;
+        margin: 3px 0;
+    }
+
+    .ruler {
+        box-sizing: border-box;
+        margin-top: 10px;
+        width: 100%;
+
+        .interval {
+            box-sizing: border-box;
+            border: 2px solid @alto;
+            border-top: 0;
+            height: 10px;
+        }
+
+        .ruler-label {
+            color: @alto;
+            font-size: 9px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    }
+}
+
+/* Feedbacks */
+.feedbacks {
+
+    li {
+        margin: 40px 0;
+
+        p {
+            background-color: @gallery;
+            padding: 15px;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid @white;
+        }
+
+        .feedback-meta {
+            height: 45px;
+            display: flex;
+            align-items: center;
+
+            span {
+                margin-left: 20px;
+            }
+
+            a {
+                color: @shamrock;
+            }
+        }
+    }
+}

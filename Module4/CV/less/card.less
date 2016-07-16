@@ -1,0 +1,63 @@
+﻿@import 'variables.less';
+
+.card-wrapper {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: @gallery;
+    height: 100vh;
+    position: relative;
+    min-width: @card-size;
+    min-height: @card-size;
+}
+
+.card {
+    position: absolute;
+    width: @card-size;
+    height: @card-size;
+    margin-left: -@card-size / 2;
+    margin-top: -@card-size / 2;
+    margin-bottom: 5px;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    color: @gallery;
+
+    .avatar {
+        border-radius: 50%;
+        width: @photo-size;
+        height: @photo-size;
+        border: 3px solid @alto;
+        margin: auto;
+    }
+
+    h1 {
+        font-weight: 700;
+        font-size: 45px;
+        line-height: 48px;
+        margin: 10px 0;
+    }
+
+    h2 {
+        margin: 10px 0;
+        font-size: 30px;
+        line-height: 33px;
+        font-weight: 400;
+    }
+
+    p {
+        margin: 10px 0;
+    }
+
+    a {
+        color: @gallery;
+        background-color: @midnight;
+        margin-top: 10px;
+        padding: 10px 20px;
+        display: inline-block;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: @shamrock;
+        }
+    }
+}

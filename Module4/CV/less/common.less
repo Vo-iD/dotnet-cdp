@@ -1,0 +1,58 @@
+﻿@import 'variables.less';
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font: 14px/1.3em 'Open Sans', 'Arial', 'Tahoma', sans-serif;
+    color: @black;
+    margin: 0 auto;
+}
+
+/* Columns */
+.columns-mixin(@n, @i: 1) when (@i =< @n) {
+
+    .col-@{i} {
+        width: @i * 10%;
+    }
+
+    .columns-mixin(@n, (@i + 1));
+}
+
+.columns-mixin(10);
+
+.text-caption-mixin(@font-size, @line-height) {
+    margin: 5px 0;
+    font-weight: 700;
+    font-size: @font-size;
+    line-height: @line-height;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-lg-caption {
+    .text-caption-mixin(16px, 19px);
+}
+
+/* Animation */
+
+.animate-width {
+    animation: width-animation 1s linear;
+}
+
+@keyframes width-animation {
+    from {
+        width: 0;
+    }
+}
