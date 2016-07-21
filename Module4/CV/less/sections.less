@@ -101,10 +101,10 @@
             width: @icon-size;
             height: @icon-size;
             border-right: 1px solid @alto;
+        }
 
-            a {
-                color: @shamrock;
-            }
+        a {
+            color: @shamrock;
         }
 
         .contact-content {
@@ -167,6 +167,89 @@
             font-weight: bold;
             margin-top: 10px;
         }
+    }
+}
+
+/* Portfolio */
+.group-portfolio {
+    li {
+        display: inline;
+    }
+
+    img, .portfolio-hidden-content {
+        width: 48%;
+    }
+}
+
+.portfolio-buttons {
+    margin-bottom: 20px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.portfolio-content :hover {
+    .portfolio-hidden-content {
+        max-height: 200px;
+    }
+}
+
+.portfolio-hidden-content {
+    max-height: 0;
+    overflow: hidden;
+    /* Set our transitions up. */
+    -webkit-transition: max-height 0.8s;
+    -moz-transition: max-height 0.8s;
+    transition: max-height 0.8s;
+}
+
+.portfolio-ui-content {
+    :hover {
+        opacity: 0.4;
+        transition: opacity 0.3s ease-in-out;
+    }
+}
+
+.portfolio-all-button:focus {
+    color: @shamrock;
+
+    + .portfolio-code-content, .portfolio-ui-content {
+        display: block;
+    }
+
+    + .portfolio-code-button, .portfolio-ui-button {
+        color: @black;
+    }
+}
+
+.portfolio-code-button:focus {
+    color: @shamrock;
+}
+
+.portfolio-code-button :focus .portfolio-code-content {
+    display: block;
+}
+
+.portfolio-code-button :focus .portfolio-ui-content {
+    display: none;
+}
+
+.portfolio-code-button :focus .portfolio-ui-button, .portfolio-all-button {
+    color: @black;
+}
+
+.portfolio-ui-button:focus {
+    color: @shamrock;
+
+    + .portfolio-ui-content {
+        display: block;
+    }
+
+    + .portfolio-code-content {
+        display: none;
+    }
+
+    + .portfolio-code-button, .portfolio-all-button {
+        color: @black;
     }
 }
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -100,7 +100,7 @@
                 <dl class="experiences">
                     <dt>
                         <span class="text-lg-caption">Shen</span><br />
-                        <time>2013-2014</time>
+                        <time>2014</time>
                     </dt>
                     <dd>
                         <h3 class="text-lg-caption">Inner peace master</h3>
@@ -129,18 +129,6 @@
             <!-- Skills -->
             <section class="content-group" id="group-skills">
                 <h2>Skills</h2>
-                <!-- Skills panel-->
-                <form id="manage-skills-panel">
-                    <div class="form-group">
-                        <label for="skill-name">Skill name</label>
-                        <input id="skill-name" class="form-control input-sm" type="text" placeholder="Kung Fu" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="skill-level">Skill range</label>
-                        <input id="skill-level" class="form-control input-sm" type="number" min="10" max="100" placeholder="100" required />
-                    </div>
-                    <input type="submit" class="btn btn-sm btn-success" value="Add Skill" />
-                </form>
                 <!-- Skills graph -->
                 <div class="skills-graph">
                     <ul>
@@ -177,12 +165,48 @@
             </section>
 
             <!-- Protfolio -->
-            <section class="content-group" id="group-portfolio">
+            <section class="content-group group-portfolio" id="group-portfolio">
                 <h2>Portfolio</h2>
+                <ul class="portfolio-buttons">
+                    <li class="portfolio-all-button" tabindex="0">All</li>
+                    <li> / </li>
+                    <li class="portfolio-code-button" tabindex="0">Code</li>
+                    <li> / </li>
+                    <li class="portfolio-ui-button" tabindex="0">UI</li>
+                </ul>
                 <ul>
-                    <li>All</li>
-                    <li>Code</li>
-                    <li>UI</li>
+                    <li class="portfolio-code-content">
+                        <span class="portfolio-content">
+                            <img src="images/html_code.jpg" alt="code_img" />
+                            <span class="portfolio-hidden-content">
+                                some stuff
+                            </span>
+                        </span>
+                    </li>
+                    <li class="portfolio-ui-content">
+                        <span class="portfolio-content">
+                            <img src="images/designer.jpg" alt="designer_img"/>
+                            <span class="portfolio-hidden-content">
+                                some stuff
+                            </span>
+                        </span>
+                    </li>
+                    <li class="portfolio-code-content">
+                        <span class="portfolio-content">
+                            <img src="images/html_code.jpg" alt="code_img"/>
+                            <span class="portfolio-hidden-content">
+                                some stuff
+                            </span>
+                        </span>
+                    </li>
+                    <li class="portfolio-ui-content">
+                        <span class="portfolio-content">
+                            <img src="images/designer.jpg" alt="designer_img" />
+                            <span class="portfolio-hidden-content">
+                                some stuff
+                            </span>
+                        </span>
+                    </li>
                 </ul>
             </section>
 
@@ -191,43 +215,33 @@
                 <h2>Contacts</h2>
                 <ul class="contacts">
                     <li>
-                        <div class="contact-icon">
-                            <a href="tel:9999999999"><i class="fa fa-phone"></i></a>
-                        </div>
+                        <a class="contact-icon" href="tel:9999999999"><i class="fa fa-phone"></i></a>
                         <div class="contact-content">
                             <mark>999-99-99-999</mark>
                         </div>
                     </li>
                     <li>
-                        <div class="contact-icon">
-                            <a href="mailto:scrat_ace@age.com"><i class="fa fa-envelope"></i></a>
-                        </div>
+                        <a class="contact-icon" href="mailto:scrat_ace@age.com"><i class="fa fa-envelope"></i></a>
                         <div class="contact-content">
                             <mark>scrat_ace@age.com</mark>
                         </div>
                     </li>
                     <li>
-                        <div class="contact-icon">
-                            <a href="http://vk.com/scratlovers"><i class="fa fa-vk"></i></a>
-                        </div>
+                        <a class="contact-icon" href="http://vk.com/scratlovers"><i class="fa fa-vk"></i></a>
                         <div class="contact-content">
                             <mark>VK</mark><br />
                             http://vk.com/scratlovers
                         </div>
                     </li>
                     <li>
-                        <div class="contact-icon">
-                            <a href="https://www.facebook.com/ScratofIceAge"><i class="fa fa-facebook"></i></a>
-                        </div>
+                        <a class="contact-icon" href="https://www.facebook.com/ScratofIceAge"><i class="fa fa-facebook"></i></a>
                         <div class="contact-content">
                             <mark>Facebook</mark><br />
                             https://www.facebook.com/ScratofIceAge
                         </div>
                     </li>
                     <li>
-                        <div class="contact-icon">
-                            <a href="skype:Scrat_IceAge"><i class="fa fa-skype"></i></a>
-                        </div>
+                        <a class="contact-icon" href="skype:Scrat_IceAge"><i class="fa fa-skype"></i></a>
                         <div class="contact-content">
                             <mark>Skype</mark><br />
                             Scrat_IceAge

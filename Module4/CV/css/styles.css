@@ -309,7 +309,7 @@ a.go-up {
   height: 50px;
   border-right: 1px solid #DDDDDD;
 }
-.contacts li .contact-icon a {
+.contacts li a {
   color: #26C17E;
 }
 .contacts li .contact-content {
@@ -358,6 +358,71 @@ a.go-up {
   font-size: 9px;
   font-weight: bold;
   margin-top: 10px;
+}
+/* Portfolio */
+.group-portfolio li {
+  display: inline;
+}
+.group-portfolio img,
+.group-portfolio .portfolio-hidden-content {
+  width: 48%;
+}
+.portfolio-buttons {
+  margin-bottom: 20px;
+  font-size: large;
+  cursor: pointer;
+}
+.portfolio-content :hover .portfolio-hidden-content {
+  max-height: 200px;
+}
+.portfolio-hidden-content {
+  max-height: 0;
+  overflow: hidden;
+  /* Set our transitions up. */
+  -webkit-transition: max-height 0.8s;
+  -moz-transition: max-height 0.8s;
+  transition: max-height 0.8s;
+}
+.portfolio-ui-content :hover {
+  opacity: 0.4;
+  transition: opacity 0.3s ease-in-out;
+}
+.portfolio-all-button:focus {
+  color: #26C17E;
+}
+.portfolio-all-button:focus + .portfolio-code-content,
+.portfolio-all-button:focus .portfolio-ui-content {
+  display: block;
+}
+.portfolio-all-button:focus + .portfolio-code-button,
+.portfolio-all-button:focus .portfolio-ui-button {
+  color: #000000;
+}
+.portfolio-code-button:focus {
+  color: #26C17E;
+}
+.portfolio-code-button :focus .portfolio-code-content {
+  display: block;
+}
+.portfolio-code-button :focus .portfolio-ui-content {
+  display: none;
+}
+.portfolio-code-button :focus .portfolio-ui-button,
+.portfolio-all-button {
+  color: #000000;
+}
+.portfolio-ui-button:focus {
+  color: #26C17E;
+}
+.portfolio-ui-button:focus + .portfolio-ui-content {
+  display: block;
+}
+.portfolio-ui-button:focus + .portfolio-code-content {
+  display: none;
+}
+.portfolio-ui-button:focus + .portfolio-code-button,
+.portfolio-ui-button:focus .portfolio-all-button {
+  color: #000000;
 }
 /* Feedbacks */
 .feedbacks li {
