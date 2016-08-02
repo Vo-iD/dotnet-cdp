@@ -171,35 +171,76 @@
 }
 
 /* Portfolio */
-.group-portfolio {
-    li {
-        display: inline;
-    }
-
-    img, .portfolio-hidden-content {
-        width: 48%;
-    }
-}
-
 .portfolio-buttons {
     margin-bottom: 20px;
     font-size: large;
     cursor: pointer;
 }
 
-.portfolio-content :hover {
-    .portfolio-hidden-content {
-        max-height: 200px;
+.portfolio-menu {
+    li {
+        display: inline-block;
+
+        &:after {
+            content: ' / ';
+        }
+
+        &:last-child:after {
+            content: '';
+        }
+
+        &.active a {
+            color: @shamrock;
+        }
     }
 }
 
-.portfolio-hidden-content {
-    max-height: 0;
+.portfolio-item {
+    @border-width: 2px;
+    @item-width: 400px;
+    @item-height: 265px;
+
+    width: @item-width;
+    height: @item-height;
     overflow: hidden;
-    /* Set our transitions up. */
-    -webkit-transition: max-height 0.8s;
-    -moz-transition: max-height 0.8s;
-    transition: max-height 0.8s;
+    margin: 10px 2px;
+    border: @border-width solid @alto;
+
+    .portfolio-item-content {
+        width: @item-width;
+        height: @item-height;
+        margin-top: @item-height;
+        transition: margin-top 0.1s linear;
+        border: @border-width solid @shamrock;
+        background-color: fade(@oxford-blue, 80%);
+        color: @white;
+        padding: 0 10px;
+        font-size: 15px;
+        word-wrap: break-word;
+        box-sizing: border-box;
+
+        h3, a {
+            color: @shamrock;
+            margin: 10px 0;
+            display: inline-block;
+        }
+    }
+
+    &:hover {
+        .portfolio-item-content {
+            margin-top: 0;
+        }
+    }
+}
+
+.code {
+    background: url('../images/html_code.jpg') no-repeat center center;
+    background-size: contain;
+}
+
+.ui {
+    background: url('../images/designer.jpg') no-repeat center center;
+    background-size: contain;
 }
 
 .portfolio-ui-content {
