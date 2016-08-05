@@ -11,7 +11,7 @@ namespace CargosService.DataAccess.Contract.Models
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class Cargo : EntityRoot
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,9 +23,9 @@ namespace CargosService.DataAccess.Contract.Models
         public double Weight { get; set; }
         public double Volume { get; set; }
         public decimal Price { get; set; }
-        public int RecepientId { get; set; }
-        public int SenderId { get; set; }
-        public int RouteId { get; set; }
+        public System.Guid RecepientId { get; set; }
+        public System.Guid SenderId { get; set; }
+        public System.Guid RouteId { get; set; }
         public System.DateTime RegisterDate { get; set; }
     
         public virtual Customer Customer { get; set; }

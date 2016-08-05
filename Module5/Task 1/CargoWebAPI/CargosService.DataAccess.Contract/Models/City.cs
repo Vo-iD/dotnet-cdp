@@ -20,7 +20,7 @@ namespace CargosService.DataAccess.Contract.Models
             this.Warehouses = new HashSet<Warehouse>();
         }
     
-        public int Id { get; set; }
+        public System.Guid Id { get; set; }
         public string Name { get; set; }
         public string State { get; set; }
     

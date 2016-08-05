@@ -25,7 +25,7 @@ namespace CargosService.DataAccess.Implementation.Repositories.EntityFrameworkRe
             return _entities;
         }
 
-        public TEntity Get(int id)
+        public TEntity Get(Guid id)
         {
             var entity = _entities.FirstOrDefault(x => x.Id == id);
             if (entity == null)
@@ -62,7 +62,7 @@ namespace CargosService.DataAccess.Implementation.Repositories.EntityFrameworkRe
             _context.Entry(entity).State = EntityState.Modified;
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             var entity = _entities.FirstOrDefault(x => x.Id == id);
             if (entity == null)

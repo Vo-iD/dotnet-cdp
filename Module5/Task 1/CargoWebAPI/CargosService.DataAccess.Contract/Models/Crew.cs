@@ -20,9 +20,9 @@ namespace CargosService.DataAccess.Contract.Models
             this.Shipments = new HashSet<Shipment>();
         }
     
-        public int Id { get; set; }
-        public int TruckId { get; set; }
-        public int DriverId { get; set; }
+        public System.Guid Id { get; set; }
+        public System.Guid TruckId { get; set; }
+        public System.Guid DriverId { get; set; }
     
         public virtual Driver Driver { get; set; }
         public virtual Truck Truck { get; set; }

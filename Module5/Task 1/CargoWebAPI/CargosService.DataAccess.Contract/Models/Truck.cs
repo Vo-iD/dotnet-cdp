@@ -20,7 +20,7 @@ namespace CargosService.DataAccess.Contract.Models
             this.Crews = new HashSet<Crew>();
         }
     
-        public int Id { get; set; }
+        public System.Guid Id { get; set; }
         public string Brand { get; set; }
         public string RegistrationNumber { get; set; }
         public int Year { get; set; }

@@ -74,22 +74,7 @@
       <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EntityRoot.cs" />
-    <Compile Include="Models\GetDriverInfoXmlParsingFirstWay_Result.cs">
-      <DependentUpon>Shipment.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetDriverInfoXmlParsingSecondWay_Result.cs">
-      <DependentUpon>Shipment.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ParsingFirstWay_Result.cs">
-      <DependentUpon>Shipment.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ParsingSecondWay_Result.cs">
-      <DependentUpon>Shipment.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Route.cs">
-      <DependentUpon>Shipment.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SelectCargo_Result.cs">
       <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Shipment.Context.cs">
@@ -110,22 +95,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Status.cs">
-      <DependentUpon>Shipment.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Truck.cs">
-      <DependentUpon>Shipment.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\vShipment.cs">
-      <DependentUpon>Shipment.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\vShipmentInfoCrossApply.cs">
-      <DependentUpon>Shipment.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\vShipmentInfoCTE.cs">
-      <DependentUpon>Shipment.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\vShipmentInfoJoin.cs">
       <DependentUpon>Shipment.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Warehouse.cs">

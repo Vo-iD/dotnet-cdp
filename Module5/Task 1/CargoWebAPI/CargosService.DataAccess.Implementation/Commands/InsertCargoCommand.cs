@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using CargosService.DataAccess.Contract.Models;
 
 namespace CargosService.DataAccess.Implementation.Commands
@@ -29,7 +30,7 @@ namespace CargosService.DataAccess.Implementation.Commands
             Command.Parameters.Add("Id", SqlDbType.Int).Direction = ParameterDirection.Output;
 
             Command.ExecuteNonQuery();
-            _cargo.Id = (int)Command.Parameters["Id"].Value;
+            _cargo.Id = (Guid)Command.Parameters["Id"].Value;
         }
     }
 }

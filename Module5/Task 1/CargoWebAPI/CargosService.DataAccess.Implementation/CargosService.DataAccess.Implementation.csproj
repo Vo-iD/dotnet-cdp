@@ -60,9 +60,7 @@
     <Compile Include="Commands\InsertCargoCommand.cs" />
     <Compile Include="Commands\AbstractSqlCommand.cs" />
     <Compile Include="Commands\UpdateCargoCommand.cs" />
-    <Compile Include="Repositories\AdoRepositories\AdoCargoRepository.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\GenericRepository.cs" />
-    <Compile Include="UnitsOfWork\AdoUnitOfWork.cs" />
     <Compile Include="UnitsOfWork\EfUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

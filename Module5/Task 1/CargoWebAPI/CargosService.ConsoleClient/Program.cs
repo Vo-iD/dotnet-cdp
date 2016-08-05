@@ -7,7 +7,7 @@ namespace CargosService.ConsoleClient
     public class Program
     {
         private const string BaseUrl = "http://localhost:64814/api";
-        private const int Repeats = 50000;
+        private const int Repeats = 2;
 
         static void Main(string[] args)
         {

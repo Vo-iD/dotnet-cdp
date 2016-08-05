@@ -1,6 +1,8 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 using AutoMapper;
 using CargosService.Common.WebDto;
 using CargosService.DataAccess.Contract.Exceptions;
@@ -19,7 +21,7 @@ namespace CargosService.WebApi.Controllers
         }
 
         [HttpGet]
-        public CargoDto Get(int id)
+        public CargoDto Get(Guid id)
         {
             try
             {
@@ -36,7 +38,7 @@ namespace CargosService.WebApi.Controllers
         }
 
         [HttpPost]
-        public int Post(CargoDto model)
+        public HttpResponseMessage Post(CargoDto model)
         {
             var cargo = Mapper.Map<Cargo>(model);
 
@@ -50,11 +52,14 @@ namespace CargosService.WebApi.Controllers
                 Request.CreateErrorResponse(HttpStatusCode.Conflict, "The same cargo already exists");
             }
 
-            return cargo.Id;
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent(cargo.Id.ToString())
+            };
         }
 
         [HttpPut]
-        public int Put(CargoDto model)
+        public HttpResponseMessage Put(CargoDto model)
         {
             var cargo = Mapper.Map<Cargo>(model);
 
@@ -69,11 +74,14 @@ namespace CargosService.WebApi.Controllers
                     string.Format("Cargo with id {0} not found.", model.Id));
             }
 
-            return cargo.Id;
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent(cargo.Id.ToString())
+            };
         }
 
         [HttpDelete]
-        public int Delete(int id)
+        public HttpResponseMessage Delete(Guid id)
         {
             try
             {
@@ -86,7 +94,10 @@ namespace CargosService.WebApi.Controllers
                 throw;
             }
 
-            return id;
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent(id.ToString())
+            };
         }
     }
 }

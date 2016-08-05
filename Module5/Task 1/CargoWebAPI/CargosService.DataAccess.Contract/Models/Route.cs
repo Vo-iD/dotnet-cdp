@@ -21,10 +21,10 @@ namespace CargosService.DataAccess.Contract.Models
             this.Shipments = new HashSet<Shipment>();
         }
     
-        public int Id { get; set; }
+        public System.Guid Id { get; set; }
         public int Distance { get; set; }
-        public int SourceId { get; set; }
-        public int DestinationId { get; set; }
+        public System.Guid SourceId { get; set; }
+        public System.Guid DestinationId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cargo> Cargoes { get; set; }

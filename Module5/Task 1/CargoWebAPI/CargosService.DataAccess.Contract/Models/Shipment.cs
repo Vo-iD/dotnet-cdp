@@ -20,17 +20,14 @@ namespace CargosService.DataAccess.Contract.Models
             this.Cargoes = new HashSet<Cargo>();
         }
     
-        public int Id { get; set; }
+        public System.Guid Id { get; set; }
         public System.DateTime DepartureDate { get; set; }
         public Nullable<System.DateTime> DeliveryDate { get; set; }
-        public Nullable<int> CrewId { get; set; }
-        public int RouteId { get; set; }
-        public Nullable<int> ActualDistance { get; set; }
-        public int Status { get; set; }
+        public Nullable<System.Guid> CrewId { get; set; }
+        public System.Guid RouteId { get; set; }
     
         public virtual Crew Crew { get; set; }
         public virtual Route Route { get; set; }
-        public virtual Status Status1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cargo> Cargoes { get; set; }
     }

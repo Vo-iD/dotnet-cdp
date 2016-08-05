@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 namespace CargosService.Common.WebDto
 {
@@ -6,7 +7,7 @@ namespace CargosService.Common.WebDto
     public class CargoDto
     {
         [DataMember]
-        public int Id { get; set; }
+        public Guid? Id { get; set; }
 
         [DataMember]
         public double Weight { get; set; }
@@ -18,12 +19,12 @@ namespace CargosService.Common.WebDto
         public decimal Price { get; set; }
 
         [DataMember]
-        public int RecepientId { get; set; }
+        public Guid RecepientId { get; set; }
 
         [DataMember]
-        public int SenderId { get; set; }
+        public Guid SenderId { get; set; }
 
         [DataMember]
-        public int RouteId { get; set; }
+        public Guid RouteId { get; set; }
     }
 }

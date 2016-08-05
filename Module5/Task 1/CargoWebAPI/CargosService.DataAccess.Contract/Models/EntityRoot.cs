@@ -1,7 +1,14 @@
-﻿namespace CargosService.DataAccess.Contract.Models
+﻿using System;
+
+namespace CargosService.DataAccess.Contract.Models
 {
-    public class EntityRoot
+    public abstract class EntityRoot
     {
-        public int Id { get; set; }
+        protected EntityRoot()
+        {
+            Id = Guid.NewGuid();
+        }
+
+        public Guid Id { get; set; }
     }
 }

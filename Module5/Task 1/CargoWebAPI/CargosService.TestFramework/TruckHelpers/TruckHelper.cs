@@ -1,4 +1,5 @@
-﻿using CargosService.DataAccess.Contract.Models;
+﻿using System;
+using CargosService.DataAccess.Contract.Models;
 
 namespace CargosService.TestFramework.TruckHelpers
 {
@@ -8,7 +9,7 @@ namespace CargosService.TestFramework.TruckHelpers
         {
             return new Truck
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 Volume = 100,
                 Payload = 18500,
                 Brand = "MAN",

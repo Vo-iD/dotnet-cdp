@@ -39,8 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CargoServices\RefresAheadCargoService.cs" />
-    <Compile Include="CargoServices\WriteBehindCargoService.cs" />
+    <Compile Include="CargoServices\CargoService.cs" />
     <Compile Include="Packaging\PackagingManager.cs" />
     <Compile Include="Packaging\PackagingService.cs" />
     <Compile Include="Packaging\TruckPackage.cs" />

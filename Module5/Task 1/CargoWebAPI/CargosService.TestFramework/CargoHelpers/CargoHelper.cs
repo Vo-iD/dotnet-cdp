@@ -70,7 +70,7 @@ namespace CargosService.TestFramework.CargoHelpers
         {
             return new Cargo
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 Volume = 2,
                 Weight = 23,
                 RegisterDate = DateTime.UtcNow.AddDays(-1),

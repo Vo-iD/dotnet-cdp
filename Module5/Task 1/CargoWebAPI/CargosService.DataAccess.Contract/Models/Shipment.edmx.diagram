@@ -4,33 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="229ab4e1eeef42c7b4a14ae71da4afc6" Name="Diagram1">
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.Cargo" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.City" Width="1.5" PointX="1.5" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.Crew" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.Customer" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.Driver" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.Route" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.Shipment" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.Status" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.Truck" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.Warehouse" Width="1.5" PointX="1.5" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.vShipmentInfoCrossApply" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.vShipmentInfoCTE" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.vShipmentInfoJoin" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bohdan_simianyk_cdp2016q1Model.vShipment" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
-        <AssociationConnector Association="bohdan_simianyk_cdp2016q1Model.fk_Cargo_CustomerRecipient" ManuallyRouted="false" />
-        <AssociationConnector Association="bohdan_simianyk_cdp2016q1Model.fk_Cargo_CustomerSender" ManuallyRouted="false" />
-        <AssociationConnector Association="bohdan_simianyk_cdp2016q1Model.fk_Cargo_Route" ManuallyRouted="false" />
-        <AssociationConnector Association="bohdan_simianyk_cdp2016q1Model.fk_Warehouse_City" ManuallyRouted="false" />
-        <AssociationConnector Association="bohdan_simianyk_cdp2016q1Model.fk_Crew_Driver" ManuallyRouted="false" />
-        <AssociationConnector Association="bohdan_simianyk_cdp2016q1Model.fk_Crew_Truck" ManuallyRouted="false" />
-        <AssociationConnector Association="bohdan_simianyk_cdp2016q1Model.fk_Shipment_Crew" ManuallyRouted="false" />
-        <AssociationConnector Association="bohdan_simianyk_cdp2016q1Model.fk_Route_WarehouseDestination" ManuallyRouted="false" />
-        <AssociationConnector Association="bohdan_simianyk_cdp2016q1Model.fk_Route_WarehouseSource" ManuallyRouted="false" />
-        <AssociationConnector Association="bohdan_simianyk_cdp2016q1Model.fk_Shipmet_Route" ManuallyRouted="false" />
-        <AssociationConnector Association="bohdan_simianyk_cdp2016q1Model.fk_Shipment_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="bohdan_simianyk_cdp2016q1Model.CargoShipment" ManuallyRouted="false" />
+      <Diagram DiagramId="9d6cb5e3d96b4c86812f9871f9ed586d" Name="Diagram1">
+        <EntityTypeShape EntityType="CdpDatabaseForCacheTaskModel.Cargo" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CdpDatabaseForCacheTaskModel.City" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CdpDatabaseForCacheTaskModel.Crew" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CdpDatabaseForCacheTaskModel.Customer" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CdpDatabaseForCacheTaskModel.Driver" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CdpDatabaseForCacheTaskModel.Route" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CdpDatabaseForCacheTaskModel.Shipment" Width="1.5" PointX="9.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CdpDatabaseForCacheTaskModel.Truck" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CdpDatabaseForCacheTaskModel.Warehouse" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="CdpDatabaseForCacheTaskModel.fk_Cargo_CustomerRecipient" ManuallyRouted="false" />
+        <AssociationConnector Association="CdpDatabaseForCacheTaskModel.fk_Cargo_CustomerSender" ManuallyRouted="false" />
+        <AssociationConnector Association="CdpDatabaseForCacheTaskModel.fk_Cargo_Route" ManuallyRouted="false" />
+        <AssociationConnector Association="CdpDatabaseForCacheTaskModel.fk_Warehouse_City" ManuallyRouted="false" />
+        <AssociationConnector Association="CdpDatabaseForCacheTaskModel.fk_Crew_Driver" ManuallyRouted="false" />
+        <AssociationConnector Association="CdpDatabaseForCacheTaskModel.fk_Crew_Truck" ManuallyRouted="false" />
+        <AssociationConnector Association="CdpDatabaseForCacheTaskModel.fk_Shipment_Crew" ManuallyRouted="false" />
+        <AssociationConnector Association="CdpDatabaseForCacheTaskModel.fk_Route_WarehouseDestination" ManuallyRouted="false" />
+        <AssociationConnector Association="CdpDatabaseForCacheTaskModel.fk_Route_WarehouseSource" ManuallyRouted="false" />
+        <AssociationConnector Association="CdpDatabaseForCacheTaskModel.fk_Shipmet_Route" ManuallyRouted="false" />
+        <AssociationConnector Association="CdpDatabaseForCacheTaskModel.CargoShipment" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

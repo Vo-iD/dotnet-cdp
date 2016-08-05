@@ -21,9 +21,9 @@ namespace CargosService.DataAccess.Contract.Models
             this.Routes1 = new HashSet<Route>();
         }
     
-        public int Id { get; set; }
+        public System.Guid Id { get; set; }
         public int OfficeNumber { get; set; }
-        public int CityId { get; set; }
+        public System.Guid CityId { get; set; }
     
         public virtual City City { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

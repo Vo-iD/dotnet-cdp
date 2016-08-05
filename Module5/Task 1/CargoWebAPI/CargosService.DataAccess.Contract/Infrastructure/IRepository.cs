@@ -1,12 +1,13 @@
-﻿using CargosService.DataAccess.Contract.Models;
+﻿using System;
+using CargosService.DataAccess.Contract.Models;
 
 namespace CargosService.DataAccess.Contract.Infrastructure
 {
     public interface IRepository<TEntity> where TEntity : EntityRoot
     {
-        TEntity Get(int id);
+        TEntity Get(Guid id);
         void Insert(TEntity entity);
         void Update(TEntity entity);
-        void Delete(int id);
+        void Delete(Guid id);
     }
 }

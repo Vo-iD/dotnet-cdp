@@ -25,14 +25,7 @@ namespace CargosService.WebApi.DependencyInjection
 
         private static void ConfigurableServices(IKernel kernel)
         {
-            if (bool.Parse(ConfigurationManager.AppSettings["UseEntityFramework"]))
-            {
-                kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>();
-            }
-            else
-            {
-                kernel.Bind<IUnitOfWork>().To<AdoUnitOfWork>();
-            }
+            kernel.Bind<IUnitOfWork>().To<EfUnitOfWork>();
         }
     }
 }
