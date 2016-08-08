@@ -32,6 +32,11 @@ namespace CargosService.DataAccess.Implementation.Cache
             }
         }
 
+        public IEnumerable<CacheEntity<Cargo>> Get()
+        {
+            return _cargoes.Select(x => x.Value);
+        }
+
         public void InsertOrUpdate(Cargo entity)
         {
             var cacheEntity = Get(entity.Id);

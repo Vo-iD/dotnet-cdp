@@ -7,6 +7,7 @@ namespace CargosService.DataAccess.Contract.Cache
     public interface ICargoCacheStorage
     {
         CacheEntity<Cargo> Get(Guid id);
+        IEnumerable<CacheEntity<Cargo>> Get();
         void InsertOrUpdate(Cargo entity);
         void Delete(Guid id);
         IEnumerable<Cargo> GetPendingInsert();

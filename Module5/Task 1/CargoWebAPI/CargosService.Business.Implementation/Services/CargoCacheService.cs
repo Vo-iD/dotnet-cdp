@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
@@ -75,6 +76,13 @@ namespace CargosService.Business.Implementation.Services
             catch (EntityNotFoundException)
             {
             }
+        }
+
+        public IEnumerable<Cargo> GetTop(int count)
+        {
+            var cahcedCargoes = _cacheStorage.Get();
+            var sortedCargoes = cahcedCargoes.OrderByDescending(x => x.ReadCount);
+            return sortedCargoes.Take(count).Select(x => x.Entity);
         }
 
         private Cargo InsertToCahce(Guid id)
