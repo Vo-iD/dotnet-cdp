@@ -1,0 +1,32 @@
+﻿@model CargosService.WebTool.Models.SearchCargoViewModel
+
+
+<div class="row">
+    @using (Html.BeginForm("Index", "Cargo", FormMethod.Get, new { id = "search-form" }))
+    {
+        <input type="search" id="search-input" name="cargoName" value="@Model.SearchTerm"/>
+        <input type="button" id="search-button" value="search" class="btn btn-primary" />
+    }
+</div>
+
+<div>Cargo list:</div>
+
+<div class="row">
+    @foreach (var cargo in Model.Cargos)
+    {
+        <div class="col-md-6">Name: </div>
+        <div class="col-md-6">@cargo.Name</div>
+    }
+</div>
+
+@section scripts
+{
+    <script>
+        $('#search-button').click(function () {
+            var input = $('#search-input');
+            var escaped = escape(input.val());
+            input.val(escaped);
+            $('#search-form').submit();
+        })
+    </script>
+}
