@@ -2,22 +2,21 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Results;
 using AutoMapper;
+using CargosService.Business.Contract.Services;
 using CargosService.Common.WebDto;
 using CargosService.DataAccess.Contract.Exceptions;
-using CargosService.DataAccess.Contract.Infrastructure;
 using CargosService.DataAccess.Contract.Models;
 
 namespace CargosService.WebApi.Controllers
 {
     public class CargosController : ApiController
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICargoService _cargoService;
 
-        public CargosController(IUnitOfWork unitOfWork)
+        public CargosController(ICargoService cargoService)
         {
-            _unitOfWork = unitOfWork;
+            _cargoService = cargoService;
         }
 
         [HttpGet]
@@ -25,7 +24,7 @@ namespace CargosService.WebApi.Controllers
         {
             try
             {
-                var cargo = _unitOfWork.Repository<Cargo>().Get(id);
+                var cargo = _cargoService.Get(id);
                 var webDto = Mapper.Map<CargoDto>(cargo);
 
                 return webDto;
@@ -44,8 +43,7 @@ namespace CargosService.WebApi.Controllers
 
             try
             {
-                _unitOfWork.Repository<Cargo>().Insert(cargo);
-                _unitOfWork.Save();
+                _cargoService.Insert(cargo);
             }
             catch (EntityAlreadyExistException)
             {
@@ -65,8 +63,7 @@ namespace CargosService.WebApi.Controllers
 
             try
             {
-                _unitOfWork.Repository<Cargo>().Update(cargo);
-                _unitOfWork.Save();
+                _cargoService.Update(cargo);
             }
             catch (EntityNotFoundException)
             {
@@ -85,13 +82,11 @@ namespace CargosService.WebApi.Controllers
         {
             try
             {
-                _unitOfWork.Repository<Cargo>().Delete(id);
-                _unitOfWork.Save();
+                _cargoService.Delete(id);
             }
             catch (EntityNotFoundException)
             {
                 Request.CreateErrorResponse(HttpStatusCode.NotFound, string.Format("Cargo with id {0} not found.", id));
-                throw;
             }
 
             return new HttpResponseMessage(HttpStatusCode.OK)

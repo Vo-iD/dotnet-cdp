@@ -55,11 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdoContext.cs" />
-    <Compile Include="Commands\DeleteCargoCommand.cs" />
-    <Compile Include="Commands\InsertCargoCommand.cs" />
-    <Compile Include="Commands\AbstractSqlCommand.cs" />
-    <Compile Include="Commands\UpdateCargoCommand.cs" />
+    <Compile Include="Cache\CargoCacheStorage.cs" />
     <Compile Include="Repositories\EntityFrameworkRepositories\GenericRepository.cs" />
     <Compile Include="UnitsOfWork\EfUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +70,7 @@
       <Name>CargosService.DataAccess.Contract</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

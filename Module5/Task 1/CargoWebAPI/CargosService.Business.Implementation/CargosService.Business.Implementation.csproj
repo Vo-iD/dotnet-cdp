@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CargoServices\CargoService.cs" />
+    <Compile Include="Services\CargoCacheService.cs" />
     <Compile Include="Packaging\PackagingManager.cs" />
     <Compile Include="Packaging\PackagingService.cs" />
     <Compile Include="Packaging\TruckPackage.cs" />
@@ -54,16 +55,20 @@
       <Name>CargosService.Business.Contract</Name>
     </ProjectReference>
     <ProjectReference Include="..\CargosService.Common\CargosService.Common.csproj">
-      <Project>{7C2FA1D3-01F0-42D5-B7E2-6622FBE00C5E}</Project>
+      <Project>{7c2fa1d3-01f0-42d5-b7e2-6622fbe00c5e}</Project>
       <Name>CargosService.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\CargosService.Configuration.Contract\CargosService.Configuration.Contract.csproj">
-      <Project>{6954E620-4295-471A-ABB5-9200B3CA91BA}</Project>
+      <Project>{6954e620-4295-471a-abb5-9200b3ca91ba}</Project>
       <Name>CargosService.Configuration.Contract</Name>
     </ProjectReference>
     <ProjectReference Include="..\CargosService.DataAccess.Contract\CargosService.DataAccess.Contract.csproj">
-      <Project>{5A269405-40FB-4760-9A83-EE6E47ED2F62}</Project>
+      <Project>{5a269405-40fb-4760-9a83-ee6e47ed2f62}</Project>
       <Name>CargosService.DataAccess.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CargosService.DataAccess.Implementation\CargosService.DataAccess.Implementation.csproj">
+      <Project>{78d2b749-18d4-4069-83ea-046eec82f416}</Project>
+      <Name>CargosService.DataAccess.Implementation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -31,7 +31,7 @@ namespace CargosService.DataAccess.Implementation.UnitsOfWork
 
             if (!_repositories.ContainsKey(type))
             {
-                _repositories.Add(type, new GenericRepository<TData>(_context));;
+                _repositories.Add(type, new GenericRepository<TData>(_context));
             }
 
             return (IRepository<TData>)_repositories[type];
@@ -39,8 +39,8 @@ namespace CargosService.DataAccess.Implementation.UnitsOfWork
 
         public void Dispose()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            //Dispose(true);
+            //GC.SuppressFinalize(this);
         }
 
         public virtual void Dispose(bool disposing)

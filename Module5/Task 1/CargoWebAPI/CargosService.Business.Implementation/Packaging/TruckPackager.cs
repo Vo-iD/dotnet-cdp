@@ -39,9 +39,9 @@ namespace CargosService.Business.Implementation.Packaging
             EnumerateCargos(nonPrioritisedCargos, truck, pack, ref totalVolume, ref totalWeight);
         }
 
-        protected abstract void EnumerateCargos(IEnumerable<Cargo> cargoes, Truck truck, ITruckPackage pack,
+        protected abstract void EnumerateCargos(IEnumerable<DataAccess.Contract.Models.Cargo> cargoes, Truck truck, ITruckPackage pack,
             ref double totalVolume, ref double totalWeight);
 
-        protected abstract IEnumerable<Cargo> GetOrderedEnumeration(IQueryable<Cargo> cargoes);
+        protected abstract IEnumerable<DataAccess.Contract.Models.Cargo> GetOrderedEnumeration(IQueryable<DataAccess.Contract.Models.Cargo> cargoes);
     }
 }

@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataAccess.Contract">
+      <HintPath>..\CargosService.DataAccess.Implementation\bin\Debug\DataAccess.Contract.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,9 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\CachePackage.cs" />
-    <Compile Include="Cache\ICacheStorage.cs" />
-    <Compile Include="CargoServices\ICargoService.cs" />
+    <Compile Include="Services\ICargoService.cs" />
     <Compile Include="Packaging\IPackagingManager.cs" />
     <Compile Include="Packaging\ITruckPackager.cs" />
     <Compile Include="Packaging\IPackagingService.cs" />

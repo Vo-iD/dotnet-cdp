@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CargosService.Common.WebDto;
 using RestSharp;
 
@@ -36,15 +37,23 @@ namespace CargosService.ConsoleClient
 
         public void Get(RestClient client, IEnumerable<Guid> ids)
         {
-            foreach (var id in ids)
+            var necessaryIds = ids.Skip(200).Take(100);
+            var count = 0;
+            foreach (var id in necessaryIds)
             {
-                var request = new RestRequest(string.Format("Cargos/{0}", id), Method.GET);
-                var response = client.Execute(request);
-                if ((int)response.StatusCode >= 400 || response.StatusCode == 0)
+                for (int i = 0; i < 50; i++)
                 {
-                    Console.WriteLine("Get reqeust returned error for id: {0}. Status code: {1}", id, response.StatusCode);
+                    var request = new RestRequest(string.Format("Cargos/{0}", id), Method.GET);
+                    var response = client.Execute(request);
+                    if ((int)response.StatusCode >= 400 || response.StatusCode == 0)
+                    {
+                        Console.WriteLine("Get reqeust returned error for id: {0}. Status code: {1}", id, response.StatusCode);
+                    }
+                    count++;
                 }
             }
+
+            Console.Write("Total gets: {0}", count);
         }
 
         public void Put(RestClient client, IEnumerable<Guid> ids)

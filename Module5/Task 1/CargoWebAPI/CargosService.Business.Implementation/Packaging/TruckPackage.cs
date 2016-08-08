@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using CargosService.Business.Contract.Packaging;
-using CargosService.DataAccess.Contract.Models;
 
 namespace CargosService.Business.Implementation.Packaging
 {
@@ -8,11 +7,11 @@ namespace CargosService.Business.Implementation.Packaging
     {
         public TruckPackage()
         {
-            Cargos = new List<Cargo>();
+            Cargos = new List<DataAccess.Contract.Models.Cargo>();
             Warnings = new List<string>();
         }
 
-        public IList<Cargo> Cargos { get; private set; }
+        public IList<DataAccess.Contract.Models.Cargo> Cargos { get; private set; }
         public IList<string> Warnings { get; private set; } 
     }
 }

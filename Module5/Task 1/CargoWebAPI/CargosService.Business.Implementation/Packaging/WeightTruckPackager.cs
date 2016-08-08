@@ -35,7 +35,7 @@ namespace CargosService.Business.Implementation.Packaging
             return pack;
         }
 
-        protected override void EnumerateCargos(IEnumerable<Cargo> cargoes, Truck truck, ITruckPackage pack,
+        protected override void EnumerateCargos(IEnumerable<DataAccess.Contract.Models.Cargo> cargoes, Truck truck, ITruckPackage pack,
             ref double totalVolume, ref double totalWeight)
         {
             foreach (var cargo in cargoes)
@@ -55,7 +55,7 @@ namespace CargosService.Business.Implementation.Packaging
             }
         }
 
-        protected override IEnumerable<Cargo> GetOrderedEnumeration(IQueryable<Cargo> cargoes)
+        protected override IEnumerable<DataAccess.Contract.Models.Cargo> GetOrderedEnumeration(IQueryable<DataAccess.Contract.Models.Cargo> cargoes)
         {
             return cargoes.OrderByDescending(c => c.Weight);
         }
